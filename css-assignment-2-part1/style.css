@@ -1,0 +1,414 @@
+@font-face {
+    font-family: "Gilroy-Medium";
+    src: url("./gilroy-medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #F7F3EE;
+    padding: 0 50px;
+    font-family: "Gilroy-Medium", Helvetica, sans-serif;
+}
+body::selection{
+    background-color: black;
+    color: white;
+}
+
+
+nav{
+    padding: 10px 5px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 4fr 2fr;
+    border-radius: 0 0 20px 20px;
+    border-bottom: 2px solid #f9741639;
+
+}
+/* nav .nav-box{
+    height: 40px;
+} */
+#nav-box1{
+    display: flex;
+    align-items: center;
+}
+#nav-box1 h1{
+    font-family: "Gilroy-Medium";
+}
+#nav-box1 span p{
+    color: #F97316;
+    font-size: 60px;
+    margin-top: -15px;
+    margin-left: -2px;
+}
+
+#nav-box2{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+#nav-box2 a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+#nav-box3{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 30px;
+}
+#nav-box3 svg{
+    height: 20px;
+}
+
+
+
+
+
+main{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 6fr 3fr;
+}
+.main-container{
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+}
+#small-box1{
+    padding-top: 40px;
+}
+#small-box1 .container1 p{
+    margin-top: 20px;
+    font-size: 15px;
+    color: #F97316;
+    margin-bottom: 10px;
+}
+#small-box1 .container1 h1{
+    font-size: 50px;
+    line-height: 45px;
+}
+#small-box1 .container1 h1 span{
+    color: #F97316;
+}
+#small-box1 .container1 h2{
+    padding: 20px 0;
+    font-weight: 500;
+}
+#small-box1 hr{
+    width: 75%;
+    margin-bottom: 10px;
+}
+#small-box1 .container2{
+    padding-right: 20px;
+    padding-bottom: 30px;
+}
+#small-box1 .container2 p{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.441);
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+#small-box1 .container2 #heading{
+    color: rgb(79, 79, 79);
+    font-weight: 600;
+    padding-top: 10px;
+    font-size: 16px;
+}
+#small-box1 .container2 a{
+    text-decoration: none;
+    color: rgb(79, 79, 79);
+    font-weight: 600;
+    font-size: 14px;
+}
+#small-box1 .container3 #detail{
+    display: flex;
+    width: 75%;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgb(181, 181, 181);
+    padding-bottom: 20px;
+    transition: all ease 0.5s;
+}
+#small-box1 .container3 #detail:hover{
+    background-color: #adadad27;
+    border-radius: 0 0 20px 20px;
+}
+#small-box1 .container3 p{
+    font-size: 15px;
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+
+
+
+
+#small-box2{
+    display: grid;
+    position: relative;
+
+}
+#small-box2 #hero-container{
+    overflow: hidden;
+    position: absolute;
+}
+#small-box2 #hero-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.30);
+    margin-top: 90px;
+}
+
+
+#small-box3{
+    display: flex;
+    flex-direction: column;
+    padding: 70px 0 0 70px;
+}
+#small-box3 #size-section{
+    display: flex;
+    flex-direction: column;
+
+}
+#small-box3 h1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+#small-box3 #size-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#small-box3 #size-buttons button{
+    background-color: rgb(229, 229, 229);
+    color: black;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    transition: all ease 0.5s;
+    box-shadow: 0 0 5px rgb(195, 195, 195);
+    
+}
+#small-box3 #size-buttons button:hover{
+    background-color: #F97316;
+}
+
+#size-section a{
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 20px;
+}
+#color-section {
+    display: flex ;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+}
+#color-section #colors-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 2fr 2fr;
+    gap: 15px;
+}
+#color-section #colors-container #color-cotainer-boxes{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+#color-section #colors-container #color-cotainer-boxes img{
+    height: 90%;
+    width: 90%;
+    background-color: rgb(211, 211, 211);
+    border-radius: 25px;
+    object-fit: cover;
+    object-position: center;
+    transition: all ease 0.3s;
+
+}
+#color-section #colors-container #color-cotainer-boxes img:hover{
+    transform: scale(1.04);
+}
+#color-section #colors-container #color-cotainer-boxes p{
+    text-align: center;
+    font-size: 13px;
+}
+
+#small-box3 #bottom-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px 0;
+}
+#small-box3 #bottom-buttons button{
+    padding: 10px ;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    background: #F7F3EE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#small-box3 #bottom-buttons button svg{
+    height: 22px;
+}
+#small-box3 #bottom-buttons #button1{
+    box-shadow: 0 0 5px #f9741648;
+    transition: all ease 0.5s;
+}
+#small-box3 #bottom-buttons #button1:hover{
+    background-color: #F97316;
+    color: #F7F3EE;
+    box-shadow: 0 0 5px rgb(120, 120, 120);
+}
+#small-box3 #bottom-buttons #button2{
+    border: none;
+    background-color: #F97316;
+    color: #F7F3EE;
+    box-shadow: 0 0 5px rgb(120, 120, 120);
+    transition: all ease 0.5s;
+}
+#small-box3 #bottom-buttons #button2:hover{
+    background-color: #F7F3EE;
+    color: #F97316;
+    box-shadow: 0 0 5px #f9741648;
+}
+
+
+#banner{
+    margin-top: -40px;
+    display: flex ;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+
+}
+#banner #banner-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#banner #banner-box svg{
+    height: 30px;
+    color: gray;
+}
+#banner #banner-box p{
+    height: 15px;
+    color: gray;
+}
+
+.footer{
+    margin-top: 30px;
+    padding: 20px 0;
+    height: 250px;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+}
+.footer-box1{
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px #f9741636;
+    background-color: #f9741604;
+}
+.footer-box1 .card{
+    display: flex;
+    padding: 20px 20px;
+    gap: 10px;
+    height: 100%;
+    width: 25%;
+}
+.footer-box1 .card .left{
+    height: 180px;
+    width: 150px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: rgba(128, 128, 128, 0.283);
+}
+.footer-box1 .card .left img{
+    height: 100%;
+    width: 100%;
+
+}
+.footer-box1 .card .right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+.footer-box1 .card .right h1{
+    padding-top: 15px;
+    font-size: 22px;
+    font-weight: 900;
+    font-family: "Gilroy-Medium";
+}
+.footer-box1 .card .right p{
+    font-size: 14px;
+    color: gray;
+    font-family: "Gilroy-Medium";
+}
+
+.footer-box2{
+    margin-top: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px #f9741636;
+    background-color: #f9741604;
+    padding: 10px 10px;
+}
+.footer-box2 .bottom-card{
+    display: flex;
+    width: 25%;
+    padding: 20px;
+    gap: 10px;
+    border-right: 1px solid rgb(202, 202, 202);
+}
+.footer-box2 .bottom-card .left1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.footer-box2 .bottom-card .right1 h1{
+    font-size: 15px;
+
+}
+.footer-box2 .bottom-card .right1 p{
+    font-size: 11px;
+    color: gray;
+}
+#bottom-card4{
+    border: none;
+}
+#svg4{
+    color: #F97316;
+}
+#svg3{
+    color: #F97316;
+}

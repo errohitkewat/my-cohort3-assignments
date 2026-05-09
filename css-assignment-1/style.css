@@ -1,0 +1,317 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #F5F6FF;
+    padding: 10px 20px;
+}
+
+nav{
+    display: flex ;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.menu{
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(201, 201, 201, 0.700);
+    margin-top: 20px;
+    transition: all ease 0.3s;
+}
+.menu:hover{
+    transform: scale(1.05);
+}
+
+.logo{
+    height: 120px;
+    width: 400px;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.sun{
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(201, 201, 201, 0.700);
+    margin-top: 20px;
+    transition: all ease 0.3s;
+}
+.sun:hover{
+    transform: scale(1.05);
+}
+
+.search{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.left{
+    padding: 0 20px 0 0 ;
+    height: 50px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+    padding-left: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgb(201, 201, 201, 0.700);
+}
+.left svg{
+    height: 30px;
+}
+.left input{
+    height: 30px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    font-size: 17px;
+    border-radius: 20px;
+}
+.left input:focus{
+    outline: none;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right .select{
+    height: 50px;
+    padding: 5px 20px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgb(201, 201, 201, 0.700);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.select h2{
+    font-size: 17px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.select svg{
+    height: 32px;
+
+}
+.bar{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(201, 201, 201, 0.700);
+
+}
+.bar svg{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25px;
+
+}
+
+#main-container{
+    padding-top: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.card{
+    width: 23%;
+    padding: 20px 20px ;
+    border-radius: 30px;
+    transition: all ease 0.5s ;
+    position: relative;
+
+}
+.card:hover{
+    transform: scale(1.05);
+}
+
+#card1{
+    box-shadow: 0 0 10px rgba(4, 144, 77, 0.350);
+}
+#card2{
+    box-shadow: 0 0 10px rgba(68, 68, 68, 0.350);
+}
+#card3{
+    box-shadow: 0 0 10px rgb(255, 123, 0, 0.350);
+}
+#card4{
+    box-shadow: 0 0 10px rgb(19, 54, 230, 0.350);
+}
+
+.card .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.top p{
+    font-family: sans-serif;
+    font-size: 15px;
+    color: gray;
+}
+.top svg{
+    padding: 5px;
+    height: 35px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px gray;
+}
+
+.image-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+
+}
+
+.image-container img{
+    height: 100%;
+    width: 100%;
+    object-position: center;
+}
+
+
+
+
+.bottom h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+.bottom-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bottom svg{
+    height: 15px;
+}
+.bottom .symbol{
+    padding: 5px 10px;
+    background-color: rgba(0, 255, 0, 0.194);
+    color: green;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    width: auto;
+    padding: 7px 10px ;
+    border-radius: 15px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+#symbol2{
+    background-color: rgba(128, 128, 128, 0.183);
+    color: rgb(36, 36, 36);
+}
+#symbol3{
+    background-color: rgba(255, 72, 0, 0.198);
+    color: rgb(255, 81, 0);
+}
+#symbol4{
+    background-color: rgba(9, 9, 255, 0.148);
+    color: rgb(25, 0, 255);
+}
+.bottom .arrow{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px gray;
+
+}
+.arrow svg{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25px;
+}
+
+
+
+
+footer{
+    font-family: sans-serif;
+    padding: 20px 30px;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 30px;
+    margin-bottom: 100px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.350);
+    margin-top: 100px;
+    display: flex ;
+    align-items: center;
+    justify-content: space-between;
+}
+.icon1{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 72, 255, 0.134);
+}
+.icon1 svg{
+    height: 50px;
+    color: blue;
+}
+.icon2{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 225, 34, 0.134);
+}
+.icon2 svg{
+    height: 50px;
+    color: rgb(0, 164, 33);
+}
+.icon3{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 191, 0, 0.134);
+}
+.icon3 svg{
+    height: 50px;
+    color: rgb(255, 157, 0);
+}
+.icon4{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(162, 0, 255, 0.134);
+}
+.icon4 svg{
+    height: 50px;
+    color: rgb(230, 0, 255);
+}
+.footer-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+hr{
+    transform: rotateX(90deg);
+}

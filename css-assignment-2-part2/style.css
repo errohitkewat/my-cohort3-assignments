@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: url("./fonts/gilroy-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Glorase";
+  src: url("./fonts/Glorase.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Olivera";
+  src: url("./fonts/Olivera_Demo.ttf") format("truetype");
+}
+
+*{
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: "Gilroy-Regular";
+}
+#logo{
+    font-family: sans-serif;
+}
+#links{
+    font-family: Gilroy-Regular;
+    font-size: 18px;
+    gap: 60px;
+}
+#search{
+    width:300px;
+    box-shadow: 0 0 5px rgb(183, 183, 183);
+}
+
+#main-container{
+    height: 90vh;
+    width: 100%; 
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+}
+
+#box1{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+
+}
+#box1 #heading{
+    transform: rotate(-90deg);
+    font-size: 70px;
+    display: inline;
+    font-family: "Glorase";
+    position: relative;
+    left: -60px;
+}
+#box1 #porperties{
+    position: absolute;
+    left: 220px;
+    font-size: 20px;
+    padding-right: 30px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.property-box {
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding: 5px;
+}
+.property-box li{
+    font-weight: 600;
+    font-size: 23px;
+}
+.property-box p{
+    font-size: 18px;
+    color: gray;
+}
+
+#box2 img{
+    margin-left: -17px;
+    margin-top: 50px;
+}
+
+#box3{
+    padding-top: 120px;
+    color: #F7F7F5;
+    padding-left: 50px;
+
+}
+#box3 h1{
+    font-size: 65px;
+    line-height: 55px;
+    font-family: "Olivera";
+    letter-spacing: 3px;
+}
+#box3 #insect-detail{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+}
+#insect-detail .box{
+    color: hsl(34, 100%, 87%);
+    display: flex ;
+    flex-direction: column;
+    gap: 20px;
+}
+#insect-detail #box1{
+    border-right: 1px solid #F7F7F5;
+    overflow: hidden;
+    display: flex;
+    align-items: start;
+}
+#insect-detail #box1 img{
+    height: 100px;
+    transform: scale(2);
+    margin-top: 20px;
+}
+#insect-detail #box1 p{
+    text-align: start;
+    margin-left: 10px;
+}
+#box2{
+    padding-left: 25px;
+}
+#box2 .child{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+#box2 .child svg{
+    width: 50px;
+    height: 40px;
+    font-size: 50px;
+}
+
+#price h1{
+    color: hsl(34, 100%, 87%);
+    padding-top: 20px;
+    font-size: 50px;
+}
+
+
+#checker{
+    color: hsl(34, 100%, 87%);
+    padding: 20px 0;
+}
+#checker input{
+    margin-top: 3px;
+    height: 20px;
+    width: 20px;
+}
+#check{
+    display: flex;
+    margin-bottom: 5px;
+    gap: 10px;
+    font-size: 18px;
+}
+
+button{
+    margin-top: 10px;
+    background-color: hsl(34, 100%, 87%);
+    padding: 10px 40px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+}
