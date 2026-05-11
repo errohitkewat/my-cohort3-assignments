@@ -194,7 +194,7 @@ nav button svg{
 }
 #hero-right .boxes p{
     padding-top: 6px;
-    font-family: "Gilroy-Regular";
+    font-family: "Poppins-Regular";
     font-size: 15px;
     color: #8A939F;
 }
@@ -463,7 +463,7 @@ nav button svg{
 .process-card .process-card-left #num{
     color: #12D6C5;
     font-size: 25px;
-    font-family: "Poppins";
+    font-family: "Poppins-Regular";
     text-align: start;
     font-weight: 600;
 }
