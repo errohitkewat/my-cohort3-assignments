@@ -230,11 +230,12 @@ nav .links #menu{
     .section2 .cards-container{
             flex-direction: column;
             padding-top: 30px;
-            gap: 20px;
+            gap: 30px;
     }
     .section2 .cards-container .card{
             width: 100%;
-            padding: 50px 10px;
+            padding: 50px 30px;
+            height: 350px;
     }
 }
 
@@ -454,7 +455,7 @@ nav .links #menu{
     }
     .section4 .cards-container #card1{
         width: 100%;
-        height: 300px;
+        height: 350px;
         padding: 50px 30px;
     }
     .section4 .cards-container #card1 button{
@@ -462,7 +463,7 @@ nav .links #menu{
     }
     .section4 .cards-container .rows .card{
         width: 100%;
-        height: 250px;
+        height: 350px;
         padding: 50px 30px;
     }
     .section4 .cards-container #row1{
