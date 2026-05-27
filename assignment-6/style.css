@@ -1893,7 +1893,8 @@ footer .bottom .bottom-container .copyright {
     }
     .section6 .right button {
         display: flex;
-        padding: 0.8rem 5rem;
+        padding: 0.7rem 4rem;
+        font-size: 1rem;
     }
     
 
