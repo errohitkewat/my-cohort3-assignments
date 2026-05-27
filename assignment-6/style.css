@@ -757,13 +757,11 @@ nav .nav-part3 h3 {
     border: none;
     width: 100%;
     background-color: white;
-    border: 1px solid #2a2857;
     transition: all ease 0.3s;
 }
 
 .section6 .right button:hover {
     background-color: #ffbb2a;
-    border: 1px solid white;
 }
 
 
@@ -1894,7 +1892,8 @@ footer .bottom .bottom-container .copyright {
         width: 80%;
     }
     .section6 .right button {
-        width: 13rem;
+        display: flex;
+        padding: 0.8rem 5rem;
     }
     
 
