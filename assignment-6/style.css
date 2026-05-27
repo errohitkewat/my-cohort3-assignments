@@ -2,25 +2,30 @@
     font-family: "Rackless";
     src: url(./fonts/RecklessCondensedS-TRIAL-Book.woff);
 }
+
 @font-face {
     font-family: "Figtree";
     src: url(./fonts/Figtree-VariableFont_wght.ttf);
 }
+
 @font-face {
     font-family: "Retro-Floral";
     src: url(./fonts//Retro-Floral.ttf);
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html,body{
+
+html,
+body {
     height: 100%;
     width: 100%;
 }
 
-main{
+main {
     min-height: 100vh;
     width: 100%;
     background-color: #faf9ed;
@@ -28,7 +33,7 @@ main{
 }
 
 
-header{
+header {
     width: 100%;
     padding: 0.5rem 0;
     display: flex;
@@ -39,7 +44,8 @@ header{
     left: 0;
     z-index: 50;
 }
-nav{
+
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -55,22 +61,24 @@ nav{
 
 
 
-nav .nav-part1 h3{
+nav .nav-part1 h3 {
     display: none;
 }
-nav .nav-part1 i{
+
+nav .nav-part1 i {
     color: black;
     font-size: 2.4rem;
     font-weight: 100;
 }
-nav .nav-part3 h3{
+
+nav .nav-part3 h3 {
     display: none;
 }
 
 
 
 
-.section1{
+.section1 {
     background-image: url(https://www.twoleavestea.com/cdn/shop/files/AlpineBerry_mobile.webp?v=1774284087&width=1125.0);
     background-size: cover;
     background-position: center;
@@ -84,21 +92,25 @@ nav .nav-part3 h3{
     padding: 3rem 1.4rem;
     gap: 1rem;
 }
-.section1 h1{
+
+.section1 h1 {
     font-family: "Rackless";
     font-size: 3rem;
     color: white;
     font-weight: 100;
     text-align: center;
 }
-.section1 p{
+
+.section1 p {
     text-align: center;
     color: white;
     font-weight: 200;
     font-family: "Figtree";
 }
-.section1 button{
+
+.section1 button {
     background-color: #2a2857;
+    border: 1px solid #2a2857;
     width: 100%;
     padding: 1rem;
     font-size: 1rem;
@@ -109,7 +121,8 @@ nav .nav-part3 h3{
     font-weight: 200;
     transition: all ease 0.3s;
 }
-.section1 button:hover{
+
+.section1 button:hover {
     color: #2a2857;
     background-color: white;
 }
@@ -119,7 +132,7 @@ nav .nav-part3 h3{
 
 
 
-.section2{
+.section2 {
     min-height: 100vh;
     width: 100%;
     background-color: #faf9ed;
@@ -127,10 +140,25 @@ nav .nav-part3 h3{
     display: flex;
     flex-direction: column;
     padding: 5rem 0;
+    position: relative;
 
     border-bottom: 2px solid black;
 }
-.section2 h1{
+
+.section2 .icon {
+    position: absolute;
+    top: -1.4rem;
+    right: 1rem;
+    font-weight: 100;
+    color: white;
+    padding: 0.3rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    background-color: #2a2857;
+
+}
+
+.section2 h1 {
     text-align: center;
     font-weight: 100;
     font-family: "Rackless";
@@ -141,10 +169,11 @@ nav .nav-part3 h3{
 
 
 /* Label  */
-.label{
+.label {
     padding: 2rem 1rem;
 }
-.label .btn{
+
+.label .btn {
     border: 1px solid black;
     background-color: #daafeb;
     border-radius: 0.3rem;
@@ -162,9 +191,7 @@ nav .nav-part3 h3{
 }
 
 
-
-
-.section2 .cards-container{
+.section2 .cards-container {
     padding: 1vw 0;
     display: flex;
     justify-content: start;
@@ -175,15 +202,19 @@ nav .nav-part3 h3{
     scroll-behavior: smooth;
 
 }
-.section2 .cards-container::-webkit-scrollbar{
+
+.section2 .cards-container::-webkit-scrollbar {
     display: none;
 }
-.section2 .cards-container .card{
+
+.section2 .cards-container .card {
     width: 85%;
+    min-height: 50vh;
     flex-shrink: 0;
     overflow: hidden;
 }
-.cards-container .card .top{
+
+.cards-container .card .top {
     background-size: cover;
     background-position: center;
     height: 55vh;
@@ -192,6 +223,7 @@ nav .nav-part3 h3{
     border: 1px solid black;
     border-radius: 0.5rem;
     overflow: hidden;
+    position: relative;
 }
 
 .section2 .cards-container .card .top img {
@@ -199,52 +231,63 @@ nav .nav-part3 h3{
     width: 100%;
     object-fit: cover;
     object-position: center;
-    transition: all ease 0.3s;
+    transition: transform 0.4s ease;
 }
-.section2 .cards-container .card .top img:hover{
-    scale: 1.1;
-    margin-top: -1rem;
+
+.section2 .cards-container .card .top:hover img {
+    transform: scale(1.1);
 }
-.section2 .cards-container #card2 .top{
+
+.section2 .cards-container #card2 .top {
     background-color: #ffd985;
 }
-.section2 .cards-container #card3 .top{
+
+.section2 .cards-container #card3 .top {
     background-color: #b1e8c0;
 }
-.section2 .cards-container #card4 .top{
+
+.section2 .cards-container #card4 .top {
     background-color: #c0e5f8;
 }
-.section2 .cards-container #card5 .top{
+
+.section2 .cards-container #card5 .top {
     background-color: #bee471;
 }
-.section2 .cards-container .card .bottom{
+
+.section2 .cards-container .card .bottom {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     height: fit-content;
     padding: 1.5rem 0;
 }
-.section2 .cards-container .card .bottom .title{
-    font-family: "Rackless";font-weight: 100;
+
+.section2 .cards-container .card .bottom .title {
+    font-family: "Rackless";
+    font-weight: 100;
 }
-.section2 .cards-container .card .bottom .price{
+
+.section2 .cards-container .card .bottom .price {
     font-family: "Figtree";
     font-weight: 100;
 }
-.section2 .cards-container .card .bottom .discription{
+
+.section2 .cards-container .card .bottom .discription {
     font-family: "Figtree";
     font-weight: 100;
     font-size: 0.8rem;
 }
 
-.section2 .bottom-btn{
+.section2 .bottom-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 7rem;
 }
-.section2 .bottom-btn button{
+
+.section2 .bottom-btn button {
     background-color: #2a2857;
+    border: 1px solid #2a2857;
     color: white;
     border: none;
     font-size: 1rem;
@@ -254,15 +297,73 @@ nav .nav-part3 h3{
     font-family: "Figtree";
     transition: all ease 0.3s;
 }
-.section2 .bottom-btn button:hover{
+
+.section2 .bottom-btn button:hover {
     background-color: white;
     color: #2a2857;
+    border: 1px solid #2a2857;
+}
+
+.section2 .cards-container .card .top .top-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.section2 .cards-container .card .top .top-content .topp {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Figtree";
+}
+
+.section2 .cards-container .card .top .top-content .topp span {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    background-color: white;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    font-weight: 900;
+}
+
+.section2 .cards-container .card .top .top-content .topp .rating {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.section2 .cards-container .card .top .top-content .bottom {
+    display: flex;
+    align-items: end;
+    width: 100%;
+}
+
+.section2 .cards-container .card .top .top-content .bottom .bottom-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-family: "Figtree";
+    line-height: none;
+}
+
+.section2 .cards-container .card .top .top-content .bottom .bottom-content span {
+    font-size: 1.5rem;
 }
 
 
 
 /* Section3 Discover */
-.section3{
+.section3 {
     min-height: 100vh;
     width: 100%;
     background-color: #faf9ed;
@@ -271,17 +372,19 @@ nav .nav-part3 h3{
     flex-direction: column;
     padding: 5rem 1rem;
 }
-#section3-label .btn{
+
+#section3-label .btn {
     background-color: #ff7e33;
     margin-left: -1rem;
 }
 
-.section3 h1{
+.section3 h1 {
     font-family: "Rackless";
     font-weight: 100;
     color: rgb(58, 58, 58);
 }
-.section3 input{
+
+.section3 input {
     border: 1px solid black;
     border-radius: 1rem;
     font-family: "Rackless";
@@ -291,32 +394,40 @@ nav .nav-part3 h3{
 
     margin-top: 3rem;
 }
-.section3 .vibe{
+
+.section3 .vibe {
     padding: 2rem 0;
     font-family: "Figtree";
     text-transform: uppercase;
     font-weight: 100;
     font-size: 0.9rem;
 }
-.section3 .vibes-container{
+
+.section3 .vibes-container {
     padding: 1rem 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
-.section3 .vibes-container button{
+
+.section3 .vibes-container button {
     padding: 0.5rem 1rem;
     font-family: "Rackless";
     font-size: 2rem;
     border: 1px solid black;
     background-color: #daeaff;
     border-radius: 1rem;
+    transition: all ease 0.2s;
+}
+
+.section3 .vibes-container button:hover {
+    background-color: #a3c8fc;
 }
 
 
 
 /* Section4 */
-.section4{
+.section4 {
     min-height: 200vh;
     width: 100%;
     background-image: url(https://www.twoleavestea.com/cdn/shop/files/adam-vradenburg-_gu7E90QChU-unsplash_1_1.webp?v=1771592855&width=900);
@@ -325,17 +436,20 @@ nav .nav-part3 h3{
     padding: 5rem 2rem;
 
 }
-.section4 #section4-label{
+
+.section4 #section4-label {
     justify-content: center;
     display: flex;
     align-items: center;
     /* border: 1px solid white; */
     margin-top: 3rem;
 }
-.section4 #section4-label .btn{
+
+.section4 #section4-label .btn {
     background-color: #a3c8fc;
 }
-.section4 h1{
+
+.section4 h1 {
     color: white;
     text-align: center;
     font-weight: 400;
@@ -344,7 +458,8 @@ nav .nav-part3 h3{
     font-family: "Retro-Floral";
     line-height: 4rem;
 }
-.section4 h2{
+
+.section4 h2 {
     color: white;
     text-align: center;
     font-weight: 100;
@@ -354,7 +469,8 @@ nav .nav-part3 h3{
     font-family: "Rackless";
     /* padding: 0 2rem; */
 }
-.section4 .images-container{
+
+.section4 .images-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -364,25 +480,31 @@ nav .nav-part3 h3{
     margin-top: 13rem;
     gap: 3rem;
 }
-.section4 .images-container .boxes{
+
+.section4 .images-container .boxes {
     width: 6rem;
 }
-.section4 .images-container #box1 .image{
+
+.section4 .images-container #box1 .image {
     background-image: url(//www.twoleavestea.com/cdn/shop/files/Quality_without_pretense.svg?v=1773116402&width=146);
 }
-.section4 .images-container #box2 .image{
+
+.section4 .images-container #box2 .image {
     background-image: url(//www.twoleavestea.com/cdn/shop/files/care_for_ppl_1.svg?v=1773116330&width=144);
 }
-.section4 .images-container #box3 .image{
+
+.section4 .images-container #box3 .image {
     background-image: url(//www.twoleavestea.com/cdn/shop/files/transparent_sourcing.svg?v=1773116421&width=122);
 }
-.section4 .images-container .image{
+
+.section4 .images-container .image {
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
     margin-bottom: 1rem;
 }
-.section4 .images-container .boxes p{
+
+.section4 .images-container .boxes p {
     color: white;
     font-family: "Figtree";
     text-transform: uppercase;
@@ -391,7 +513,8 @@ nav .nav-part3 h3{
     font-size: 0.8rem;
     line-height: 1rem;
 }
-.section4 button{
+
+.section4 button {
     background-color: white;
     width: 100%;
     padding: 1rem;
@@ -403,31 +526,34 @@ nav .nav-part3 h3{
     font-family: "Figtree";
     font-weight: 200;
     transition: all ease 0.3s;
+    border: 1px solid #2a2857;
 }
-.section4 button:hover{
+
+.section4 button:hover {
     background-color: #2a2857;
     color: white;
 }
 
 
 
-.section5{
+.section5 {
     min-height: 90vh;
     width: 100%;
     background-color: #faf9ed;
     padding: 3rem 0 5rem 0;
 }
 
-#section5-label .btn{
+#section5-label .btn {
     /* margin-left: -1rem; */
     background-color: #7db904;
 
 }
-.section5 .disc{
-     display: none;
+
+.section5 .disc {
+    display: none;
 }
 
-.review-card-container{
+.review-card-container {
     min-height: 50vh;
     padding: 2rem 0;
     padding-left: 1rem;
@@ -438,12 +564,12 @@ nav .nav-part3 h3{
     flex-direction: row;
 
 }
-.review-card-container::-webkit-scrollbar{
+
+.review-card-container::-webkit-scrollbar {
     display: none;
 }
 
-.section5 .review-card-container .review-cards{
-    background-color: #f4af8b;
+.section5 .review-card-container .review-cards {
     width: 90%;
     border-radius: 1rem;
     padding: 1rem;
@@ -451,20 +577,23 @@ nav .nav-part3 h3{
     border: 1px solid black;
     flex-shrink: 0;
 }
-.section5 .review-card-container .review-cards .top{
+
+.section5 .review-card-container .review-cards .top {
     height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.section5 .review-card-container .review-cards .top .title{
+
+.section5 .review-card-container .review-cards .top .title {
     font-family: "Rackless";
     font-size: 2rem;
     text-align: center;
     font-weight: 100;
 }
-.section5 .review-card-container .review-cards .top .name{
+
+.section5 .review-card-container .review-cards .top .name {
     font-family: "Figtree";
     font-weight: 200;
     padding-top: 0.7rem;
@@ -472,7 +601,7 @@ nav .nav-part3 h3{
     color: rgba(0, 0, 0, 0.518);
 }
 
-.section5 .review-card-container .review-cards .bottom{
+.section5 .review-card-container .review-cards .bottom {
     background-color: #eb6c44;
     height: 30%;
     display: flex;
@@ -482,20 +611,23 @@ nav .nav-part3 h3{
     border-radius: 1rem;
     overflow: hidden;
 }
-.section5 .review-card-container .review-cards .bottom .product{
+
+.section5 .review-card-container .review-cards .bottom .product {
     height: 100%;
     width: 35%;
     overflow: hidden;
     border-right: 1px solid black;
     padding: 1.5rem;
 }
-.section5 .review-card-container .review-cards .bottom .product img{
+
+.section5 .review-card-container .review-cards .bottom .product img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-.section5 .review-card-container .review-cards .bottom .discription{
+
+.section5 .review-card-container .review-cards .bottom .discription {
     width: 30%;
     font-family: "Figtree";
     font-size: 0.8rem;
@@ -503,39 +635,91 @@ nav .nav-part3 h3{
     text-transform: uppercase;
     padding-left: 0.5rem;
 }
-.section5 .review-card-container .review-cards .bottom .btn{
+
+.section5 .review-card-container .review-cards .bottom .btn {
     height: 100%;
     width: 35%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.section5 .review-card-container .review-cards .bottom .btn button{
+
+.section5 .review-card-container .review-cards .bottom .btn button {
     padding: 1rem;
     border-radius: 2rem;
     font-size: 1rem;
     border: 1px solid black;
+    transition: all ease 0.3s;
 }
 
+.section5 .review-card-container .review-cards .bottom .btn button:hover {
+    font-size: 0.8rem;
+}
+
+
+.section5 .review-card-container #review-card1 {
+    background-color: #f4af8b;
+}
+
+.section5 .review-card-container #review-card1 .bottom {
+    background-color: #EB6C45;
+}
+
+.section5 .review-card-container #review-card2 {
+    background-color: #ABDE75;
+}
+
+.section5 .review-card-container #review-card2 .bottom {
+    background-color: #73BD25;
+}
+
+.section5 .review-card-container #review-card3 {
+    background-color: #FED266;
+}
+
+.section5 .review-card-container #review-card3 .bottom {
+    background-color: #FFB503;
+}
+
+.section5 .review-card-container #review-card4 {
+    background-color: #ADE675;
+}
+
+.section5 .review-card-container #review-card4 .bottom {
+    background-color: #8AC144;
+}
+
+.section5 .review-card-container #review-card5 {
+    background-color: #D9C3E0;
+}
+
+.section5 .review-card-container #review-card5 .bottom {
+    background-color: #C78FDB;
+}
+
+
 /* Section6  */
-.section6{
+.section6 {
     min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-.section6 .left{
+
+.section6 .left {
     height: 50vh;
     width: 100%;
 
 }
-.section6 .left img{
+
+.section6 .left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-.section6 .right{
+
+.section6 .right {
     height: 60vh;
     width: 100%;
     display: flex;
@@ -548,20 +732,23 @@ nav .nav-part3 h3{
     color: white;
 
 }
-.section6 .right h1{
+
+.section6 .right h1 {
     font-family: "Rackless";
     font-size: 2.5rem;
     text-align: center;
     width: 60%;
 
 }
-.section6 .right p{
+
+.section6 .right p {
     font-family: "Figtree";
     font-size: 1.2rem;
     text-align: center;
     width: 95%;
 }
-.section6 .right button{
+
+.section6 .right button {
     font-size: 1.2rem;
     font-family: "Figtree";
     font-weight: 200;
@@ -570,6 +757,13 @@ nav .nav-part3 h3{
     border: none;
     width: 100%;
     background-color: white;
+    border: 1px solid #2a2857;
+    transition: all ease 0.3s;
+}
+
+.section6 .right button:hover {
+    background-color: #ffbb2a;
+    border: 1px solid white;
 }
 
 
@@ -583,30 +777,34 @@ nav .nav-part3 h3{
 
 
 /*  ********** Section 7 ********* */
-.section7{
+.section7 {
     min-height: 120vh;
     width: 100%;
     padding: 5rem 0;
     background-color: #9f6528;
-    
+
 }
-.section7 #section7-label{
+
+.section7 #section7-label {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
 }
-.section7 #section7-label .btn{
+
+.section7 #section7-label .btn {
     background-color: #ffcb96;
 }
-.section7 h1{
+
+.section7 h1 {
     padding-top: 1rem;
     color: white;
     font-family: "Retro-floral";
     font-size: 2.5rem;
     text-align: center;
 }
-.section7 p{
+
+.section7 p {
     color: white;
     text-align: center;
     font-family: "Figtree";
@@ -620,7 +818,7 @@ nav .nav-part3 h3{
 
 
 
-.section7 .lattes-card-container{
+.section7 .lattes-card-container {
     min-height: 100vh;
     padding: 10rem 1rem 2rem 1rem;
     overflow-x: auto;
@@ -630,41 +828,80 @@ nav .nav-part3 h3{
     gap: 1rem;
     scroll-behavior: smooth;
 }
-.section7 .lattes-card-container::-webkit-scrollbar{
+
+.section7 .lattes-card-container::-webkit-scrollbar {
     display: none;
 }
 
-.section7 .lattes-card-container .cards{
+.section7 .lattes-card-container .cards {
     background-color: #ffcb96;
     min-height: 100vh;
     width: 95%;
     border-radius: 1rem;
-    border: 1px solid black;display: flex;
+    border: 1px solid black;
+    display: flex;
     flex-direction: column;
     display: flex;
     flex-shrink: 0;
 
 }
-.section7 .lattes-card-container .cards .top{
+
+.section7 .lattes-card-container #card2 {
+    background-color: #BFE570;
+}
+
+.section7 .lattes-card-container #card2 .label {
+    background-color: #73BD25;
+}
+
+.section7 .lattes-card-container #card3 {
+    background-color: #FED266;
+}
+
+.section7 .lattes-card-container #card3 .label {
+    background-color: #FFB503;
+}
+
+.section7 .lattes-card-container #card4 {
+    background-color: #FEDBB3;
+}
+
+.section7 .lattes-card-container #card4 .label {
+    background-color: #E8AB62;
+}
+
+.section7 .lattes-card-container #card5 {
+    background-color: #AAEC79;
+}
+
+.section7 .lattes-card-container #card5 .label {
+    background-color: #6BC339;
+}
+
+
+.section7 .lattes-card-container .cards .top {
     height: 50%;
     width: 100%;
     position: relative;
 }
-.section7 .lattes-card-container .cards .top .img-container{
+
+.section7 .lattes-card-container .cards .top .img-container {
     position: absolute;
     height: 100%;
     width: 100%;
     top: -5rem;
     overflow: hidden;
 }
-.section7 .lattes-card-container .cards .top .img-container img{
+
+.section7 .lattes-card-container .cards .top .img-container img {
     height: 100%;
     width: 120%;
     object-position: center;
     object-fit: contain;
     margin-left: -5rem;
 }
-.section7 .lattes-card-container .cards .bottom{
+
+.section7 .lattes-card-container .cards .bottom {
     padding: 3rem 2rem;
     margin-top: -7rem;
     height: 50%;
@@ -675,36 +912,40 @@ nav .nav-part3 h3{
 
 
 }
-.section7 .lattes-card-container .cards .bottom span{
+
+.section7 .lattes-card-container .cards .bottom span {
     border: 1px solid black;
     width: fit-content;
     height: fit-content;
     background-color: #c07a30;
     font-family: "Retro-Floral";
     font-size: 1.5rem;
-    padding: 0.2rem  0.5rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 0.5rem;
     rotate: -3deg;
 
 }
-.section7 .lattes-card-container .cards .bottom h1{
+
+.section7 .lattes-card-container .cards .bottom h1 {
     font-family: "Rackless";
     color: black;
     font-size: 3rem;
     width: 100%;
     padding: 0 0;
-    
+
 }
-.section7 .lattes-card-container .cards .bottom p{
+
+.section7 .lattes-card-container .cards .bottom p {
     font-family: "Figtree";
     color: black;
     text-transform: capitalize;
     font-size: 1.1rem;
     padding: 0 0.5rem;
-    
+
 }
-.section7 .lattes-card-container .cards .bottom button{
-    padding: 0.7rem ;
+
+.section7 .lattes-card-container .cards .bottom button {
+    padding: 0.7rem;
     width: 70%;
     border-radius: 2rem;
     font-size: 1.2rem;
@@ -713,34 +954,39 @@ nav .nav-part3 h3{
     margin-top: 1rem;
     border: 1px solid black;
     font-weight: 200;
+    transition: all ease 0.3s;
 }
-/* ************************** */
 
-
-
-
+.section7 .lattes-card-container .cards .bottom button:hover {
+    background-color: #2a2857;
+    color: white;
+}
 
 
 
 /* Section8  */
-.section8{
+.section8 {
     min-height: 100vh;
     width: 100%;
     background-color: #faf9ed;
     padding: 4rem 0;
 }
-.section8 #section8-label{
+
+.section8 #section8-label {
     padding: 0;
     padding-left: 1rem;
 }
-.section8 #section8-label .btn{
+
+.section8 #section8-label .btn {
     background-color: #ffbb2a;
 }
-.section8 .discription{
+
+.section8 .discription {
     padding: 2rem 1rem;
     font-family: "Rackless";
     font-size: 2rem;
 }
+
 .section8 .cards-container {
     min-height: 50vh;
     width: 100%;
@@ -751,10 +997,12 @@ nav .nav-part3 h3{
     gap: 1.5rem;
     padding: 2rem 1rem;
 }
-.section8 .cards-container::-webkit-scrollbar{
+
+.section8 .cards-container::-webkit-scrollbar {
     display: none;
 }
-.section8 .cards-container .cards{
+
+.section8 .cards-container .cards {
     height: 55vh;
     width: 90%;
     border-radius: 1rem;
@@ -764,32 +1012,75 @@ nav .nav-part3 h3{
     flex-direction: column;
     flex-shrink: 0;
 }
-.section8 .cards-container .cards .top{
+
+.section8 .cards-container .cards .top {
     height: 43vh;
     width: 100%;
     border-bottom: 1px solid black;
     background-color: #2a2857;
+    position: relative;
+    overflow: hidden;
+
 }
-.section8 .cards-container .cards .top img{
+
+.section8 .cards-container .cards .top span {
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    position: absolute;
+    font-weight: 900;
+    text-transform: uppercase;
+    top: 1rem;
+    left: 1rem;
+    background-color: white;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+}
+
+.section8 .cards-container .cards .top img {
     height: 100%;
     width: 100%;
     object-fit: contain;
     object-position: center;
-    /* scale: 0.8; */
+    transition: all ease 0.4s;
 }
-.section8 .cards-container .cards .bottom{
-    height: 100%;
+
+.section8 .cards-container .cards .top:hover img {
+    transform: scale(1.07);
+}
+
+.section8 .cards-container #card2 .top img {
+    transform: scale(1.7);
+}
+
+.section8 .cards-container #card2 .top:hover img {
+    transform: scale(1.8);
+}
+
+.section8 .cards-container #card3 .top img {
+    transform: scale(1.2);
+}
+
+.section8 .cards-container #card3 .top:hover img {
+    transform: scale(1.3);
+}
+
+
+.section8 .cards-container .cards .bottom {
+    height: 12vh;
     padding: 1.5rem 1rem;
     font-family: "Figtree";
     font-size: 1rem;
     text-transform: uppercase;
     background-color: #a3c8fc;
 }
-.section8  .btn-container{
+
+.section8 .btn-container {
     padding: 3rem 2rem;
 
 }
-.section8  .btn-container button{
+
+.section8 .btn-container button {
     font-size: 1.2rem;
     padding: 1rem 0;
     width: 100%;
@@ -797,28 +1088,37 @@ nav .nav-part3 h3{
     background-color: #2a2857;
     color: white;
     border: 1px solid black;
+    transition: all ease 0.3s;
+}
+
+.section8 .btn-container button:hover {
+    background-color: white;
+    color: #2a2857;
 }
 
 
-
-.section9{
+/* ******** Section 9 ********* */
+.section9 {
     min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-.section9 .left{
+
+.section9 .left {
     height: 50vh;
     width: 100%;
 
 }
-.section9 .left img{
+
+.section9 .left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-.section9 .right{
+
+.section9 .right {
     height: 60vh;
     width: 100%;
     display: flex;
@@ -831,20 +1131,23 @@ nav .nav-part3 h3{
     color: white;
 
 }
-.section9 .right h1{
+
+.section9 .right h1 {
     font-family: "Rackless";
     font-size: 2.5rem;
     text-align: center;
     width: 45%;
 
 }
-.section9 .right p{
+
+.section9 .right p {
     font-family: "Figtree";
     font-size: 1.2rem;
     text-align: center;
     width: 80%;
 }
-.section9 .right button{
+
+.section9 .right button {
     font-size: 1.2rem;
     font-family: "Figtree";
     font-weight: 200;
@@ -853,40 +1156,52 @@ nav .nav-part3 h3{
     border: none;
     width: 100%;
     background-color: white;
+    transition: all ease 0.3s;
+}
+
+.section9 .right button:hover {
+    background-color: #2a2857;
+    color: white;
 }
 
 
 
-
-footer{
-    min-height: 150vh;
+/* Footer */
+footer {
+    min-height: 100vh;
     width: 100%;
     background-color: #a3c8fc;
-    padding: 3rem 0 ;
+    padding: 3rem 0;
+    padding-bottom: 0;
 }
-footer .top h1{
+
+footer .top h1 {
     font-family: "Retro-floral";
     font-weight: 200;
     font-size: 1.5rem;
     padding: 1rem;
 }
-footer .top p{
+
+footer .top p {
     font-family: "Rackless";
     font-size: 1.8rem;
     padding: 0 1rem;
-    
+
 }
-footer .top .form{
+
+footer .top .form {
     padding: 1rem;
 
 }
-footer .top .form .left{
+
+footer .top .form .left {
     display: flex;
     padding: 1rem 0;
     flex-direction: column;
     gap: 1rem;
 }
-footer .top .form .left input{
+
+footer .top .form .left input {
     padding: 1rem;
     font-size: 1.3rem;
     font-family: "Figtree";
@@ -894,27 +1209,133 @@ footer .top .form .left input{
     border-radius: 1rem;
     border: 1px solid black;
 }
-footer .top .form .left button{
+
+footer .top .form .left button {
     padding: 0.7rem;
     font-size: 1.3rem;
     font-weight: 200;
     font-family: "Figtree";
     color: white;
     border-radius: 2rem;
-    border: 1px solid black;
+    border: 1px solid #2a2857;
     background-color: #2a2857;
+    transition: all ease 0.3s;
 }
-footer .top .form .right{
+
+footer .top .form .left button:hover {
+    background-color: #ffbb2a;
+    color: #2a2857;
+}
+
+footer .top .form .right {
     padding: 1rem 0;
     display: flex;
     gap: 0.5rem;
 }
-footer .top .form .right i{
+
+footer .top .form .right i {
     font-size: 2rem;
     padding: 10px;
     border: 1px solid black;
     border-radius: 50%;
+    transition: all ease 0.3s;
+}
 
+footer .top .form .right i:hover {
+    scale: 0.95;
+    background-color: whitesmoke;
+}
+
+
+footer .center {
+    min-height: 50vh;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+footer .center .desktop-footer {
+    display: none;
+}
+
+footer .center .mobile-tab-footer {
+    height: 100%;
+    width: 100%;
+    background-color: #2a2857;
+    border-radius: 1rem;
+    padding: 0 1rem;
+    color: white;
+}
+
+footer .center .mobile-tab-footer details {
+    border-bottom: 1px solid rgb(116, 116, 116);
+    font-size: 2rem;
+    font-family: "Rackless";
+}
+
+footer .center .mobile-tab-footer details summary {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+footer .center .mobile-tab-footer details ul li {
+    list-style: none;
+    font-family: "Figtree";
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    font-weight: 200;
+    color: rgb(146, 146, 146);
+}
+
+footer .center .mobile-tab-footer details ul {
+    padding-bottom: 1rem;
+}
+
+footer .center .mobile-tab-footer #details-7 {
+    border-bottom: none;
+}
+
+footer .bottom {
+    position: relative;
+    height: 60vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+footer .bottom .bg {
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain;
+    scale: 6;
+    object-position: center;
+}
+
+footer .bottom .bottom-container {
+    position: absolute;
+    padding: 2rem;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer .bottom .bottom-container .logo {
+    height: 5rem;
+}
+
+footer .bottom .bottom-container .copyright {
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 0 15%;
+    word-spacing: 3px;
+    text-transform: uppercase;
+    font-family: "Figtree";
 }
 
 
@@ -922,50 +1343,278 @@ footer .top .form .right i{
 
 
 
-/* ************ Responsive Part ****************** */
+
+
+
+
+
+/************** Responsive Part *************/
 /***************** Tablet  ******************/
 @media (min-width: 768px) {
 
-    /***** Section7  ******/
-            .section7 h1 {
-                padding: 1rem 15rem 0 15rem;
-            }
+        header {
+            padding: 0.5rem;
+        }
+    
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid black;
+            background-color: #fffffb;
+            border-radius: 0.8rem;
+            padding: 0.5rem 1rem;
+            color: black;
+            width: 100%;
+        }
+
+
+        /* ******* Section 1 ****** */
+        .section1 h1 {
+            font-size: 3.5rem;
+        }
+    
+        .section1 p {
+            font-size: 1.2rem;
+            padding: 0 1rem;
+        }
+
+
+
+        /* ******* Section 2 ****** */
+        .section2{
+            min-height: 85vh;
+        }
+        .section2 h1{
+            padding: 0 30%;
+            padding-bottom: 3rem;
+        }
         
-            .section7 .lattes-card-container .cards {
-                min-height: 80vh;
-                width: 100%;
-            }
+        .section2 .cards-container{
+            min-height: 40vh;
+            gap: 1.5rem;
+        }
+        .section2 .cards-container .card{
+            width: 40%;
+            flex-shrink: 0;
+            overflow: hidden;
+            min-height: 40vh
+        }
+        .section2 .cards-container .card .top{
+            height: 30vh;
+        }
+
+
+
+        /* ******* Section 3 ****** */
+        .section3 {
+            min-height: 60vh;
+            width: 100%;
+            background-color: #faf9ed;
+
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 1rem;
+            padding-right: 3rem;
+        }
+
+
+
+        /* ******* SEction 4 ****** */
+        .section4{
+            min-height: 100vh;
+        }
+
+        .section4 h1{
+            font-weight: 900;
+            font-size: 5rem;
+            font-family: sans-serif;
+            line-height: 4rem;
+            text-transform: uppercase;
+        }
+        .section4 h2{
+            padding: 0 13rem;
+        }
+
+        .section4 .images-container{
+            margin-top: 5rem;
+        }
+        .section4 .images-container .boxes{
+            width: 6rem;
+        }
+
+        .section4 button{
+            margin-top: 2rem;
+        }
+
+
+
+        /* ******* Section 5 ****** */
+        .section5{
+            min-height: 50vh;
+            padding: 3rem 0 3rem 0;
+        }
+        .review-card-container{
+            min-height: 40vh;
+        }
+        .section5 .review-card-container .review-cards{
+            width: 43%;
+            height: 43vh;
+        }
+        .section5 .review-card-container .review-cards .top{
+            min-height: 30vh;
+        }
+        .section5 .review-card-container .review-cards .bottom{
+            height: 10vh;
+        }
+
+
+
+        /***** Section 6 *****/
+        .section6 .left{
+            height: 65vh;
+        }
+        .section6 .left img{
+            height: 100%;
+        }
+        .section6 .right{
+            height: 35vh;
+        }
+        .section6 .right h1{
+            width:40%;
+        }
+        .section6 .right p{
+            width: 80%;
+        }
+        .section6 .right button{
+            border: none;
+            padding: 0.7rem 6rem;
+            width: fit-content;
+        }
+
+
+
+        /***** Section7  ******/
+        .section7 h1 {
+            padding: 1rem 15rem 0 15rem;
+        }
+    
+        .section7 .lattes-card-container .cards {
+            min-height: 80vh;
+            width: 100%;
+        }
+    
+        .section7 .lattes-card-container .cards .top {
+            height: 50vh;
+        }
+    
+        .section7 .lattes-card-container .cards .top .img-container {
+            top: -5rem;
+            ;
+        }
+    
+        .section7 .lattes-card-container .cards .top .img-container img {
+            margin-left: -10rem;
+        }
+    
+        .section7 .lattes-card-container .cards .bottom span {
+            margin-top: 4rem;
+        }
+    
+        .section7 .lattes-card-container .cards .bottom h1 {
+            padding: 0 15rem;
+    
+        }
+    
+        .section7 .lattes-card-container .cards .bottom button {
+            width: 40%;
+        }
+
+
+
+
+        /* ****** Section 8 ******** */
+        .section8{
+            min-height: 50vh;
+            padding: 4rem 0;
+        }
+        .section8 .cards-container {
+            min-height: 40vh;
+        }
+        .section8 .cards-container .cards{
+            height: 36vh;
+            width: 43%;
+        }
+        .section8  .btn-container{
+            justify-content: center;
+            display: flex;
+        }
+        .section8  .btn-container button{
+            font-size: 1.2rem;
+            padding: 1rem 3rem;
+            width: fit-content;
+        }
+
+
+
+        /* ******** Section 9 ********* */
+        .section9 .left{
+            height: 70vh;
+        }
+        .section9 .right{
+            height: 35vh;
+        }
+        .section9 .right h1{
+            font-family: "Rackless";
+            font-size: 2.5rem;
+            text-align: center;
+            width: 50%;
         
-            .section7 .lattes-card-container .cards .top {
-                height: 50vh;
-            }
-        
-            .section7 .lattes-card-container .cards .top .img-container {
-                top: -5rem;
-                ;
-            }
-        
-            .section7 .lattes-card-container .cards .top .img-container img {
-                margin-left: -10rem;
-            }
-        
-            .section7 .lattes-card-container .cards .bottom span {
-                margin-top: 4rem;
-            }
-        
-            .section7 .lattes-card-container .cards .bottom h1 {
-                padding: 0 15rem;
-        
-            }
-        
-            .section7 .lattes-card-container .cards .bottom button {
-                width: 40%;
-            }
+        }
+        .section9 .right button{
+            font-size: 1.2rem;
+            font-family: "Figtree";
+            font-weight: 200;
+            padding: 0.7rem 1rem;
+            border-radius: 2rem;
+            border: none;
+            width: 90%;
+            background-color: white;
+            transition: all ease 0.3s;
+        }
+
+
+
+        /* ******* Footer ****** */
+        footer .bottom{
+            height: 30vh;
+            margin-top: -1rem;
+        }
+        footer .bottom .bg{
+           scale: 3;
+        }
+        footer .bottom .bottom-container{
+           padding: 1rem;
+           padding-bottom: 2rem;
+        }
+        footer .bottom .bottom-container .logo{
+           height: 6rem;
+        }
+        footer .bottom .bottom-container .copyright{
+           font-size: 0.9rem;
+        }
     
 }
 
 
-/********************* Laptop  *********************/
+
+
+
+
+
+
+/***************************************************/
+/********************* Laptop **********************/
 @media (min-width: 1024px) {
 
     header{
@@ -982,6 +1631,22 @@ footer .top .form .right i{
         color: black;
         width: 100%;
     }
+    nav h3{
+        position: relative;
+    }
+    nav h3::after{
+        content: " ";
+        height: 1px;
+        background-color: black;
+        width: 0%;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        transition: all ease 0.3s;
+    }
+    nav h3:hover::after{
+        width: 100%;
+    }
 
     nav .nav-part1{
         display: flex;
@@ -992,6 +1657,16 @@ footer .top .form .right i{
         display: block;
         font-family: "Rackless";
         font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    nav .nav-part1 h3 i{
+        display: block;
+        font-size: 1rem;
+        background-color: #a3c8fc;
+        border-radius: 50%;
+        border: 1px solid #2a2857;
     }
 
     nav .nav-part1 i {
@@ -1011,6 +1686,8 @@ footer .top .form .right i{
     }
 
 
+
+    /* Section 1 */
     .section1{
         background-image: url(https://www.twoleavestea.com/cdn/shop/files/AlpineBerry.webp?v=1774284236&width=3150.0);
         align-items: flex-start;
@@ -1022,14 +1699,19 @@ footer .top .form .right i{
     }
     .section1 p{
         width: 35%;
+        padding: 0;
         font-size: 1.2rem;
+        text-align: start;
     }
     .section1 button{
         width: fit-content;
         padding: 1rem 5rem;
+        border: 1px solid #2a2857;
     }
 
 
+
+    /* Section 2 */
     .section2{
         padding-bottom: 10rem;
     }
@@ -1063,457 +1745,502 @@ footer .top .form .right i{
     .section2 .bottom-btn{
         padding-top: 0rem;
     }
+    .section2 .bottom-btn button{
+        border: 1px solid black;
+    }
+
+
+
+
+    /* Section 3 */
+    .section3 {
+        padding: 0 12rem;
+    }
+
+    #section3-label .btn {
+    }
+    #section3-label{
+        margin-top: 5rem;
+        align-items: start;
+        justify-content: start;
+    }
+
+    .section3 h1 {
+        font-size: 3.65rem;
+    }
+
+    .section3 input {
+        width: 25vw;
+        margin-bottom: 5rem;
+    }
+
+    .section3 .vibe {
+        margin-bottom: -1rem;
+    }
+    .section3 .vibes-container {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 10rem;
+    }
 
 
 
 
 
-        .section3 {
-            padding: 0 12rem;
-        }
-    
-        #section3-label .btn {
-        }
-        #section3-label{
-            margin-top: 5rem;
-            align-items: start;
-            justify-content: start;
-        }
-    
-        .section3 h1 {
-            font-size: 3.65rem;
-        }
-    
-        .section3 input {
-            width: 25vw;
-            margin-bottom: 5rem;
-        }
-    
-        .section3 .vibe {
-            margin-bottom: -1rem;
-        }
+    /* SEction4  */
+    .section4 #section4-label .btn {
+        background-color: #a3c8fc;
+    }
+    .section4 h1 {
+        font-weight: 900;
+        font-size: 9rem;
+        line-height: 8rem;
+        letter-spacing: -0.7rem;
+        font-family: sans-serif;
+        padding: 0 18%;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .section4 h2 {
+        font-size: 3.8rem;
+        line-height: normal;
+        margin-top: 25rem;
+        padding: 0;
+    }
+    .section4 .images-container {
+        min-height: 30vh;
+        margin-top: 23rem;
+        gap: 5rem;
+    }
+    .section4 .btn-container{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .section4 .btn-container button{
+     width: fit-content;
+     padding: 1rem 4rem
+    }
 
-        .section3 .vibes-container {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 10rem;
-        }
 
 
 
-
-
-        /* SEction4  */
-                .section4 #section4-label .btn {
-                    background-color: #a3c8fc;
-                }
         
-                .section4 h1 {
-                    font-weight: 900;
-                    font-size: 9rem;
-                    line-height: 8rem;
-                    letter-spacing: -0.7rem;
-                    font-family: sans-serif;
-                    padding: 0 18%;
-                    text-transform: uppercase;
-                    text-align: center;
-                }
-        
-                .section4 h2 {
-                    font-size: 3.8rem;
-                    line-height: normal;
-                    margin-top: 25rem;
-                }
-        
-                .section4 .images-container {
-                    min-height: 30vh;
-                    margin-top: 23rem;
-                    gap: 5rem;
-                }
-                .section4 .btn-container{
-                    margin-top: -3rem;
-                    margin-bottom: 3rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .section4 .btn-container button{
-                 width: fit-content;
-                 padding: 1rem 4rem; 
-
-                }
-
-
-
-
-        
-            /* Section5  */
-                .section5 {
-                    padding: 0;
-                    padding-bottom: 8rem;
-                }
-    
-                #section5-label{
-                    padding: 0;
-                    padding-left: 15rem;
-                    justify-content: start;
-                    margin-top: 7rem;
-                }
-                .section5 .disc{
-                    display: block;
-                    padding-left: 15rem;
-                    width: 72%;
-                    padding-top: 2rem;
-                }
-                .section5 .disc p{
-                    font-family: "Rackless";
-                    font-size: 3.7rem;
-                }
-
-                .review-card-container {
-                    padding-top: 5rem;
-                }
-    
-                .section5 .review-card-container .review-cards {
-                    width: 22%;
-                    height: 55vh;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
-                .section5 .review-card-container .review-cards .bottom {
-                    height: 12vh;
-                }
-                .section5 .review-card-container .review-cards .bottom .discription{
-                    color: rgb(0, 0, 0);
-                }
+    /* Section5  */
+    .section5 {
+        padding: 0;
+        padding-bottom: 8rem;
+    }
+    #section5-label{
+        padding: 0;
+        padding-left: 15rem;
+        justify-content: start;
+        margin-top: 7rem;
+    }
+    .section5 .disc{
+        display: block;
+        padding-left: 15rem;
+        width: 72%;
+        padding-top: 2rem;
+    }
+    .section5 .disc p{
+        font-family: "Rackless";
+        font-size: 3.7rem;
+    }
+    .review-card-container {
+        padding-top: 5rem;
+    }
+    .section5 .review-card-container .review-cards {
+        width: 22%;
+        height: 55vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .section5 .review-card-container .review-cards .bottom {
+        height: 12vh;
+    }
+    .section5 .review-card-container .review-cards .bottom .discription{
+        color: rgb(0, 0, 0);
+    }
 
 
-            /* Section6  */
-                .section6 {
-                    min-height: 80vh;
-                    display: flex;
-                    flex-direction: row;
-                    padding: 0;
-                }
-                .section6 .left {
-                    height: 85vh;
-                    width: 50%;
-                }
-        
-                .section6 .right {
-                    height: 85vh;
-                    width: 50%;
-                    justify-content: center;
-                    padding: 0 5rem;
-                    align-items: start;
-                }
-        
-                .section6 .right h1 {
-                    font-size: 5rem;
-                    text-align: start;
-                    width: 100%;
-                }
-        
-                .section6 .right p {
-                    font-size: 1.35rem;
-                    font-weight: 300;
-                    text-align: start;
-                    width: 80%;
-                }
-        
-                .section6 .right button {
-                    width: 13rem;
-                }
+    /* Section6  */
+    .section6 {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+    }
+    .section6 .left {
+        height: 85vh;
+        width: 50%;
+    }
+    .section6 .right {
+        height: 85vh;
+        width: 50%;
+        justify-content: center;
+        padding: 0 5rem;
+        align-items: start;
+    }
+    .section6 .right h1 {
+        font-size: 5rem;
+        text-align: start;
+        width: 100%;
+    }
+    .section6 .right p {
+        font-size: 1.35rem;
+        font-weight: 300;
+        text-align: start;
+        width: 80%;
+    }
+    .section6 .right button {
+        width: 13rem;
+    }
     
 
 
-            /* Section7  */
-                .section7 {
-                    min-height: 100vh;
-                    width: 100%;
-                    padding: 5rem 0;
-                    padding-bottom: 0;
-                    background-color: #9f6528;
-    
-                }
-    
-                .section7 #section7-label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0;
-                    margin-top: 0;
-                }
-    
-                .section7 #section7-label .btn {
-                    background-color: #ffcb96;
-                }
-    
-                .section7 h1 {
-                    padding-top: 1rem;
-                    color: white;
-                    font-family: "Retro-floral";
-                    font-size: 2.5rem;
-                    text-align: center;
-                }
-    
-                .section7 p {
-                    color: white;
-                    text-align: center;
-                    font-family: "Figtree";
-                    font-weight: 200;
-                    word-spacing: 0.2rem;
-                    text-transform: uppercase;
-                    padding-top: 0.5rem;
-                }
-    
-                .section7 .lattes-card-container {
-                    min-height: 100vh;
-                    padding: 10rem 1rem 2rem 1rem;
-                    overflow-x: auto;
-                    display: flex;
-                    gap: 1rem;
-                    scroll-behavior: smooth;
-                } 
-                .section7 .lattes-card-container::-webkit-scrollbar{
-                    display: none;
-                }
-    
-    
-                .section7 .lattes-card-container .cards {
-                    background-color: #ffcb96;
-                    min-height: 60vh;
-                    width: 100%;
-                    border-radius: 1rem;
-                    display: flex;
-                    flex-direction: row;
-                    display: flex;
-                    flex-shrink: 0;
-                }
-    
-                .section7 .lattes-card-container .cards .top {
-                    height: 100%;
-                    width: 50%;
-                    position: relative;
-                } 
-                .section7 .lattes-card-container .cards .top  .img-container{
-                    min-height: 60vh;
-                    width: 100%;
-                    top: -5rem;
-                    position: absolute;
-                }
-                .section7 .lattes-card-container .cards .top  .img-container img{
-                    height: 100%;
-                    width: 100%;
-                    object-fit: contain;
-                    margin-left: 0rem;
-                    object-position: center;
-                }
-    
+    /* Section7  */
+    .section7 {
+        min-height: 100vh;
+        width: 100%;
+        padding: 5rem 0;
+        padding-bottom: 0;
+        background-color: #9f6528;
+    }
+    .section7 #section7-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin-top: 0;
+    }
+    .section7 #section7-label .btn {
+        background-color: #ffcb96;
+    }
+    .section7 h1 {
+        padding-top: 1rem;
+        color: white;
+        font-family: "Retro-floral";
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .section7 p {
+        color: white;
+        text-align: center;
+        font-family: "Figtree";
+        font-weight: 200;
+        word-spacing: 0.2rem;
+        text-transform: uppercase;
+        padding-top: 0.5rem;
+    }
+    .section7 .lattes-card-container {
+        min-height: 100vh;
+        padding: 10rem 1rem 2rem 1rem;
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        scroll-behavior: smooth;
+    } 
+    .section7 .lattes-card-container::-webkit-scrollbar{
+        display: none;
+    }
+    .section7 .lattes-card-container .cards {
+        background-color: #ffcb96;
+        min-height: 60vh;
+        width: 100%;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+    }
+    .section7 .lattes-card-container .cards .top {
+        height: 100%;
+        width: 50%;
+        position: relative;
+    } 
+    .section7 .lattes-card-container .cards .top  .img-container{
+        min-height: 60vh;
+        width: 100%;
+        top: -5rem;
+        position: absolute;
+    }
+    .section7 .lattes-card-container .cards .top  .img-container img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        margin-left: 0rem;
+        object-position: center;
+    }
 
-                    .section7 .lattes-card-container .cards .bottom {
-                        padding: 0 3rem ;
-                        padding-top: 10rem;
-                        width: 50%;
-                        height: 100%;
-                        justify-content: center;
-                        gap: 1rem;
-                        align-items: start;
-                    }
-                    .section7 .lattes-card-container .cards .bottom span {
-                        font-size: 2.5rem;
-                        margin-top: 0rem;
-                    }
-                    .section7 .lattes-card-container .cards .bottom h1{
-                        text-align: start;
-                        padding-left: 0;
-                        font-size: 4rem;
-                        width: 47%;
-                    }
-                    .section7 .lattes-card-container .cards .bottom p{
-                        text-align: start;
-                        width:75%;
-                    }
-    
-                    .section7 .lattes-card-container .cards .bottom button {
-                        padding: 0.7rem;
-                        width: 35%;
-                    }
+    .section7 .lattes-card-container .cards .bottom {
+        padding: 0 3rem ;
+        padding-top: 10rem;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        gap: 1rem;
+        align-items: start;
+    }
+    .section7 .lattes-card-container .cards .bottom span {
+        font-size: 2.5rem;
+        margin-top: 0rem;
+    }
+    .section7 .lattes-card-container .cards .bottom h1{
+        text-align: start;
+        padding-left: 0;
+        font-size: 4rem;
+        width: 90%;
+    }
+    .section7 .lattes-card-container .cards .bottom p{
+        text-align: start;
+        width:75%;
+    }
+    .section7 .lattes-card-container .cards .bottom button {
+        padding: 0.7rem;
+        width: 35%;
+    }
 
 
 
 
 
     /********** Section8  *************/
-        .section8 {
-            min-height: 100vh;
-            width: 100%;
-            background-color: #faf9ed;
-            padding: 4rem 0;
-        }
-        
-        .section8 #section8-label {
-            padding-left: 15rem;
-            margin-top: 3rem;
-            display: flex;
-            justify-content: start;
-        }
-        
-        .section8 .discription {
-            font-size: 3.5rem;
-            padding-left: 15rem;
-        }
-        
-        .section8 .cards-container {
-            padding: 3rem 1rem;
-        }
-        
-        .section8 .cards-container .cards {
-            height: 50vh;
-            width: 24%;
-        }
-        
-        .section8 .cards-container .cards .top {
-            height: 41vh;
-        }
-        
-        .section8 .btn-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .section8 .btn-container button {
-            font-weight: 200;
-            width: 25%;
-            font-family: "FIgtree";
-        }
+    .section8 {
+        min-height: 100vh;
+        width: 100%;
+        background-color: #faf9ed;
+        padding: 4rem 0;
+    }
+    
+    .section8 #section8-label {
+        padding-left: 15rem;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: start;
+    }
+    
+    .section8 .discription {
+        font-size: 3.5rem;
+        padding-left: 15rem;
+    }
+    
+    .section8 .cards-container {
+        padding: 3rem 1rem;
+    }
+    
+    .section8 .cards-container .cards {
+        height: 50vh;
+        width: 24%;
+    }
+    
+    .section8 .cards-container .cards .top {
+        height: 41vh;
+    }
+    
+    .section8 .btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .section8 .btn-container button {
+        font-weight: 200;
+        width: 25%;
+        font-family: "FIgtree";
+    }
 
 
-        /* ********** Section 9 ************ */
-
-        .section9 {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section9 .left {
-            height: 100%;
-            width: 100%;
-        }
-
-        .section9 .left img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            object-position: right;
-        }
-
-        .section9 .right {
-            position: absolute;
-            height: 85%;
-            border-radius: 1rem;
-            border: 1px solid black;
-            width: 30%;
-            top: 3rem;
-            left: 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            justify-content: start;
-            padding: 3rem;
-        }
-
-        .section9 .right h1 {
-            font-family: "Rackless";
-            font-size: 3.5rem;
-            text-align: start;
-            width: 65%;
-        }
-
-        .section9 .right p {
-            text-align: start;
-            width: 100%;
-            font-weight: 200;
-            margin-top: 13rem;
-        }
-
-        .section9 .right button {
-            padding: 0.7rem 4rem;
-            border-radius: 2rem;
-            width: fit-content;
-            background-color: white;
-            border: 1px solid black;
-        }
+    /* ********** Section 9 ************ */
+    .section9 {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+    }
+    .section9 .left {
+        height: 100%;
+        width: 100%;
+    }
+    .section9 .left img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: right;
+    }
+    .section9 .right {
+        position: absolute;
+        height: 85%;
+        border-radius: 1rem;
+        border: 1px solid black;
+        width: 30%;
+        top: 3rem;
+        left: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        padding: 3rem;
+    }
+    .section9 .right h1 {
+        font-family: "Rackless";
+        font-size: 3.5rem;
+        text-align: start;
+        width: 65%;
+    }
+    .section9 .right p {
+        text-align: start;
+        width: 100%;
+        font-weight: 200;
+        margin-top: 13rem;
+    }
+    .section9 .right button {
+        padding: 0.7rem 4rem;
+        border-radius: 2rem;
+        width: fit-content;
+        background-color: white;
+        border: 1px solid black;
+    }
 
 
-        /* ********** Footer *********** */
+    /* ********** Footer *********** */
+    footer {
+        min-height: 150vh;
+        width: 100%;
+        background-color: #a3c8fc;
+        padding: 3rem 0;
+    }
+    
+    footer .top h1 {
+        padding-left: 15rem;
+        font-size: 2.5rem;
+    }
+    
+    footer .top p {
+        font-size: 2rem;
+        width: 60%;
+        padding: 1rem 0 1rem 15rem;
+    
+    }
+    
+    footer .top .form {
+        padding: 1rem;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15rem;
+    
+    }
+    
+    footer .top .form .left {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    footer .top .form .left input {
+        width: 22rem;
+        height: fit-content;
+    }
+    
+    footer .top .form .left button {
+        padding: 1rem 4rem;width: fit-content;
+        height: fit-content;
+        font-size: 1rem;
+    }
+    
+    footer .top .form .right {
+        padding: 1rem 0;
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    footer .top .form .right i {
+        font-size: 2rem;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 50%;
+    
+    }
 
-        footer {
-            min-height: 150vh;
-            width: 100%;
-            background-color: #a3c8fc;
-            padding: 3rem 0;
-        }
-        
-        footer .top h1 {
-            padding-left: 15rem;
-            font-size: 2.5rem;
-        }
-        
-        footer .top p {
-            font-size: 2rem;
-            width: 60%;
-            padding: 1rem 0 1rem 15rem;
-        
-        }
-        
-        footer .top .form {
-            padding: 1rem;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 15rem;
-
-        
-        }
-        
-        footer .top .form .left {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        footer .top .form .left input {
-            width: 22rem;
-            height: fit-content;
-        }
-        
-        footer .top .form .left button {
-            padding: 0.7rem 4rem;width: fit-content;
-            height: fit-content;
-            font-size: 1rem;
-        }
-        
-        footer .top .form .right {
-            padding: 1rem 0;
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        footer .top .form .right i {
-            font-size: 2rem;
-            padding: 10px;
-            border: 1px solid black;
-            border-radius: 50%;
-        
-        }
+    footer .center {
+        height: 90vh;
+        width: 100%;
+        padding: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    footer .center .desktop-footer {
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+        background-color: #2a2857;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr 1fr;
+        gap: 0.5rem;
+        padding: 2rem;
+    }
+    footer .center .desktop-footer .links-containers{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        color: white;
+    }
+    footer .center .desktop-footer .links-containers p{
+        font-family: "Rackless";
+        font-size: 1.5rem;
+    }
+     footer .center .desktop-footer .links-containers li{
+        list-style: none;
+        font-family: "Figtree";
+        width: fit-content;
+        font-weight: 200;
+        color: rgb(146, 146, 146);
+        font-size: 1.1rem;
+        line-height: 1.7rem;
+        position: relative;
+        transition: all ease 0.3s;
+    }
+    footer .center .desktop-footer .links-containers li:hover{
+       color: white;
+    }
+    footer .center .desktop-footer .links-containers li::after{
+       content: " ";
+       background-color: white;
+       height: 1px ;
+       width: 0%;
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       transition: all ease 0.4s;
+    }
+    footer .center .desktop-footer .links-containers li:hover::after{
+       width: 100%;
+    }
+    footer .center .mobile-tab-footer{
+       display: none;
+    }
+    footer .bottom{
+       height: 63vh;
+    }
+    footer .bottom .bg{
+       scale: 3;
+    }
+    footer .bottom .bottom-container{
+       padding-bottom: 0rem;
+    }
+    footer .bottom .bottom-container .logo{
+       height: 8rem;
+    }
 
 
 }
