@@ -13,6 +13,13 @@
     src: url(./fonts//Retro-Floral.ttf);
 }
 
+@font-face {
+    font-family: "Midnight-Sans";
+    src: url(./fonts/midnight-sans-rd-12-semibold-trial.otf);
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -178,16 +185,14 @@ nav .nav-part3 h3 {
     background-color: #daafeb;
     border-radius: 0.3rem;
     width: fit-content;
-    font-family: "Retro-Floral";
-    font-weight: 400;
+    font-family: "Midnight-Sans";
     font-size: 2rem;
-    line-height: normal;
+    line-height: 2.7rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     transform: rotate(-3deg);
     padding: 0 0.3rem;
     letter-spacing: -0.03rem;
-    word-spacing: -0.1rem;
 }
 
 
@@ -323,10 +328,11 @@ nav .nav-part3 h3 {
 }
 
 .section2 .cards-container .card .top .top-content .topp span {
-    font-family: sans-serif;
+    font-family: "Midnight-Sans";
     text-transform: uppercase;
     background-color: white;
-    padding: 0.3rem 0.5rem;
+    padding: 0 0.5rem;
+    font-size: 1.3rem;
     border: 1px solid black;
     border-radius: 0.5rem;
     font-weight: 900;
@@ -452,10 +458,10 @@ nav .nav-part3 h3 {
 .section4 h1 {
     color: white;
     text-align: center;
-    font-weight: 400;
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin-top: 10rem;
-    font-family: "Retro-Floral";
+    text-transform: uppercase;
+    font-family: "Midnight-Sans";
     line-height: 4rem;
 }
 
@@ -797,7 +803,7 @@ nav .nav-part3 h3 {
 .section7 h1 {
     padding-top: 1rem;
     color: white;
-    font-family: "Retro-floral";
+    font-family: "Midnight-Sans";
     font-size: 2.5rem;
     text-align: center;
 }
@@ -916,9 +922,11 @@ nav .nav-part3 h3 {
     width: fit-content;
     height: fit-content;
     background-color: #c07a30;
-    font-family: "Retro-Floral";
+    font-family: "Midnight-Sans";
+    text-transform: uppercase;
     font-size: 1.5rem;
-    padding: 0.2rem 0.5rem;
+    line-height: 2.4rem;
+    padding: 0 0.5rem;
     border-radius: 0.5rem;
     rotate: -3deg;
 
@@ -1022,15 +1030,15 @@ nav .nav-part3 h3 {
 }
 
 .section8 .cards-container .cards .top span {
-    font-size: 1.2rem;
-    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-family: "Midnight-Sans";
     position: absolute;
     font-weight: 900;
     text-transform: uppercase;
     top: 1rem;
     left: 1rem;
     background-color: white;
-    padding: 0.3rem 0.5rem;
+    padding: 0 0.5rem;
     border: 1px solid black;
     border-radius: 0.5rem;
 }
@@ -1174,9 +1182,10 @@ footer {
 }
 
 footer .top h1 {
-    font-family: "Retro-floral";
+    font-family: "Midnight-Sans";
     font-weight: 200;
     font-size: 1.5rem;
+    text-transform: uppercase;
     padding: 1rem;
 }
 
@@ -1417,8 +1426,9 @@ footer .bottom .bottom-container .copyright {
     .section4 h1{
         font-weight: 900;
         font-size: 5rem;
-        font-family: sans-serif;
-        line-height: 4rem;
+        font-family: "Midnight-Sans";
+        line-height: 4.5rem;
+        padding: 0 25%;
         text-transform: uppercase;
     }
     .section4 h2{
@@ -1477,7 +1487,9 @@ footer .bottom .bottom-container .copyright {
 
     /***** Section7  ******/
     .section7 h1 {
-        padding: 1rem 15rem 0 15rem;
+        text-transform: uppercase;
+        padding: 1rem 0;
+        font-size: 3rem;
     }
 
     .section7 .lattes-card-container .cards {
@@ -1764,12 +1776,11 @@ footer .bottom .bottom-container .copyright {
         background-color: #a3c8fc;
     }
     .section4 h1 {
-        font-weight: 900;
         font-size: 9rem;
         line-height: 8rem;
-        letter-spacing: -0.7rem;
-        font-family: sans-serif;
-        padding: 0 18%;
+        /* letter-spacing: -0.7rem; */
+        font-family: "Midnight-Sans";
+        padding: 0 20%;
         text-transform: uppercase;
         text-align: center;
     }
@@ -1895,8 +1906,8 @@ footer .bottom .bottom-container .copyright {
     .section7 h1 {
         padding-top: 1rem;
         color: white;
-        font-family: "Retro-floral";
-        font-size: 2.5rem;
+        font-family: "Midnight-Sans";
+        font-size: 3.5rem;
         text-align: center;
     }
     .section7 p {
