@@ -1347,261 +1347,239 @@ footer .bottom .bottom-container .copyright {
 
 
 /************** Responsive Part *************/
-/***************** Tablet  ******************/
+/***************** For Tablets  ******************/
+
 @media (min-width: 768px) {
+    header {
+        padding: 0.5rem;
+    }
 
-        header {
-            padding: 0.5rem;
-        }
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid black;
+        background-color: #fffffb;
+        border-radius: 0.8rem;
+        padding: 0.5rem 1rem;
+        color: black;
+        width: 100%;
+    }
+
+    /* ******* Section 1 ****** */
+    .section1 h1 {
+        font-size: 3.5rem;
+    }
+
+    .section1 p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    /* ******* Section 2 ****** */
+    .section2{
+        min-height: 85vh;
+    }
+    .section2 h1{
+        padding: 0 30%;
+        padding-bottom: 3rem;
+    }
     
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid black;
-            background-color: #fffffb;
-            border-radius: 0.8rem;
-            padding: 0.5rem 1rem;
-            color: black;
-            width: 100%;
-        }
+    .section2 .cards-container{
+        min-height: 40vh;
+        gap: 1.5rem;
+    }
+    .section2 .cards-container .card{
+        width: 40%;
+        flex-shrink: 0;
+        overflow: hidden;
+        min-height: 40vh
+    }
+    .section2 .cards-container .card .top{
+        height: 30vh;
+    }
+
+    /* ******* Section 3 ****** */
+    .section3 {
+        min-height: 60vh;
+        width: 100%;
+        background-color: #faf9ed;
+        display: flex;
+        flex-direction: column;
+        padding: 5rem 1rem;
+        padding-right: 3rem;
+    }
+
+    /* ******* SEction 4 ****** */
+    .section4{
+        min-height: 100vh;
+    }
+    .section4 h1{
+        font-weight: 900;
+        font-size: 5rem;
+        font-family: sans-serif;
+        line-height: 4rem;
+        text-transform: uppercase;
+    }
+    .section4 h2{
+        padding: 0 13rem;
+    }
+    .section4 .images-container{
+        margin-top: 5rem;
+    }
+    .section4 .images-container .boxes{
+        width: 6rem;
+    }
+    .section4 button{
+        margin-top: 2rem;
+    }
+
+    /* ******* Section 5 ****** */
+    .section5{
+        min-height: 50vh;
+        padding: 3rem 0 3rem 0;
+    }
+    .review-card-container{
+        min-height: 40vh;
+    }
+    .section5 .review-card-container .review-cards{
+        width: 43%;
+        height: 43vh;
+    }
+    .section5 .review-card-container .review-cards .top{
+        min-height: 30vh;
+    }
+    .section5 .review-card-container .review-cards .bottom{
+        height: 10vh;
+    }
+
+    /***** Section 6 *****/
+    .section6 .left{
+        height: 65vh;
+    }
+    .section6 .left img{
+        height: 100%;
+    }
+    .section6 .right{
+        height: 35vh;
+    }
+    .section6 .right h1{
+        width:40%;
+    }
+    .section6 .right p{
+        width: 80%;
+    }
+    .section6 .right button{
+        border: none;
+        padding: 0.7rem 6rem;
+        width: fit-content;
+    }
+
+    /***** Section7  ******/
+    .section7 h1 {
+        padding: 1rem 15rem 0 15rem;
+    }
+
+    .section7 .lattes-card-container .cards {
+        min-height: 80vh;
+        width: 100%;
+    }
+
+    .section7 .lattes-card-container .cards .top {
+        height: 50vh;
+    }
+
+    .section7 .lattes-card-container .cards .top .img-container {
+        top: -5rem;
+        ;
+    }
+
+    .section7 .lattes-card-container .cards .top .img-container img {
+        margin-left: -10rem;
+    }
+
+    .section7 .lattes-card-container .cards .bottom span {
+        margin-top: 4rem;
+    }
+
+    .section7 .lattes-card-container .cards .bottom h1 {
+        padding: 0 15rem;
+
+    }
+
+    .section7 .lattes-card-container .cards .bottom button {
+        width: 40%;
+    }
 
 
-        /* ******* Section 1 ****** */
-        .section1 h1 {
-            font-size: 3.5rem;
-        }
+    /* ****** Section 8 ******** */
+    .section8{
+        min-height: 50vh;
+        padding: 4rem 0;
+    }
+    .section8 .cards-container {
+        min-height: 40vh;
+    }
+    .section8 .cards-container .cards{
+        height: 36vh;
+        width: 43%;
+    }
+    .section8  .btn-container{
+        justify-content: center;
+        display: flex;
+    }
+    .section8  .btn-container button{
+        font-size: 1.2rem;
+        padding: 1rem 3rem;
+        width: fit-content;
+    }
+
+
+    /* ******** Section 9 ********* */
+    .section9 .left{
+        height: 70vh;
+    }
+    .section9 .right{
+        height: 35vh;
+    }
+    .section9 .right h1{
+        font-family: "Rackless";
+        font-size: 2.5rem;
+        text-align: center;
+        width: 50%;
     
-        .section1 p {
-            font-size: 1.2rem;
-            padding: 0 1rem;
-        }
+    }
+    .section9 .right button{
+        font-size: 1.2rem;
+        font-family: "Figtree";
+        font-weight: 200;
+        padding: 0.7rem 1rem;
+        border-radius: 2rem;
+        border: none;
+        width: 90%;
+        background-color: white;
+        transition: all ease 0.3s;
+    }
 
 
-
-        /* ******* Section 2 ****** */
-        .section2{
-            min-height: 85vh;
-        }
-        .section2 h1{
-            padding: 0 30%;
-            padding-bottom: 3rem;
-        }
-        
-        .section2 .cards-container{
-            min-height: 40vh;
-            gap: 1.5rem;
-        }
-        .section2 .cards-container .card{
-            width: 40%;
-            flex-shrink: 0;
-            overflow: hidden;
-            min-height: 40vh
-        }
-        .section2 .cards-container .card .top{
-            height: 30vh;
-        }
-
-
-
-        /* ******* Section 3 ****** */
-        .section3 {
-            min-height: 60vh;
-            width: 100%;
-            background-color: #faf9ed;
-
-            display: flex;
-            flex-direction: column;
-            padding: 5rem 1rem;
-            padding-right: 3rem;
-        }
-
-
-
-        /* ******* SEction 4 ****** */
-        .section4{
-            min-height: 100vh;
-        }
-
-        .section4 h1{
-            font-weight: 900;
-            font-size: 5rem;
-            font-family: sans-serif;
-            line-height: 4rem;
-            text-transform: uppercase;
-        }
-        .section4 h2{
-            padding: 0 13rem;
-        }
-
-        .section4 .images-container{
-            margin-top: 5rem;
-        }
-        .section4 .images-container .boxes{
-            width: 6rem;
-        }
-
-        .section4 button{
-            margin-top: 2rem;
-        }
-
-
-
-        /* ******* Section 5 ****** */
-        .section5{
-            min-height: 50vh;
-            padding: 3rem 0 3rem 0;
-        }
-        .review-card-container{
-            min-height: 40vh;
-        }
-        .section5 .review-card-container .review-cards{
-            width: 43%;
-            height: 43vh;
-        }
-        .section5 .review-card-container .review-cards .top{
-            min-height: 30vh;
-        }
-        .section5 .review-card-container .review-cards .bottom{
-            height: 10vh;
-        }
-
-
-
-        /***** Section 6 *****/
-        .section6 .left{
-            height: 65vh;
-        }
-        .section6 .left img{
-            height: 100%;
-        }
-        .section6 .right{
-            height: 35vh;
-        }
-        .section6 .right h1{
-            width:40%;
-        }
-        .section6 .right p{
-            width: 80%;
-        }
-        .section6 .right button{
-            border: none;
-            padding: 0.7rem 6rem;
-            width: fit-content;
-        }
-
-
-
-        /***** Section7  ******/
-        .section7 h1 {
-            padding: 1rem 15rem 0 15rem;
-        }
-    
-        .section7 .lattes-card-container .cards {
-            min-height: 80vh;
-            width: 100%;
-        }
-    
-        .section7 .lattes-card-container .cards .top {
-            height: 50vh;
-        }
-    
-        .section7 .lattes-card-container .cards .top .img-container {
-            top: -5rem;
-            ;
-        }
-    
-        .section7 .lattes-card-container .cards .top .img-container img {
-            margin-left: -10rem;
-        }
-    
-        .section7 .lattes-card-container .cards .bottom span {
-            margin-top: 4rem;
-        }
-    
-        .section7 .lattes-card-container .cards .bottom h1 {
-            padding: 0 15rem;
-    
-        }
-    
-        .section7 .lattes-card-container .cards .bottom button {
-            width: 40%;
-        }
-
-
-
-
-        /* ****** Section 8 ******** */
-        .section8{
-            min-height: 50vh;
-            padding: 4rem 0;
-        }
-        .section8 .cards-container {
-            min-height: 40vh;
-        }
-        .section8 .cards-container .cards{
-            height: 36vh;
-            width: 43%;
-        }
-        .section8  .btn-container{
-            justify-content: center;
-            display: flex;
-        }
-        .section8  .btn-container button{
-            font-size: 1.2rem;
-            padding: 1rem 3rem;
-            width: fit-content;
-        }
-
-
-
-        /* ******** Section 9 ********* */
-        .section9 .left{
-            height: 70vh;
-        }
-        .section9 .right{
-            height: 35vh;
-        }
-        .section9 .right h1{
-            font-family: "Rackless";
-            font-size: 2.5rem;
-            text-align: center;
-            width: 50%;
-        
-        }
-        .section9 .right button{
-            font-size: 1.2rem;
-            font-family: "Figtree";
-            font-weight: 200;
-            padding: 0.7rem 1rem;
-            border-radius: 2rem;
-            border: none;
-            width: 90%;
-            background-color: white;
-            transition: all ease 0.3s;
-        }
-
-
-
-        /* ******* Footer ****** */
-        footer .bottom{
-            height: 30vh;
-            margin-top: -1rem;
-        }
-        footer .bottom .bg{
-           scale: 3;
-        }
-        footer .bottom .bottom-container{
-           padding: 1rem;
-           padding-bottom: 2rem;
-        }
-        footer .bottom .bottom-container .logo{
-           height: 6rem;
-        }
-        footer .bottom .bottom-container .copyright{
-           font-size: 0.9rem;
-        }
-    
+    /* ******* Footer ****** */
+    footer .bottom{
+        height: 30vh;
+        margin-top: -1rem;
+    }
+    footer .bottom .bg{
+       scale: 3;
+    }
+    footer .bottom .bottom-container{
+       padding: 1rem;
+       padding-bottom: 2rem;
+    }
+    footer .bottom .bottom-container .logo{
+       height: 6rem;
+    }
+    footer .bottom .bottom-container .copyright{
+       font-size: 0.9rem;
+    }
 }
 
 
@@ -1612,7 +1590,8 @@ footer .bottom .bottom-container .copyright {
 
 
 /***************************************************/
-/********************* Laptop **********************/
+/********** For Laptops & Big Screens **************/
+
 @media (min-width: 1024px) {
 
     header{
@@ -1780,8 +1759,6 @@ footer .bottom .bottom-container .copyright {
 
 
 
-
-
     /* SEction4  */
     .section4 #section4-label .btn {
         background-color: #a3c8fc;
@@ -1818,8 +1795,6 @@ footer .bottom .bottom-container .copyright {
      width: fit-content;
      padding: 1rem 4rem
     }
-
-
 
 
         
@@ -2003,9 +1978,7 @@ footer .bottom .bottom-container .copyright {
 
 
 
-
-
-    /********** Section8  *************/
+    /**** Section8  *****/
     .section8 {
         min-height: 100vh;
         width: 100%;
@@ -2238,21 +2211,4 @@ footer .bottom .bottom-container .copyright {
     footer .bottom .bottom-container .logo{
        height: 8rem;
     }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-/* Large Desktop */
-@media (min-width: 1280px){
-
 }
