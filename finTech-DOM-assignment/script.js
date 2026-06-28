@@ -1,4 +1,3 @@
-
 let loginForm = document.querySelector("#login-form")
 let loginUsername = document.querySelector("#login-username")
 let loginPassword = document.querySelector("#login-password")
@@ -28,6 +27,169 @@ let transactionDescriptionInput = document.querySelector("#transaction-descripti
 let transactionAmount = document.querySelector("#transaction-amount")
 let transactionDate = document.querySelector("#transaction-date")
 let transactionCategory = document.querySelector("#transaction-category");
+
+let transactionsContainer = document.querySelector("#transactions-container");
+
+let totalIncomeElem = document.querySelector("#total-income");
+let totalExpenseElem = document.querySelector("#total-expense");
+let currentBalanceElem = document.querySelector("#current-balance");
+let totalTransactionsElem = document.querySelector("#total-transactions");
+
+let deleteAllTransactionsBtn = document.querySelector("#delete-all-transactions");
+
+
+
+const updateTotalIncome = () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    let totalIncome = transactions.reduce((total, transaction) => {
+        if (transaction.type === "income") {
+            return total + transaction.amount;
+        }
+        return total;
+    }, 0);
+
+    totalIncomeElem.textContent = totalIncome;
+}
+
+
+const updateTotalExpense = () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    let totalIncome = transactions.reduce((total, transaction) => {
+        if (transaction.type === "expense") {
+            return total + transaction.amount;
+        }
+        return total;
+    }, 0);
+
+    totalExpenseElem.textContent = totalIncome;
+}
+
+const updateCurrentBalance = () => {
+    let totalIncome = Number(totalIncomeElem.textContent);
+    let totalExpense = Number(totalExpenseElem.textContent);
+    let currentBalance = totalIncome - totalExpense;
+    currentBalanceElem.textContent = currentBalance;
+}
+
+const updateTotalTransactions = () => { 
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    totalTransactionsElem.textContent = transactions.length;
+}
+
+
+
+
+let cashFlowChart;
+
+const createChart = () => {
+    const ctx = document.getElementById("cashFlowChart");
+  
+    cashFlowChart = new Chart(ctx, {
+        type: "bar",
+    
+        data: {
+            labels: ["Income vs Expenses"],
+            datasets: [
+                {
+                    label: "Income",
+                    data: [0],
+                    backgroundColor: "#16A34A",
+                    borderRadius: 10,
+                },
+                {
+                    label: "Expenses",
+                    data: [0],
+                    backgroundColor: "#DC2626",
+                    borderRadius: 10,
+                },
+            ],
+        },
+    
+        options: {
+            responsive: true,
+      
+            plugins: {
+                legend: {
+                    position: "top",
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+};
+createChart();
+
+
+const updateChart = () => { 
+    cashFlowChart.data.datasets[0].data = [Number(totalIncomeElem.textContent)]
+    cashFlowChart.data.datasets[1].data = [Number(totalExpenseElem.textContent)]
+
+    cashFlowChart.update();
+}
+
+
+
+
+const updateDashboard = () => { 
+    updateTotalIncome();
+    updateTotalExpense();
+    updateCurrentBalance();
+    updateTotalTransactions();
+    updateChart();
+}
+
+
+
+deleteAllTransactionsBtn.addEventListener("click", () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || []; 
+    transactions = []
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    updateDashboard();
+
+    transactionsContainer.innerHTML = ""
+})
+
+
+
+
+
+
+let renderTransaction = (transactions) => { 
+    transactionsContainer.innerHTML = "";
+
+    transactions.forEach((transaction) => { 
+        transactionsContainer.innerHTML += `<tr>
+                                <td>${transaction.date}</td>
+                                <td>${transaction.description}</td>
+                                <td id="category"><span>${transaction.category}</span></td>
+                                <td id="amount">$${transaction.amount}</td>
+                                <td class="actions">
+                                    <i id="edit" class="ri-pencil-fill"></i>
+                                    <i id="del" class="ri-delete-bin-5-line"></i>
+                                </td>
+                            </tr>`
+    })
+}
+
+
+
+
+
+const loadTransactions = () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    renderTransaction(transactions);
+}
+
+
+
+
+
 
 
 let checkAuthentication = () => {
@@ -62,6 +224,12 @@ let checkAuthentication = () => {
 };
 
 
+
+
+
+
+
+
 registerBtn.addEventListener("click", (e) => { 
     e.preventDefault();
 
@@ -92,6 +260,9 @@ loginBtn.addEventListener("click", (e) => {
         localStorage.setItem("isLoggedIn", true);
         alert("Login Successful")
         checkAuthentication();
+
+        loadTransactions();
+        updateDashboard();
     }
     else { 
         alert("Invalid Credentials!");
@@ -111,6 +282,11 @@ logoutBtn.addEventListener("click", () => {
 })
 
 checkAuthentication();
+
+if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
+    loadTransactions();
+    updateDashboard();
+}
 
 
 
@@ -150,15 +326,23 @@ cancelTransaction.addEventListener("click", () => {
 
 
 
-addTransactionForm.addEventListener("submit", (e) => { 
+
+
+
+
+
+
+
+addTransactionForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+
     let newTransaction = {
         type: transactionTypeInput.value,
         description: transactionDescriptionInput.value,
-        amount: transactionAmount.value,
+        amount: Number(transactionAmount.value),
         date: transactionDate.value,
         category: transactionCategory.value
     }
@@ -166,53 +350,13 @@ addTransactionForm.addEventListener("submit", (e) => {
     transactions.push(newTransaction);
 
     localStorage.setItem("transactions", JSON.stringify(transactions))
-    
+
+    renderTransaction(transactions);
+    updateDashboard();
+    addTransactionForm.reset();
 
     addTransactionFormContainer.style.display = "none"
 })
 
 
 
-
-const chartCreation = () => {
-    const ctx = document.getElementById("cashFlowChart");
-  
-    new Chart(ctx, {
-        type: "bar",
-    
-        data: {
-            labels: ["Income vs Expenses"],
-            datasets: [
-                {
-                    label: "Income",
-                    data: [65000],
-                    backgroundColor: "#16A34A",
-                    borderRadius: 10,
-                },
-                {
-                    label: "Expenses",
-                    data: [48000],
-                    backgroundColor: "#DC2626",
-                    borderRadius: 10,
-                },
-            ],
-        },
-    
-        options: {
-            responsive: true,
-      
-            plugins: {
-                legend: {
-                    position: "top",
-                },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
-};
-
-chartCreation();

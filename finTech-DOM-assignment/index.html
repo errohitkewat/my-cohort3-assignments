@@ -26,17 +26,17 @@
 
             <div class="description">
                 <label for="description">Description</label>
-                <input type="text" id="transaction-description">
+                <input required type="text" id="transaction-description">
             </div>
 
             <div class="amount-and-date">
                 <div class="amount-container">
                     <label for="amount">Amount</label>
-                    <input type="number" id="transaction-amount">
+                    <input required type="number" id="transaction-amount">
                 </div>
                 <div class="date-container">
                     <label for="date">Date</label>
-                    <input type="date" id="transaction-date">
+                    <input required type="date" id="transaction-date">
                 </div>
             </div>
 
@@ -140,22 +140,22 @@
                     <div class="card balance-card">
                         <i class="ri-bank-fill"></i>
                         <p>Current Balance</p>
-                        <h1><span>$</span>0.00</h1>
+                        <h1><span>$</span><span id="current-balance">0.00</span></h1>
                     </div>
                     <div class="card income-card">
                         <i class="ri-arrow-right-up-long-line"></i>
                         <p>Total Income</p>
-                        <h1><span>$</span>0.00</h1>
+                        <h1><span>$</span><span id="total-income">0.00</span></h1>
                     </div>
                     <div class="card expense-card">
                         <i class="ri-arrow-right-down-long-line"></i>
                         <p>Total Expenses</p>
-                        <h1><span>$</span>0.00</h1>
+                        <h1><span>$</span><span id="total-expense">0.00</span></h1>
                     </div>
                     <div class="card  total-trans-card">
-                        <i class="ri-folder-transfer-line"></i>
+                        <i class="ri-wallet-3-fill"></i>
                         <p>Total Transactions</p>
-                        <h1>0</h1>
+                        <h1 id="total-transactions"></h1>
                     </div>
                 </div>
         
@@ -168,7 +168,7 @@
         
                     <div class="preference">
                         <h2>Preferences</h2>
-                        <button><i class="ri-delete-bin-6-line"></i>Clear All Data</button>
+                        <button id="delete-all-transactions"><i class="ri-delete-bin-6-line"></i>Clear All Data</button>
                     </div>
                 </div>
         
@@ -200,9 +200,9 @@
                             </tr>
                         </thead>
         
-                        <tbody>
+                        <tbody id="transactions-container">
         
-                            <tr>
+                            <!-- <tr>
                                 <td>26-06-2026</td>
                                 <td>Description about transaction</td>
                                 <td id="category"><span>Food & Dining</span></td>
@@ -211,7 +211,7 @@
                                     <i id="edit" class="ri-pencil-fill"></i>
                                     <i id="del" class="ri-delete-bin-5-line"></i>
                                 </td>
-                            </tr>
+                            </tr> -->
         
                         </tbody>
                     </table>
