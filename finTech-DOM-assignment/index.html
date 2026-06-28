@@ -8,6 +8,56 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
+    <!-- // Add Transaction Form  -->
+    <div class="add-transaction-form-container">
+        <form class="add-transaction-form" action="">
+            <div class="heading">
+                <h2>Add Transaction</h2>
+                <i id="cancel-transaction" class="ri-close-line"></i>
+            </div>
+    
+            <div class="type-container">
+                <label for="type">Type</label>
+                <select name="" id="transaction-type">
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                </select>
+            </div>
+
+            <div class="description">
+                <label for="description">Description</label>
+                <input type="text" id="transaction-description">
+            </div>
+
+            <div class="amount-and-date">
+                <div class="amount-container">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="transaction-amount">
+                </div>
+                <div class="date-container">
+                    <label for="date">Date</label>
+                    <input type="date" id="transaction-date">
+                </div>
+            </div>
+
+            <div class="category-container">
+                <label for="category">Category</label>
+                <select name="" id="transaction-category">
+                    <option value="food&dining">Food & Dining</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="recharge&bills">Recharge & Bills</option>
+                    <option value="petrol&auto">Petrol & Auto</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="salary">Salary</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <button class="save-transaction-btn">Save Transaction</button>
+        </form>
+    </div>
+
 
     <!-- // Login Register Form  -->
     <div id="register-form" class="login-register-form">
@@ -67,6 +117,7 @@
     </aside>
 
     <main>
+
         <header>
             <nav>
                 <i id="light-theme-icon" class="theme-icon   ri-sun-line"></i>
@@ -184,17 +235,17 @@
                     <div class="form-div">
                         <div class="value">
                             <label for="fullName">Full Name</label>
-                            <input type="text" value="Rohit Kewat">
+                            <input type="text" id="fullName" value="Rohit Kewat">
                         </div>
                     
                         <div class="value">
                             <label for="currency">Primary Currency</label>
                             <select name="" id="currency">
-                                <option value="USD">USD ($)</option>
-                                <option value="USD">EUR (e)</option>
-                                <option value="USD">GBP ()</option>
-                                <option value="USD">INR (₹)</option>
-                                <option value="USD">JPY ()</option>
+                                <option value="usd">USD ($)</option>
+                                <option value="eur">EUR (e)</option>
+                                <option value="gbp">GBP ()</option>
+                                <option value="inr">INR (₹)</option>
+                                <option value="jpy">JPY ()</option>
                             </select>
                         </div>
                     </div>

@@ -18,7 +18,16 @@ let dashboardBtn = document.querySelector("#dashboard-btn")
 let settingsPage = document.querySelector(".settings")
 let dashboardPage = document.querySelector(".dashboard");
 
+let addTransactionBtn = document.querySelector(".add-transaction-btn")
+let addTransactionFormContainer = document.querySelector(".add-transaction-form-container")
+let addTransactionForm = document.querySelector(".add-transaction-form")
+let cancelTransaction = document.querySelector("#cancel-transaction");
 
+let transactionTypeInput = document.querySelector("#transaction-type")
+let transactionDescriptionInput = document.querySelector("#transaction-description")
+let transactionAmount = document.querySelector("#transaction-amount")
+let transactionDate = document.querySelector("#transaction-date")
+let transactionCategory = document.querySelector("#transaction-category");
 
 
 let checkAuthentication = () => {
@@ -109,6 +118,61 @@ checkAuthentication();
 
 
 
+dashboardBtn.addEventListener("click", () => { 
+    settingsPage.style.display = "none"
+    dashboardPage.style.display = "block"
+
+    settingsBtn.classList.remove("active-link");
+    dashboardBtn.classList.add("active-link");
+})
+
+settingsBtn.addEventListener("click", () => { 
+    dashboardPage.style.display = "none"
+    settingsPage.style.display = "block";
+
+    dashboardBtn.classList.remove("active-link");
+    settingsBtn.classList.add("active-link");
+})
+
+
+
+
+
+
+
+addTransactionBtn.addEventListener("click", () => { 
+    addTransactionFormContainer.style.display = "flex"
+})
+
+cancelTransaction.addEventListener("click", () => { 
+    addTransactionFormContainer.style.display = "none"
+})
+
+
+
+addTransactionForm.addEventListener("submit", (e) => { 
+    e.preventDefault();
+
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    let newTransaction = {
+        type: transactionTypeInput.value,
+        description: transactionDescriptionInput.value,
+        amount: transactionAmount.value,
+        date: transactionDate.value,
+        category: transactionCategory.value
+    }
+
+    transactions.push(newTransaction);
+
+    localStorage.setItem("transactions", JSON.stringify(transactions))
+    
+
+    addTransactionFormContainer.style.display = "none"
+})
+
+
+
 
 const chartCreation = () => {
     const ctx = document.getElementById("cashFlowChart");
@@ -152,23 +216,3 @@ const chartCreation = () => {
 };
 
 chartCreation();
-
-
-
-
-dashboardBtn.addEventListener("click", () => { 
-    settingsPage.style.display = "none"
-    dashboardPage.style.display = "block"
-
-    settingsBtn.classList.remove("active-link");
-    dashboardBtn.classList.add("active-link");
-})
-
-settingsBtn.addEventListener("click", () => { 
-    dashboardPage.style.display = "none"
-    settingsPage.style.display = "block";
-
-    dashboardBtn.classList.remove("active-link");
-    settingsBtn.classList.add("active-link");
-})
-

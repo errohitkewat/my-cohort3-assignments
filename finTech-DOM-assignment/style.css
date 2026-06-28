@@ -32,6 +32,86 @@ html,body{
     overflow: hidden;
 
     color: var(--primary-color);
+
+    position: relative;
+}
+
+.add-transaction-form-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.516);
+    z-index: 9;
+
+    display: none;
+    align-items: center;
+    justify-content: center;   
+}
+
+.add-transaction-form-container form{
+    min-height: 25vh;
+    width: 400px;
+    background-color: var(--primary-bg);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 1rem;
+}
+.add-transaction-form-container form .heading{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.add-transaction-form-container form .heading h2{
+    font-weight: 600;
+    font-size: 22px;
+}
+.add-transaction-form-container form .heading i{
+    font-size: 25px;
+    cursor: pointer;
+}
+.add-transaction-form-container form select,input{
+    font-size: 16px;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--dark-border);
+    border-radius: 0.5rem;
+    width: 100%;
+    margin-top: 3px;
+    outline: none;
+    cursor: pointer;
+
+}
+.add-transaction-form-container form label{
+    font-size: 14px;
+    font-weight: 500;
+}
+.add-transaction-form-container form .amount-and-date{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.add-transaction-form-container form .type-container, 
+.description, .category-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.add-transaction-form-container form button{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.6rem;
+    margin-top: 15px;
+    background-color: var(--primary-color);
+    color: var(--primary-bg);
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 
@@ -187,7 +267,7 @@ main{
 
     background-color: var(--secondary-bg);
 
-    display: none;    
+    display: none;  
 }
 
 main nav{
@@ -238,6 +318,8 @@ nav #light-theme-icon{
     color: var(--secondary-color);
     font-weight: 400;
 }
+
+
 
 
 
