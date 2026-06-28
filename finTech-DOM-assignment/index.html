@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Track Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- // Login Register Form  -->
+    <div id="register-form" class="login-register-form">
+        <form class="auth-form" action="">
+            <h1>Create Account</h1>
+            <p class="top-p">Join FinTrack Pro</p>
+            <div class="inputs">
+                <label for="register-username">Choose a Username</label>
+                <input id="register-username" type="text">
+            </div>
+            <div class="inputs">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password">
+            </div>
+            <button id="register">Register</button>
+            <p class="bottom-p">Already have an account? <span>Login here</span></p>
+        </form>
+    </div>
+
+    <div id="login-form" class="login-register-form">
+        <form class="auth-form" action="">
+            <h1>Welcome Back</h1>
+            <p class="top-p">Login to FinTrack Pro</p>
+            <div class="inputs">
+                <label for="login-username">Username</label>
+                <input id="login-username" type="text">
+            </div>
+            <div class="inputs">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password">
+            </div>
+            <button id="login">Login</button>
+            <p class="bottom-p">Don't have an account? <span>Register here</span></p>
+        </form>
+    </div>
+
+
+
+
+    <aside>
+        <div class="logo">
+            <i class="ri-stack-fill"></i>
+            <div class="logoName">
+                <h1>FinTrack Pro</h1>
+                <p>Enterprise Finance</p>
+            </div>
+        </div>
+
+        <div class="links">
+            <li id="dashboard-btn"><i class="ri-dashboard-line"></i> Dashboard</li>
+            <li id="settings-btn"><i class="ri-settings-3-fill"></i> Settings</li>
+        </div>
+
+        <button class="add-transaction-btn">
+            <h3>+ Add Transaction</h3>
+        </button>
+    </aside>
+
+    <main>
+        <header>
+            <nav>
+                <i id="light-theme-icon" class="theme-icon   ri-sun-line"></i>
+                <i id="dark-theme-icon" class="theme-icon   ri-moon-fill"></i>
+                <h3 class="userName">Rohit Kewat</h3>
+                <button class="logout-btn">
+                    <i class="ri-logout-circle-r-line"></i> Logout
+                </button>
+            </nav>
+        </header>
+
+        <div class="dashboard">
+            <div class="main-content">
+                <div class="heading">
+                    <h1>Financial Overview</h1>
+                    <p>Real-Time Finance Tracking Application.</p>
+                </div>
+        
+                <div class="summary-cards-container">
+                    <div class="card balance-card">
+                        <i class="ri-bank-fill"></i>
+                        <p>Current Balance</p>
+                        <h1><span>$</span>0.00</h1>
+                    </div>
+                    <div class="card income-card">
+                        <i class="ri-arrow-right-up-long-line"></i>
+                        <p>Total Income</p>
+                        <h1><span>$</span>0.00</h1>
+                    </div>
+                    <div class="card expense-card">
+                        <i class="ri-arrow-right-down-long-line"></i>
+                        <p>Total Expenses</p>
+                        <h1><span>$</span>0.00</h1>
+                    </div>
+                    <div class="card  total-trans-card">
+                        <i class="ri-folder-transfer-line"></i>
+                        <p>Total Transactions</p>
+                        <h1>0</h1>
+                    </div>
+                </div>
+        
+        
+                <div class="center">
+                    <div class="chart-card">
+                        <h2>Cash Flow Analysis</h2>
+                        <canvas id="cashFlowChart"></canvas>
+                    </div>
+        
+                    <div class="preference">
+                        <h2>Preferences</h2>
+                        <button><i class="ri-delete-bin-6-line"></i>Clear All Data</button>
+                    </div>
+                </div>
+        
+        
+                <div class="transaction-history">
+                    <h2>All Transactions</h2>
+        
+                    <div class="inputs">
+                        <div class="search">
+                            <i class="ri-search-2-line"></i>
+                            <input type="search" placeholder="Search Transactions">
+                        </div>
+        
+                        <select class="options" name="" id="">
+                            <option value="all types">All Types</option>
+                            <option value="income only">Income Only</option>
+                            <option value="expense only">Expense Only</option>
+                        </select>
+                    </div>
+        
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+        
+                            <tr>
+                                <td>26-06-2026</td>
+                                <td>Description about transaction</td>
+                                <td id="category"><span>Food & Dining</span></td>
+                                <td id="amount">$26,582</td>
+                                <td class="actions">
+                                    <i id="edit" class="ri-pencil-fill"></i>
+                                    <i id="del" class="ri-delete-bin-5-line"></i>
+                                </td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+        
+                </div>
+        
+            </div>
+        </div>
+
+
+        <div class="settings">
+            <div class="heading">
+                <h1>Settings</h1>
+                <p>Manage your account profile and app formatting.</p>
+            </div>
+
+            <div class="profile-details">
+                <h1>Profile Details</h1>
+
+                <form id="details-form" action="">
+                    <div class="form-div">
+                        <div class="value">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" value="Rohit Kewat">
+                        </div>
+                    
+                        <div class="value">
+                            <label for="currency">Primary Currency</label>
+                            <select name="" id="currency">
+                                <option value="USD">USD ($)</option>
+                                <option value="USD">EUR (e)</option>
+                                <option value="USD">GBP ()</option>
+                                <option value="USD">INR (₹)</option>
+                                <option value="USD">JPY ()</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="saveChanges">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+@font-face {
+    font-family: Inter;
+    src: url(./Inter-VariableFont_opsz\,wght.ttf);
+}
+
+:root{
+    --primary-bg: #ffff;
+    --border-color: #E5E7EB;
+    --secondary-bg: #f8fcff;
+    --primary-color: black;
+    --secondary-color: gray;
+    --blue-bg: #DBEBFF;
+    --red-bg: #FEE2E3;
+    --green-bg: #DCFCE6;
+    --dark-red: rgb(150, 0, 0);
+    --dark-green: rgb(0, 97, 0);
+    --dark-blue: rgb(0, 0, 156);
+    --dark-border: #cdcdcd;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-bg);
+    overflow: hidden;
+
+    color: var(--primary-color);
+}
+
+
+
+/* Login Form  */
+.login-register-form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.auth-form{
+    min-height: 200px;
+    width: 400px;
+    box-shadow: 0 0 10px rgb(192, 192, 192);
+    border-radius: 1rem;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.auth-form h1{
+    font-size: 1.7rem;
+}
+.auth-form .inputs{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.auth-form .inputs label{
+    font-size: 1.1rem;
+}
+.auth-form .inputs input{
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    outline: none;
+
+    border-radius: 0.5rem;
+    border: 1px solid var(--dark-border);
+    margin-top: 5px;
+}
+.auth-form button{
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.6rem;
+    border: none;
+    background-color: rgb(0, 146, 0);
+    color: white;
+    border-radius: 0.5rem;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.auth-form .top-p{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.auth-form .bottom-p{
+    font-size: 14px;
+}
+.auth-form p span{
+    color: blue;
+}
+
+#login-form{
+    display: none;
+}
+
+
+
+/* Sidebar  */
+aside{
+    width: 250px;
+    height: 100vh;
+    background-color: var(--primary-bg);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left:  0;
+
+    padding: 20px;
+
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    gap: 2vh;
+}
+
+aside .logo{
+    height: 7vh;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+aside .logo i{
+    font-size: 2.5rem;
+}
+aside .logo .logoName h1{
+    font-size: 1.2rem;
+}
+aside .logo .logoName p{
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+aside .links{
+    height: 75vh;
+    padding-top: 0.5rem;
+    padding-left: 0.3rem;
+}
+aside .links li{
+    font-size: 1.1rem;
+    /* background-color: rgb(204, 204, 255); */
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    list-style: none;
+    margin-top: 0.5rem;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+
+
+}
+
+aside .add-transaction-btn{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid  black;
+    background-color: var(--primary-color);
+    color: var(--primary-bg);
+    cursor: pointer;
+}
+aside .add-transaction-btn h3{
+    font-weight: 500;
+}
+
+
+
+/* Main Content  */
+main{
+    width: calc(100% - 250px);
+    height: 100%;
+    margin-left: 250px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-color: var(--secondary-bg);
+
+    display: none;    
+}
+
+main nav{
+    height: 70px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 40px;
+    padding: 0 1rem;
+    background-color: var(--primary-bg);
+}
+
+nav .userName{
+    font-weight: 500;
+    font-size: 1rem;
+    border-left: 2px solid var(--border-color);
+    padding-left: 10px;
+}
+
+nav .logout-btn{
+    font-size: 0.9rem;
+    padding: 0.3rem 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid black;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: var(--primary-bg);
+    cursor: pointer;
+}
+
+nav .theme-icon{
+    font-size: 1.3rem;
+    margin-right: -10px;
+    cursor: pointer;
+}
+
+nav #light-theme-icon{
+    display: none;
+}
+
+.main-content{
+    min-height: calc(100% - 70px);
+    padding: 30px;
+}
+.main-content .heading p{
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 400;
+}
+
+
+
+
+
+
+.summary-cards-container{
+    width: 100%;
+    margin-top: 10px;
+    display: grid;
+    gap: 20px;
+    padding: 1rem 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+.card{
+    height: 150px;
+    width: 100%;
+
+    border-radius: 1rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    background-color: var(--primary-bg);
+
+    border: 1px solid var(--border-color);
+}
+
+.card i{
+    padding: 0.5rem;
+    width: fit-content;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    background-color: #DBEBFF;
+    color: var(--dark-blue);
+}
+.card p{
+    margin-top: 0.7rem;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+
+}
+.card h1{
+    font-size: 1.6rem;
+}
+
+
+.income-card i{
+    background-color: var(--green-bg);
+    color: var(--dark-green);
+}
+.income-card h1{
+    color: var(--dark-green);
+}
+.expense-card i{
+    background-color: var(--red-bg);
+    color: var(--dark-red);
+}
+.expense-card h1{
+    color: var(--dark-red);
+}
+
+
+
+.center{
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    gap: 30px;
+}
+.center .preference{
+    border: 1px solid var(--border-color);
+    width: 40%;
+    background-color: var(--primary-bg);
+    border-radius: 1rem;
+    padding: 30px;   
+}
+.center .preference h2{
+    margin-bottom: 15px;
+
+}
+.center .preference button{
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.4rem ;
+    
+    border-radius: 0.5rem;
+    border: 1px solid var(--dark-red);
+    background-color: var(--red-bg);
+    color: var(--dark-red);
+    cursor: pointer;
+
+}
+.center .preference button i{
+    margin-right: 10px;
+}
+
+
+.chart-card{
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+
+    padding: 30px;
+
+    width: 60%;
+}
+
+.chart-card h2{
+    font-size: 1.7rem;
+    margin-bottom: 25px;
+}
+
+canvas{
+    width: 100%;
+    height: 400px;
+}
+
+
+
+
+
+
+.transaction-history{
+    margin-top: 30px;
+    padding: 30px;
+    min-height: 10vh;
+    width: 100%;
+    border: 1px solid var(--border-color);
+
+    border-radius: 1rem;
+    background-color: var(--primary-bg);
+}
+.transaction-history h2{
+    margin-bottom: 15px;
+}
+.transaction-history .inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.transaction-history .inputs .options{
+    width: 35%;
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+.transaction-history .inputs .search{
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    width: 45%;
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    border-radius: 0.5rem;
+
+}
+.transaction-history .inputs .search i{
+    font-size: 1.2rem;
+}
+.transaction-history .inputs .search input{
+    width: 94%;
+    font-size: 0.9rem;
+    padding: 0.2rem 0 0.2rem 1rem;
+    border: none;
+    outline: none;
+}
+
+
+
+
+.transaction-table{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td{
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.transaction-table tbody tr {
+    font-size: 15px;
+}
+.transaction-table tbody tr #amount{
+    color: var(--dark-red);
+    font-weight: 600;
+}
+.transaction-table tbody tr #category span{
+    background-color: rgb(247, 247, 247);
+    padding: 0.2rem 0.5rem;
+    font-size: 13px;
+    border-radius: 0.3rem;
+}
+
+.transaction-table .actions i{
+    font-size: 20px;
+}
+.transaction-table .actions #edit{
+    color: var(--dark-blue);
+}
+.transaction-table .actions #del{
+    color: var(--dark-red);
+    margin-left: 15px;
+}
+
+
+
+
+.settings{
+    min-height: calc(100% - 70px);
+    padding: 30px;
+    display: none;
+}
+.settings .heading p{
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+
+.profile-details{
+    border: 1px solid var(--border-color);
+    background-color: var(--primary-bg);
+    width: 60%;
+    padding: 30px;
+    border-radius: 1rem;
+
+}
+.profile-details h1{
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.profile-details .form-div{
+    background-color: transparent;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.profile-details .form-div .value{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 40%;
+}
+.profile-details .form-div .value input{
+    padding: 0.3rem 0.5rem ;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dark-border);
+}
+.profile-details .form-div .value select{
+    padding: 0.3rem 0.5rem ;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dark-border);
+}
+
+
+.profile-details form button{
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--primary-bg);cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.active-link{
+    background-color: var(--blue-bg);
+}
