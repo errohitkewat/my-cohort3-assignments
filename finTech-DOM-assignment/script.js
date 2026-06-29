@@ -65,6 +65,43 @@ let editIndex = null;     // for edit transaction
 
 
 
+
+
+darkThemeBtn.addEventListener("click", () => { 
+    localStorage.setItem("theme", "dark");   
+
+    applyTheme();
+})
+
+lightThemeBtn.addEventListener("click", () => { 
+    localStorage.setItem("theme", "light");
+
+    applyTheme();
+})
+
+
+
+let applyTheme = () => { 
+    let savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        body.classList.add("dark");
+
+        lightThemeBtn.style.display = "inline-block"
+        darkThemeBtn.style.display = "none"
+    }
+    else { 
+        body.classList.remove("dark");
+
+        lightThemeBtn.style.display = "none"
+        darkThemeBtn.style.display = "inline-block"
+    }
+}
+
+
+
+
+
 const updateTotalIncome = () => {
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
@@ -395,6 +432,7 @@ logoutBtn.addEventListener("click", () => {
 })
 
 checkAuthentication();
+applyTheme();
 
 if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
     loadTransactions();
@@ -474,22 +512,6 @@ addTransactionForm.addEventListener("submit", (e) => {
 
 
 
-
-
-
-darkThemeBtn.addEventListener("click", () => { 
-    lightThemeBtn.style.display = "inline-block"
-    darkThemeBtn.style.display = "none"
-
-    body.classList.add("dark")
-})
-
-lightThemeBtn.addEventListener("click", () => { 
-    lightThemeBtn.style.display = "none"
-    darkThemeBtn.style.display = "inline-block"
-
-    body.classList.remove("dark")
-})
 
 
 
