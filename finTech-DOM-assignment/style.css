@@ -11,12 +11,25 @@
     --secondary-color: gray;
     --blue-bg: #DBEBFF;
     --red-bg: #FEE2E3;
-    --green-bg: #DCFCE6;
     --dark-red: rgb(150, 0, 0);
     --dark-green: rgb(0, 97, 0);
     --dark-blue: rgb(0, 0, 156);
     --dark-border: #cdcdcd;
 }
+.dark{
+    --primary-bg: #1E2937;
+    --border-color: #5b5b5b;
+    --secondary-bg: #111926;
+    --primary-color: rgb(255, 255, 255);
+    --secondary-color: rgb(168, 168, 168);
+    --blue-bg: #0073ff52;
+    --red-bg: #ffb5b8;
+    --green-bg: #DCFCE6;
+    --dark-red: rgb(220, 0, 0);
+    --dark-green: rgb(0, 162, 0);
+    --dark-blue: rgb(57, 57, 255);
+}
+
 
 *{
     margin: 0;
@@ -78,7 +91,9 @@ html,body{
 .add-transaction-form-container form select,input{
     font-size: 16px;
     padding: 0.3rem 0.5rem;
-    border: 1px solid var(--dark-border);
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-bg);
+    color: var(--primary-color);
     border-radius: 0.5rem;
     width: 100%;
     margin-top: 3px;
@@ -178,6 +193,7 @@ html,body{
 }
 .auth-form p span{
     color: blue;
+    cursor: pointer;
 }
 
 #login-form{
@@ -467,21 +483,26 @@ canvas{
     margin-bottom: 15px;
 }
 .transaction-history .inputs {
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .transaction-history .inputs .options{
     width: 35%;
+    background-color: var(--secondary-bg);
     padding: 0.3rem 0.5rem;
     outline: none;
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
     font-size: 0.9rem;
+    color: var(--primary-color);
 }
 .transaction-history .inputs .search{
     border: 1px solid var(--border-color);
+    background-color: var(--secondary-bg);
     display: flex;
+    /* color: var(--primary-color); */
     align-items: center;
     width: 45%;
     padding: 0.2rem 0;
@@ -495,9 +516,11 @@ canvas{
 .transaction-history .inputs .search input{
     width: 94%;
     font-size: 0.9rem;
+    background-color: var(--secondary-bg);
     padding: 0.2rem 0 0.2rem 1rem;
     border: none;
     outline: none;
+    color: var(--primary-color);
 }
 
 
@@ -523,7 +546,7 @@ canvas{
     font-weight: 600;
 }
 .transaction-table tbody tr #category span{
-    background-color: rgb(247, 247, 247);
+    background-color: var(--secondary-bg);
     padding: 0.2rem 0.5rem;
     font-size: 13px;
     border-radius: 0.3rem;
@@ -531,11 +554,12 @@ canvas{
 
 .transaction-table .actions i{
     font-size: 20px;
+    cursor: pointer;
 }
 .transaction-table .actions #edit{
     color: var(--dark-blue);
 }
-.transaction-table .actions #del{
+.transaction-table .actions .delete-btn{
     color: var(--dark-red);
     margin-left: 15px;
 }
@@ -584,15 +608,19 @@ canvas{
 }
 .profile-details .form-div .value input{
     padding: 0.3rem 0.5rem ;
+    background-color: var(--secondary-bg);
+    color: var(--primary-color);
     font-size: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--dark-border);
+    border: 1px solid var(--border-color);
 }
 .profile-details .form-div .value select{
+    background-color: var(--secondary-bg);
+    color: var(--primary-color);
     padding: 0.3rem 0.5rem ;
     font-size: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--dark-border);
+    border: 1px solid var(--border-color);
 }
 
 

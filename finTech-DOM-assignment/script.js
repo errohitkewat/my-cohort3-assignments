@@ -1,7 +1,7 @@
 let loginForm = document.querySelector("#login-form")
+let registerForm = document.querySelector("#register-form")
 let loginUsername = document.querySelector("#login-username")
 let loginPassword = document.querySelector("#login-password")
-let registerForm = document.querySelector("#register-form")
 let registerBtn = document.querySelector("#register")
 let loginBtn = document.querySelector("#login")
 let logoutBtn = document.querySelector(".logout-btn")
@@ -9,7 +9,6 @@ let registerUsername = document.querySelector("#register-username");
 let registerPassword = document.querySelector("#register-password");
 let sidebar = document.querySelector("aside");
 let main = document.querySelector("main");
-let saveChangesBtn = document.querySelector("#saveChanges");
 let detailsForm = document.querySelector("#details-form")
 
 let settingsBtn = document.querySelector("#settings-btn");
@@ -36,6 +35,33 @@ let currentBalanceElem = document.querySelector("#current-balance");
 let totalTransactionsElem = document.querySelector("#total-transactions");
 
 let deleteAllTransactionsBtn = document.querySelector("#delete-all-transactions");
+
+
+let updateSettingsBtn = document.querySelector("#update-settings-btn");
+let settingsForm = document.querySelector("#details-form")
+let fullName = document.querySelector("#fullName");
+
+let currencySignElems = document.querySelectorAll(".currency-sign");
+let currencyInput = document.querySelector("#currency");
+let userNameElem = document.querySelector(".userName");
+
+let darkThemeBtn = document.querySelector("#dark-theme-icon")
+let lightThemeBtn = document.querySelector("#light-theme-icon")
+
+let body = document.body;
+
+let switchToLoginBtn = document.querySelector("#switch-to-login")
+let switchToRegisterBtn = document.querySelector("#switch-to-register")
+
+
+let searchInput = document.querySelector("#search-input");
+
+let filterByType = document.querySelector(".options");
+
+
+
+let editIndex = null;     // for edit transaction
+
 
 
 
@@ -88,7 +114,6 @@ const createChart = () => {
   
     cashFlowChart = new Chart(ctx, {
         type: "bar",
-    
         data: {
             labels: ["Income vs Expenses"],
             datasets: [
@@ -97,8 +122,7 @@ const createChart = () => {
                     data: [0],
                     backgroundColor: "#16A34A",
                     borderRadius: 10,
-                },
-                {
+                },{
                     label: "Expenses",
                     data: [0],
                     backgroundColor: "#DC2626",
@@ -106,10 +130,8 @@ const createChart = () => {
                 },
             ],
         },
-    
         options: {
             responsive: true,
-      
             plugins: {
                 legend: {
                     position: "top",
@@ -146,6 +168,49 @@ const updateDashboard = () => {
 
 
 
+
+const renderSettings = () => {
+    const settings = JSON.parse(localStorage.getItem("settings"));
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!settings) {
+        if (currentUser) {
+            userNameElem.textContent = currentUser.userName;
+            fullName.value = currentUser.userName;
+        }
+        return;
+    }
+    userNameElem.textContent = settings.fullName;
+    fullName.value = settings.fullName;
+
+    currencyInput.value = settings.currency;
+
+    currencySignElems.forEach((elem) => {
+        elem.textContent = settings.currency;
+    });
+}
+
+settingsForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const settings = {
+        fullName: fullName.value,
+        currency: currencyInput.value
+    };
+
+    localStorage.setItem("settings", JSON.stringify(settings));
+
+    alert("Changes Saved");
+
+    renderSettings();
+});
+
+
+
+
+
+
+
 deleteAllTransactionsBtn.addEventListener("click", () => {
     let transactions = JSON.parse(localStorage.getItem("transactions")) || []; 
     transactions = []
@@ -163,24 +228,24 @@ deleteAllTransactionsBtn.addEventListener("click", () => {
 let renderTransaction = (transactions) => { 
     transactionsContainer.innerHTML = "";
 
-    transactions.forEach((transaction) => { 
+    transactions.forEach((transaction, index) => { 
         transactionsContainer.innerHTML += `<tr>
-                                <td>${transaction.date}</td>
-                                <td>${transaction.description}</td>
-                                <td id="category"><span>${transaction.category}</span></td>
-                                <td id="amount">$${transaction.amount}</td>
-                                <td class="actions">
-                                    <i id="edit" class="ri-pencil-fill"></i>
-                                    <i id="del" class="ri-delete-bin-5-line"></i>
-                                </td>
-                            </tr>`
+                            <td>${transaction.date}</td>
+                            <td>${transaction.description}</td>
+                            <td id="category"><span>${transaction.category}</span></td>
+                            <td id="amount">$${transaction.amount}</td>
+                            <td class="actions">
+                                <i class="ri-pencil-fill  edit-btn" data-index="${index}"></i>
+                                <i class="ri-delete-bin-5-line  delete-btn" data-index="${index}"><i>
+                            </td>
+                        </tr>`
     })
 }
 
 
 
 
-
+// Starting Render functionality: after login it will render all previous transactions 
 const loadTransactions = () => {
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
     renderTransaction(transactions);
@@ -188,10 +253,46 @@ const loadTransactions = () => {
 
 
 
+// Search Transactions by  salary, income, amount, date functionality
+const searchTransactions = () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    let searchValue = searchInput.value.toLowerCase().trim();
+
+    let filteredTransactions = transactions.filter((transaction) => {
+        return (
+            transaction.description.toLowerCase().includes(searchValue) ||
+            transaction.category.toLowerCase().includes(searchValue) ||
+            transaction.type.toLowerCase().includes(searchValue) ||
+            transaction.date.toLowerCase().includes(searchValue) ||
+            transaction.amount.toString().includes(searchValue)
+        );
+    });
+
+    renderTransaction(filteredTransactions);
+}
+
+
+// this line renders the transactions after typing a letter
+searchInput.addEventListener("input", searchTransactions);
 
 
 
+// Functionality to search transactions  by transaction type
+filterByType.addEventListener("change", () => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+    if (filterByType.value === "all") {
+        renderTransaction(transactions);
+    }
+    else {
+        let filtered = transactions.filter((transaction) => transaction.type === filterByType.value );
+        renderTransaction(filtered);
+    }
+});
+
+
+
+// This function checks , is there any user exist if yes then login form appears or if not then create account form appear if user logged in then dashboard appears else login form appears.
 let checkAuthentication = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -244,6 +345,15 @@ registerBtn.addEventListener("click", (e) => {
 
     localStorage.setItem("users", JSON.stringify(users));
 
+    localStorage.setItem("settings", JSON.stringify(
+        {
+            fullName: registerUsername.value,
+            currency: "$",
+        }
+    ));
+
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+
     alert("Registration Successful")
     checkAuthentication();
 })
@@ -258,8 +368,11 @@ loginBtn.addEventListener("click", (e) => {
 
     if (user) {
         localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("currentUser", JSON.stringify(user));
         alert("Login Successful")
         checkAuthentication();
+
+        renderSettings();
 
         loadTransactions();
         updateDashboard();
@@ -286,9 +399,8 @@ checkAuthentication();
 if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
     loadTransactions();
     updateDashboard();
+    renderSettings();
 }
-
-
 
 
 
@@ -314,8 +426,6 @@ settingsBtn.addEventListener("click", () => {
 
 
 
-
-
 addTransactionBtn.addEventListener("click", () => { 
     addTransactionFormContainer.style.display = "flex"
 })
@@ -328,26 +438,30 @@ cancelTransaction.addEventListener("click", () => {
 
 
 
-
-
-
-
-
 addTransactionForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 
-    let newTransaction = {
-        type: transactionTypeInput.value,
-        description: transactionDescriptionInput.value,
-        amount: Number(transactionAmount.value),
-        date: transactionDate.value,
-        category: transactionCategory.value
+    if (editIndex !== null) {
+        transactions[editIndex] = {
+            type: transactionTypeInput.value,
+            description: transactionDescriptionInput.value,
+            amount: Number(transactionAmount.value),
+            date: transactionDate.value,
+            category: transactionCategory.value
+        };
+        editIndex = null;
+    } else {
+        transactions.push({
+            type: transactionTypeInput.value,
+            description: transactionDescriptionInput.value,
+            amount: Number(transactionAmount.value),
+            date: transactionDate.value,
+            category: transactionCategory.value
+        });
     }
-
-    transactions.push(newTransaction);
 
     localStorage.setItem("transactions", JSON.stringify(transactions))
 
@@ -360,3 +474,85 @@ addTransactionForm.addEventListener("submit", (e) => {
 
 
 
+
+
+
+darkThemeBtn.addEventListener("click", () => { 
+    lightThemeBtn.style.display = "inline-block"
+    darkThemeBtn.style.display = "none"
+
+    body.classList.add("dark")
+})
+
+lightThemeBtn.addEventListener("click", () => { 
+    lightThemeBtn.style.display = "none"
+    darkThemeBtn.style.display = "inline-block"
+
+    body.classList.remove("dark")
+})
+
+
+
+
+
+switchToRegisterBtn.addEventListener("click", () => { 
+    loginForm.style.display = "none"
+    registerForm.style.display = "flex"
+})
+
+switchToLoginBtn.addEventListener("click", () => { 
+    registerForm.style.display = "none"
+    loginForm.style.display = "flex"
+})
+
+
+let deleteTransactionFunction = () => { 
+
+}
+
+
+
+
+
+
+
+
+
+const deleteTransaction = (index) => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    transactions.splice(index, 1);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    renderTransaction(transactions);
+
+    updateDashboard();
+}
+
+
+
+const editTransaction = (index) => {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    editIndex = index;
+
+    let transaction = transactions[index];
+    addTransactionFormContainer.style.display = "flex";
+
+    transactionTypeInput.value = transaction.type;
+    transactionDescriptionInput.value = transaction.description;
+    transactionAmount.value = transaction.amount;
+    transactionDate.value = transaction.date;
+    transactionCategory.value = transaction.category;
+}
+
+
+transactionsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+        let index = e.target.dataset.index;
+        deleteTransaction(index);
+    }
+
+    if (e.target.classList.contains("edit-btn")) {
+        let index = e.target.dataset.index;
+        editTransaction(index);
+    }
+});
