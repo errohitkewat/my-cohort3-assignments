@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,42 +8,53 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
+
 <body>
-    <!-- // Add Transaction Form  -->
+
+    <!-- Transaction add karne ka popup form -->
     <div class="add-transaction-form-container">
         <form class="add-transaction-form" action="">
+
+            <!-- Form heading aur close button -->
             <div class="heading">
                 <h2>Add Transaction</h2>
                 <i id="cancel-transaction" class="ri-close-line"></i>
             </div>
-    
+
+            <!-- Income ya Expense select karne ke liye -->
             <div class="type-container">
                 <label for="type">Type</label>
-                <select name="" id="transaction-type">
+                <select id="transaction-type">
                     <option value="expense">Expense</option>
                     <option value="income">Income</option>
                 </select>
             </div>
 
+            <!-- Transaction description -->
             <div class="description">
                 <label for="description">Description</label>
                 <input required type="text" id="transaction-description">
             </div>
 
+            <!-- Amount aur Date input -->
             <div class="amount-and-date">
+
                 <div class="amount-container">
                     <label for="amount">Amount</label>
                     <input required type="number" id="transaction-amount">
                 </div>
+
                 <div class="date-container">
                     <label for="date">Date</label>
                     <input required type="date" id="transaction-date">
                 </div>
+
             </div>
 
+            <!-- Transaction category -->
             <div class="category-container">
                 <label for="category">Category</label>
-                <select name="" id="transaction-category">
+                <select id="transaction-category">
                     <option value="food&dining">Food & Dining</option>
                     <option value="shopping">Shopping</option>
                     <option value="recharge&bills">Recharge & Bills</option>
@@ -54,142 +66,245 @@
                 </select>
             </div>
 
+            <!-- Transaction save button -->
             <button class="save-transaction-btn">Save Transaction</button>
+
         </form>
     </div>
 
 
-    <!-- // Login Register Form  -->
+
+    <!-- Register Form -->
     <div id="register-form" class="login-register-form">
         <form class="auth-form" action="">
+
+            <!-- Register heading -->
             <h1>Create Account</h1>
             <p class="top-p">Join FinTrack Pro</p>
+
+            <!-- Username input -->
             <div class="inputs">
                 <label for="register-username">Choose a Username</label>
                 <input id="register-username" type="text">
             </div>
+
+            <!-- Password input -->
             <div class="inputs">
                 <label for="register-password">Password</label>
                 <input type="password" id="register-password">
             </div>
+
+            <!-- Register button -->
             <button id="register">Register</button>
-            <p class="bottom-p">Already have an account? <span id="switch-to-login">Login here</span></p>
+
+            <!-- Login page par jane ka option -->
+            <p class="bottom-p">
+                Already have an account?
+                <span id="switch-to-login">Login here</span>
+            </p>
+
         </form>
     </div>
 
+
+
+    <!-- Login Form -->
     <div id="login-form" class="login-register-form">
         <form class="auth-form" action="">
+
+            <!-- Login heading -->
             <h1>Welcome Back</h1>
             <p class="top-p">Login to FinTrack Pro</p>
+
+            <!-- Username -->
             <div class="inputs">
                 <label for="login-username">Username</label>
                 <input id="login-username" type="text">
             </div>
+
+            <!-- Password -->
             <div class="inputs">
                 <label for="login-password">Password</label>
                 <input type="password" id="login-password">
             </div>
+
+            <!-- Login button -->
             <button id="login">Login</button>
-            <p class="bottom-p">Don't have an account? <span id="switch-to-register">Register here</span></p>
+
+            <!-- Register page par jane ka option -->
+            <p class="bottom-p">
+                Don't have an account?
+                <span id="switch-to-register">Register here</span>
+            </p>
+
         </form>
     </div>
 
 
 
 
+    <!-- Sidebar -->
     <aside>
+
+        <!-- App logo -->
         <div class="logo">
             <i class="ri-stack-fill"></i>
+
             <div class="logoName">
                 <h1>FinTrack Pro</h1>
                 <p>Enterprise Finance</p>
             </div>
         </div>
 
+        <!-- Sidebar navigation -->
         <div class="links">
-            <li id="dashboard-btn"><i class="ri-dashboard-line"></i> Dashboard</li>
-            <li id="settings-btn"><i class="ri-settings-3-fill"></i> Settings</li>
+            <li id="dashboard-btn">
+                <i class="ri-dashboard-line"></i> Dashboard
+            </li>
+
+            <li id="settings-btn">
+                <i class="ri-settings-3-fill"></i> Settings
+            </li>
         </div>
 
+        <!-- Transaction form open karne ka button -->
         <button class="add-transaction-btn">
             <h3>+ Add Transaction</h3>
         </button>
+
     </aside>
 
+
+
+    <!-- Main content -->
     <main>
 
+        <!-- Top navbar -->
         <header>
             <nav>
-                <i id="light-theme-icon" class="theme-icon   ri-sun-line"></i>
-                <i id="dark-theme-icon" class="theme-icon   ri-moon-fill"></i>
+
+                <!-- Theme icons -->
+                <i id="light-theme-icon" class="theme-icon ri-sun-line"></i>
+                <i id="dark-theme-icon" class="theme-icon ri-moon-fill"></i>
+
+                <!-- Logged in user ka naam -->
                 <h3 class="userName"></h3>
+
+                <!-- Logout button -->
                 <button class="logout-btn">
                     <i class="ri-logout-circle-r-line"></i> Logout
                 </button>
+
             </nav>
         </header>
 
+
+
+        <!-- Dashboard section -->
         <div class="dashboard">
+
             <div class="main-content">
+
+                <!-- Dashboard heading -->
                 <div class="heading">
                     <h1>Financial Overview</h1>
                     <p>Real-Time Finance Tracking Application.</p>
                 </div>
-        
+
+
+                <!-- Summary cards -->
                 <div class="summary-cards-container">
+
+                    <!-- Current Balance -->
                     <div class="card balance-card">
                         <i class="ri-bank-fill"></i>
                         <p>Current Balance</p>
-                        <h1><span class="currency-sign">$</span><span id="current-balance">0.00</span></h1>
+                        <h1>
+                            <span class="currency-sign">$</span>
+                            <span id="current-balance">0.00</span>
+                        </h1>
                     </div>
+
+                    <!-- Total Income -->
                     <div class="card income-card">
                         <i class="ri-arrow-right-up-long-line"></i>
                         <p>Total Income</p>
-                        <h1><span class="currency-sign">$</span><span id="total-income">0.00</span></h1>
+                        <h1>
+                            <span class="currency-sign">$</span>
+                            <span id="total-income">0.00</span>
+                        </h1>
                     </div>
+
+                    <!-- Total Expense -->
                     <div class="card expense-card">
                         <i class="ri-arrow-right-down-long-line"></i>
                         <p>Total Expenses</p>
-                        <h1><span class="currency-sign">$</span><span id="total-expense">0.00</span></h1>
+                        <h1>
+                            <span class="currency-sign">$</span>
+                            <span id="total-expense">0.00</span>
+                        </h1>
                     </div>
-                    <div class="card  total-trans-card">
+
+                    <!-- Total Transactions -->
+                    <div class="card total-trans-card">
                         <i class="ri-wallet-3-fill"></i>
                         <p>Total Transactions</p>
                         <h1 id="total-transactions"></h1>
                     </div>
+
                 </div>
-        
-        
+
+
+
                 <div class="center">
+
+                    <!-- Chart section -->
                     <div class="chart-card">
                         <h2>Cash Flow Analysis</h2>
                         <canvas id="cashFlowChart"></canvas>
                     </div>
-        
+
+                    <!-- Preferences container-->
                     <div class="preference">
                         <h2>Preferences</h2>
-                        <button id="delete-all-transactions"><i class="ri-delete-bin-6-line"></i>Clear All Data</button>
+
+                        <!-- Sab transactions delete karega -->
+                        <button id="delete-all-transactions"> <i class="ri-delete-bin-6-line"></i>Clear All
+                            Data</button>
                     </div>
+
                 </div>
-        
-        
+
+
+
+                <!-- Transaction History -->
                 <div class="transaction-history">
+
                     <h2>All Transactions</h2>
-        
+
+                    <!-- Search aur filter -->
                     <div class="inputs">
+
+                        <!-- Search box -->
                         <div class="search">
                             <i class="ri-search-2-line"></i>
                             <input type="search" id="search-input" placeholder="Search Transactions">
                         </div>
-        
-                        <select class="options" name="" id="">
+
+                        <!-- Income/Expense filter -->
+                        <select class="options">
                             <option value="all">All Types</option>
                             <option value="income">Income Only</option>
                             <option value="expense">Expense Only</option>
                         </select>
+
                     </div>
-        
+
+
+                    <!-- Transactions table -->
                     <table class="transaction-table">
+
+                        <!-- Table heading -->
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -199,59 +314,72 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-        
+
+                        <!-- JS yaha transactions add karega -->
                         <tbody id="transactions-container">
-        
-                            <!-- <tr>
-                                <td>26-06-2026</td>
-                                <td>Description about transaction</td>
-                                <td id="category"><span>Food & Dining</span></td>
-                                <td id="amount">$26,582</td>
-                                <td class="actions">
-                                    <i id="edit" class="ri-pencil-fill"></i>
-                                    <i id="del" class="ri-delete-bin-5-line"></i>
-                                </td>
-                            </tr> -->
-        
+
                         </tbody>
+
                     </table>
-        
+
                 </div>
-        
+
             </div>
+
         </div>
 
 
+
+        <!-- Settings page -->
         <div class="settings">
+
+            <!-- Heading -->
             <div class="heading">
                 <h1>Settings</h1>
                 <p>Manage your account profile and app formatting.</p>
             </div>
 
+
+            <!-- User profile settings -->
             <div class="profile-details">
+
                 <h1>Profile Details</h1>
 
-                <form id="details-form" action="">
+                <form id="details-form">
+
                     <div class="form-div">
+
+                        <!-- Details Full name  -->
                         <div class="value">
                             <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" value="">
+                            <input type="text" id="fullName">
                         </div>
+
+                        <!-- Currency Options -->
                         <div class="value">
                             <label for="currency">Primary Currency</label>
-                            <select name="" id="currency">
+
+                            <select id="currency">
                                 <option value="$">USD ($)</option>
                                 <option value="€">EUR (€)</option>
                                 <option value="£">GBP (£)</option>
                                 <option value="₹">INR (₹)</option>
                                 <option value="¥">JPY (¥)</option>
                             </select>
+
                         </div>
+
                     </div>
 
-                    <button type="submit" id="update-settings-btn">Save Changes</button>
+                    <!-- Settings save button -->f
+                    <button type="submit" id="update-settings-btn">
+                        Save Changes
+                    </button>
+
                 </form>
+
             </div>
+
         </div>
 
     </main>
@@ -259,5 +387,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
+
 </body>
+
 </html>
