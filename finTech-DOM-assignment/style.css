@@ -9,12 +9,14 @@
     --secondary-bg: #f8fcff;
     --primary-color: black;
     --secondary-color: gray;
-    --blue-bg: #DBEBFF;
+    --blue-bg: #4f9effb6;
     --red-bg: #FEE2E3;
+    --green-bg: #DCFCE6;
     --dark-red: rgb(150, 0, 0);
     --dark-green: rgb(0, 97, 0);
     --dark-blue: rgb(0, 0, 156);
     --dark-border: #cdcdcd;
+    --inputHover-bg: #f3f3f3;
 }
 .dark{
     --primary-bg: #1E2937;
@@ -22,10 +24,10 @@
     --secondary-bg: #111926;
     --primary-color: rgb(255, 255, 255);
     --secondary-color: rgb(168, 168, 168);
-    --blue-bg: #0073ff52;
-    --red-bg: #ffb5b8;
+    --blue-bg: #004ead71;
+    --red-bg: #dfadb0;
     --green-bg: #DCFCE6;
-    --dark-red: rgb(220, 0, 0);
+    --dark-red: rgb(191, 0, 0);
     --dark-green: rgb(0, 162, 0);
     --dark-blue: rgb(57, 57, 255);
 }
@@ -99,8 +101,8 @@ html,body{
     margin-top: 3px;
     outline: none;
     cursor: pointer;
-
 }
+
 .add-transaction-form-container form label{
     font-size: 14px;
     font-weight: 500;
@@ -162,8 +164,8 @@ html,body{
     font-size: 1.1rem;
 }
 .auth-form .inputs input{
-    padding: 0.3rem;
-    font-size: 1.1rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     outline: none;
 
     border-radius: 0.5rem;
@@ -198,6 +200,9 @@ html,body{
 
 #login-form{
     display: none;
+}
+.login-register-form #register{
+    background-color: rgb(49, 49, 255);
 }
 
 
@@ -242,20 +247,23 @@ aside .links{
     padding-top: 0.5rem;
     padding-left: 0.3rem;
 }
+
 aside .links li{
     font-size: 1.1rem;
-    /* background-color: rgb(204, 204, 255); */
+    font-weight: 500;
     border-radius: 0.5rem;
     padding: 0.5rem;
     list-style: none;
     margin-top: 0.5rem;
-
     display: flex;
     gap: 10px;
     align-items: center;
     cursor: pointer;
+    transition: all ease 0.3s;
+}
 
-
+aside .links li:hover i{
+    transform: scale(1.2);
 }
 
 aside .add-transaction-btn{
@@ -319,6 +327,13 @@ nav .theme-icon{
     font-size: 1.3rem;
     margin-right: -10px;
     cursor: pointer;
+    transition: all ease 0.3s;
+    border: 1px solid var(--border-color);
+    padding: 0.4rem;
+    border-radius: 50%;
+}
+nav .theme-icon:hover{
+    transform: rotate(20deg);
 }
 
 nav #light-theme-icon{
@@ -383,6 +398,7 @@ nav #light-theme-icon{
 }
 .card h1{
     font-size: 1.6rem;
+    font-weight: 500;
 }
 
 

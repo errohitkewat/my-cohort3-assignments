@@ -11,6 +11,8 @@ let sidebar = document.querySelector("aside");
 let main = document.querySelector("main");
 let detailsForm = document.querySelector("#details-form")
 
+let transactionAmountTableData = document.querySelector("#amount")
+
 let settingsBtn = document.querySelector("#settings-btn");
 let dashboardBtn = document.querySelector("#dashboard-btn")
 let settingsPage = document.querySelector(".settings")
