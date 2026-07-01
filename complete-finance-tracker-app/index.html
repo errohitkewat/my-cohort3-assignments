@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= AUTH ================= -->
+
+    <section id="auth-page">
+
+        <div class="auth-container">
+
+            <div class="brand">
+                <h1>FinTrack</h1>
+                <p>Personal Finance Management</p>
+            </div>
+
+            <!-- Register -->
+            <form id="register-form" class="form">
+                <h2>Create Account</h2>
+                <input type="text" id="register-username" placeholder="Username" >
+                <input type="email" id="register-email" placeholder="Email">
+                <input type="password" id="register-password" placeholder="Password" >
+                <button id="register-btn"> Register </button>
+                <p> Already have an account? <span id="show-login"> Login </span> </p>
+            </form>
+
+
+            <!-- Login -->
+            <form id="login-form" class="form hidden">
+                <h2>Welcome Back</h2>
+                <input type="email" id="login-email" placeholder="Email">
+                <input type="password" id="login-password" placeholder="Password" >
+                <button id="login-btn"> Login </button>
+                <p> Don't have an account? <span id="show-register"> Register </span> </p>
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard" class="hidden">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h2 class="logo">
+                FinTrack
+            </h2>
+
+            <ul class="menu">
+
+                <li>Dashboard</li>
+                <li>Transactions</li>
+                <li>Budget</li>
+                <li>Reports</li>
+                <li>Settings</li>
+
+            </ul>
+
+        </aside>
+
+
+
+        <!-- Main -->
+
+        <main class="main">
+
+            <!-- Navbar -->
+
+            <nav class="navbar">
+
+                <h3> Welcome, <span id="username">User Name</span> </h3>
+
+                <div class="nav-actions">
+
+                    <button id="theme-btn">
+                        <i class="ri-sun-line"></i>
+                    </button>
+
+                    <button id="logout-btn">
+                        <p>Logout</p>
+                        <i class="ri-logout-circle-r-line"></i>
+                    </button>
+
+                </div>
+
+            </nav>
+
+
+
+            <!-- Content -->
+
+            <section class="content">
+
+                <div class="card">
+
+                    <h2>
+                        Dashboard
+                    </h2>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
