@@ -150,7 +150,7 @@ let cashFlowChart;
 
 const createChart = () => {
     const ctx = document.getElementById("cashFlowChart");
-  
+
     cashFlowChart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -580,3 +580,10 @@ transactionsContainer.addEventListener("click", (e) => {
         editTransaction(index);
     }
 });
+
+
+
+
+
+
+

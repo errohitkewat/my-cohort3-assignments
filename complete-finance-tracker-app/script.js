@@ -22,9 +22,10 @@ const dashboard = document.querySelector("#dashboard");
 const username = document.querySelector("#username");
 
 const themeBtn = document.querySelector("#theme-btn")
+const lightIcon = document.querySelector(".light")
+const darkIcon = document.querySelector(".dark")
 
 const logoutBtn = document.querySelector("#logout-btn")
-
 
 
 
@@ -41,6 +42,17 @@ function checkLoggedInUser() {
         dashboard.classList.remove("hidden");
 
         username.textContent = currentUser.userName;
+    }
+    if (currentUser.settings.theme === "dark") {
+        document.body.classList.add("dark-theme");
+
+        lightIcon.classList.add("hidden");
+        darkIcon.classList.remove("hidden");
+    } else {
+        document.body.classList.remove("dark-theme");
+
+        lightIcon.classList.remove("hidden");
+        darkIcon.classList.add("hidden");
     }
 }
 checkLoggedInUser();
@@ -160,5 +172,36 @@ logoutBtn.addEventListener("click", () => {
 
 
 
+
+
+
+
+
+
+
+themeBtn.addEventListener("click", () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = users.find(user => user.isLoggedIn);
+
+    if (!currentUser) return;
+
+    if (currentUser.settings.theme === "light") {
+        currentUser.settings.theme = "dark";
+        document.body.classList.add("dark-theme");
+
+        lightIcon.classList.add("hidden");
+        darkIcon.classList.remove("hidden");
+    }
+    else {
+        currentUser.settings.theme = "light";
+        document.body.classList.remove("dark-theme");
+
+        lightIcon.classList.remove("hidden");
+        darkIcon.classList.add("hidden");
+
+    }
+
+    localStorage.setItem("users", JSON.stringify(users));
+});
 
 
