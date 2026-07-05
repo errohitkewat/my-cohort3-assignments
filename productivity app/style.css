@@ -626,6 +626,15 @@ body.dark .switch {
   color: var(--indigo);
 }
 
+.topbar p{
+  border: 1px solid var(--border);
+  padding: 5px 25px;
+  border-radius: 5px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 0 2px var(--blue);
+}
+
 /* ==========================================================================
    Grid layout
    ========================================================================== */
