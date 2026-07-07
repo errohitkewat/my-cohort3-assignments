@@ -348,9 +348,6 @@ let checkAuthentication = () => {
     else if (isLoggedIn) {
         registerForm.style.display = "none";
         loginForm.style.display = "none";
-        sidebar.style.display = "flex";
-        main.style.display = "block";
-        dashboardBtn.classList.add("active-link")
 
         loginUsername.value = ""
         loginPassword.value = ""
