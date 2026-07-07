@@ -162,6 +162,7 @@ loginBtn.addEventListener("click", (e) => {
         checkAuthentication();
         updateAuthUI();
         renderTask()
+        getWeather()
 
         updateDashboard();
 
@@ -198,11 +199,8 @@ userLogoutBtn.addEventListener("click", () => {
 
 // ********************* //// ********************* //
 // Functionality ot update dashboard after login //
-// ********************* //// ********************* //
-
-
+// ********************* //// ********************* /
 function updateDashboard(){
-
     const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
 
     if (!isLoggedIn) {
@@ -212,7 +210,6 @@ function updateDashboard(){
         document.querySelectorAll(".user-chip__avatar").forEach(avatar=>{
             avatar.textContent = "G";
         });
-
         return;
     }
 
@@ -332,6 +329,175 @@ setInterval(updateClock, 1000); // setInterval Update the time every second
 
 
 
+// ************************** //// ************************** //
+// Functionality to show the live weather information in dashboard
+// ************************** //// ************************** //
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const API_KEY = "5753ec8d34e2ef7e6319af2cd5855e05";
+
+async function getWeather() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+    const city = currentUser.location.city;
+    try {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+        );
+        const data = await response.json();
+        updateWeatherCard(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function updateWeatherCard(data){
+    document.getElementById("cityName").textContent = `${data.name}, ${data.sys.country}`;
+    document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
+    document.getElementById("weatherDescription").textContent = data.weather[0].description;
+    document.getElementById("humidity").textContent =`${data.main.humidity}%`;
+    document.getElementById("windSpeed").textContent = `${data.wind.speed} km/h`;
+    document.getElementById("rain").textContent = data.rain ? `${data.rain["1h"] || 0} mm` : "0 mm";
+    document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+}
+
+
+
+
+
+
+
+// ************************** //// ************************** //
+// Functionality to show the motivational quote in dashboard
+// ************************** //// ************************** //
+const quoteText = document.getElementById("quoteText");
+const quoteAuthor = document.getElementById("quoteAuthor");
+const newQuoteBtn = document.getElementById("newQuoteBtn");
+
+
+const quotes = [
+  {
+    text: "Success is the sum of small efforts, repeated day in and day out.",
+    author: "Robert Collier"
+  },
+  {
+    text: "Discipline is choosing between what you want now and what you want most.",
+    author: "Abraham Lincoln"
+  },
+  {
+    text: "Small progress is still progress.",
+    author: "Anonymous"
+  },
+  {
+    text: "Don't watch the clock; do what it does. Keep going.",
+    author: "Sam Levenson"
+  },
+  {
+    text: "Your future is created by what you do today, not tomorrow.",
+    author: "Robert Kiyosaki"
+  },
+  {
+    text: "Dream big. Start small. Act now.",
+    author: "Robin Sharma"
+  },
+  {
+    text: "Consistency beats intensity when intensity is inconsistent.",
+    author: "Anonymous"
+  },
+  {
+    text: "Focus on being productive instead of busy.",
+    author: "Tim Ferriss"
+  }
+];
+
+
+const QUOTE_API_KEY = "m0ZKJXpziXxuvDWoq7snEcetL9otxdsEKkkCBlFJ";
+
+// Display Quote
+function displayQuote(quote, author) {
+    quoteText.textContent = `"${quote}"`;
+    quoteAuthor.textContent = `— ${author}`;
+}
+
+// Random Local Quote
+function getRandomLocalQuote() {
+    const index = Math.floor(Math.random() * quotes.length);
+    return quotes[index];
+}
+
+// Save Quote
+function saveQuote(quote, author) {
+    localStorage.setItem("dailyQuote", quote);
+    localStorage.setItem("dailyAuthor", author);
+    localStorage.setItem("dailyQuoteDate", new Date().toDateString());
+}
+
+// Fetch Quote
+async function fetchQuote() {
+    quoteText.textContent = "Loading...";
+    quoteAuthor.textContent = "";
+
+    try {
+
+        // Try API 5 times
+        for (let i = 0; i < 3; i++) {
+            const response = await fetch(
+                "https://api.api-ninjas.com/v1/quotes",
+                {
+                    headers: { "X-Api-Key": QUOTE_API_KEY }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("API Error");
+            }
+
+            const data = await response.json();
+
+            const quote = data[0].quote;
+            const author = data[0].author;
+
+            const wordCount = quote.trim().split(/\s+/).length;
+
+            // Only show 20–25 word quotes
+            if (wordCount <= 20) {
+                displayQuote(quote, author);
+                saveQuote(quote, author);
+                return;
+            }
+        }
+
+        // API worked but didn't return a suitable quote
+        throw new Error("No suitable quote");
+
+    } catch (error) {
+        console.log("Using local quotes:", error.message);
+        const localQuote = getRandomLocalQuote();
+        displayQuote(localQuote.text, localQuote.author);
+        saveQuote(localQuote.text, localQuote.author);
+    }
+}
+
+// Load Today's Quote
+function loadDailyQuote() {
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem("dailyQuoteDate");
+
+    if (savedDate === today) {
+        displayQuote(
+            localStorage.getItem("dailyQuote"),
+            localStorage.getItem("dailyAuthor")
+        );
+    } else {
+        fetchQuote();
+    }
+}
+
+// New Quote Button
+newQuoteBtn.addEventListener("click", fetchQuote);
+
+// Initial Load
+loadDailyQuote();
+
 
 
 
@@ -359,48 +525,49 @@ function updateAuthUI() {
 
 // ***************************************** // 
 // Functionality to show the different pages //
-// ***************************************** // 
-const todoPage = document.querySelector(".todo-page")
-const todoBtn = document.querySelector("#todo-btn")
-const dashboardBtn = document.querySelector("#dashboard-btn")
-const dashboardPage = document.querySelector("#dashboard-page")
+// ***************************************** //
+const pages = {
+    dashboard: document.querySelector("#dashboard-page"),
+    todo: document.querySelector(".todo-page"),
+    planner: document.querySelector(".planner-page"),
+    goals: document.querySelector(".goals-page"),
+    pomodoro: document.querySelector(".pomodoro-page"),
+    weather: document.querySelector(".weather-page"),
+    motivation: document.querySelector(".motivation-page")
+};
+const navButtons = {
+    dashboard: document.querySelector("#dashboard-btn"),
+    todo: document.querySelector("#todo-btn"),
+    planner: document.querySelector("#planner-btn"),
+    goals: document.querySelector("#goals-btn"),
+    pomodoro: document.querySelector("#pomodoro-btn"),
+    weather: document.querySelector("#weather-btn"),
+    motivation: document.querySelector("#motivation-btn")
+};
 
 function showPage(page) {
+    Object.values(pages).forEach(section => {
+        if(section) section.classList.add("hidden");
+    });
 
-    if (page === "dashboard") {
-        dashboardPage.classList.remove("hidden");
-        todoPage.classList.add("hidden");
-        dashboardBtn.classList.add("nav__item--active")
-        todoBtn.classList.remove("nav__item--active")
-    }
+    Object.values(navButtons).forEach(btn => {
+        if(btn) btn.classList.remove("nav__item--active");
+    });
 
-    if (page === "todo") {
-        todoPage.classList.remove("hidden");
-        dashboardPage.classList.add("hidden");
-        dashboardBtn.classList.remove("nav__item--active")
-        todoBtn.classList.add("nav__item--active")
-    }
+    pages[page]?.classList.remove("hidden");
 
+    navButtons[page]?.classList.add("nav__item--active");
     localStorage.setItem("activePage", page);
 }
 
-
-dashboardBtn.addEventListener("click", () => {
-    showPage("dashboard");
+document.querySelectorAll("[data-page]").forEach(item => {
+    item.addEventListener("click", (e) => {
+        e.preventDefault();
+        showPage(item.dataset.page);
+    });
 });
 
-todoBtn.addEventListener("click", () => {
-    showPage("todo");
-});
-
-
-const activePage = localStorage.getItem("activePage") || "dashboard";
-
-showPage(activePage);
-
-
-
-
+showPage(localStorage.getItem("activePage") || "dashboard");
 
 
 
@@ -437,17 +604,39 @@ const showInProgressTasks = document.querySelector(".show-inProgress-tasks-btn")
 const showCompletedTasks = document.querySelector(".show-completed-tasks-btn")
 
 
-addTaskBtn.addEventListener("click", () => { 
-    taskModal.classList.remove("hidden")
-})
+let editTaskId = null;
 
-closeTaskForm.addEventListener("click", () => { 
-    taskModal.classList.add("hidden")
-})
 
-cancelTask.addEventListener("click", () => {
+addTaskBtn.addEventListener("click", () => {
+    editTaskId = null;      
+    addTaskForm.reset();
+    taskModal.classList.remove("hidden");
+});
+
+closeTaskForm.addEventListener("click", ()=>{
+    editTaskId = null;
+    addTaskForm.reset();
     taskModal.classList.add("hidden");
 });
+
+cancelTask.addEventListener("click", ()=>{
+    editTaskId = null;
+    addTaskForm.reset();
+    taskModal.classList.add("hidden");
+});
+
+
+// This function is updating the stats of tasks like totalTasks, pendingtask...
+function updateTaskStats(){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+    
+    totalTasks.textContent = currentUser.todos.length;
+    completedTasks.textContent = currentUser.todos.filter(todo=>todo.status==="Completed").length;
+    pendingTasks.textContent = currentUser.todos.filter(todo=>todo.status==="Pending").length;
+    inProgressTasks.textContent = currentUser.todos.filter(todo=>todo.status==="in-progress").length;
+}
+
 
 
 // formatTaskDate function will formate the date compare the date of todo creation date and give the today, tomorrow and yesterday accordingly
@@ -487,40 +676,103 @@ function renderTask(tasks = null) {
 
     const todos = currentUser.todos;
 
-    // Statistics
-    totalTasks.textContent = todos.length;
-    completedTasks.textContent = todos.filter(todo => todo.status === "Completed").length;
-    pendingTasks.textContent = todos.filter(todo => todo.status === "Pending").length;
-    inProgressTasks.textContent = todos.filter(todo => todo.status === "In Progress").length;
+    updateTaskStats();
 
-    // If no filtered tasks are passed, show all
     if (!tasks) tasks = todos;
 
     tasksContainer.innerHTML = "";
 
-    tasks.forEach((todo) => {
+    tasks.forEach(todo => {
+
         const todoDate = formatTaskDate(todo.date);
 
         tasksContainer.innerHTML += `
-        <div class="task-row">
+        <div class="task-row ${todo.status === "Completed" ? "completed" : ""}">
+
             <div class="task-left">
-                <input type="checkbox">
+
+                <input
+                    type="checkbox"
+                    ${todo.status === "Completed" ? "checked" : ""}
+                    onchange="toggleTaskStatus(${todo.id})">
+
                 <span class="task-title">${todo.title}</span>
-                <span class="badge ${todo.category.toLowerCase()}">${todo.category}</span>
+
+                <span class="badge ${todo.category.toLowerCase()}">
+                    ${todo.category}
+                </span>
+
             </div>
 
             <div class="task-right">
+
                 <span>
                     <i class="ri-calendar-line"></i>
                     ${todoDate}, ${todo.time}
                 </span>
 
-                <button>
-                    <i class="ri-more-2-fill"></i>
+                <button onclick="editTask(${todo.id})">
+                    <i class="ri-edit-line"></i>
                 </button>
+
+                <button onclick="deleteTask(${todo.id})">
+                    <i class="ri-delete-bin-6-line"></i>
+                </button>
+
             </div>
-        </div>`;
+
+        </div>
+        `;
     });
+}
+
+
+// This functionality is for completing the task // 
+function toggleTaskStatus(id){
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    const todo = currentUser.todos.find(todo => todo.id == id);
+
+    if(!todo) return;
+
+    todo.status =
+        todo.status === "Completed"
+        ? "Pending"
+        : "Completed";
+
+    saveUser(currentUser);
+
+    renderTask();
+}
+
+// This function is to edit a task 
+function editTask(id){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    const todo = currentUser.todos.find(todo => todo.id == id);
+
+    if(!todo) return;
+
+    editTaskId = id;
+
+    taskTitleInp.value = todo.title;
+    taskCategoryInp.value = todo.category;
+    taskStatusInp.value = todo.status;
+    taskDateInp.value = todo.date;
+    taskTimeInp.value = todo.time;
+
+    taskModal.classList.remove("hidden");
+}
+
+// This function is to delete a task 
+function deleteTask(id){
+    if (!confirm("Delete this task?")) return;
+    
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    currentUser.todos = currentUser.todos.filter(todo => todo.id != id);
+    saveUser(currentUser);
+    renderTask();
 }
 
 
@@ -544,6 +796,19 @@ function filterTasks(status) {
 }
 
 
+// This function is saving the users // 
+function saveUser(currentUser){
+    localStorage.setItem( "currentUser", JSON.stringify(currentUser));
+
+    const users = JSON.parse(localStorage.getItem("users"));
+    const index = users.findIndex( user => user.email === currentUser.email );
+
+    users[index] = currentUser;
+    localStorage.setItem("users", JSON.stringify(users));
+    renderTask();
+}
+
+
 // Functionality to apply active class and showing the tasks according to status 
 const tabButtons = document.querySelectorAll(".todo-tabs button");
 
@@ -564,7 +829,7 @@ showPendingTasks.addEventListener("click", () => {
 
 showInProgressTasks.addEventListener("click", () => {
     setActiveTab(showInProgressTasks);
-    filterTasks("In Progress");
+    filterTasks("in-progress");
 });
 
 showCompletedTasks.addEventListener("click", () => {
@@ -577,52 +842,60 @@ showCompletedTasks.addEventListener("click", () => {
 
 
 // This functionality is adding the task and updating the user object
-addTaskForm.addEventListener("submit", (e) => {
+addTaskForm.addEventListener("submit", function(e){
+
     e.preventDefault();
 
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
 
-    const newTodo = {
-        title: taskTitleInp.value,
-        category: taskCategoryInp.value,
-        status: taskStatusInp.value,
-        date: taskDateInp.value,
-        time: taskTimeInp.value,
-    };
+    if(editTaskId !== null){
 
-    currentUser.todos.push(newTodo);
+        const todo =
+            currentUser.todos.find(todo=>todo.id===editTaskId);
 
-    localStorage.setItem( "currentUser", JSON.stringify(currentUser));
+        if(todo){
 
-    const users = JSON.parse(localStorage.getItem("users"));
+            todo.title = taskTitleInp.value;
+            todo.category = taskCategoryInp.value;
+            todo.status = taskStatusInp.value;
+            todo.date = taskDateInp.value;
+            todo.time = taskTimeInp.value;
 
-    const index = users.findIndex( user => user.email === currentUser.email );
+        }
 
-    users[index] = currentUser;
+    }else{
 
-    localStorage.setItem( "users", JSON.stringify(users));
+        currentUser.todos.push({
 
-    renderTask();
+            id: Date.now(),
+
+            title: taskTitleInp.value,
+
+            category: taskCategoryInp.value,
+
+            status: taskStatusInp.value,
+
+            date: taskDateInp.value,
+
+            time: taskTimeInp.value
+
+        });
+
+    }
+
+    saveUser(currentUser);
+
+    editTaskId = null;
 
     addTaskForm.reset();
 
     taskModal.classList.add("hidden");
+
+    renderTask();
+
 });
 
-
-
-showPendingTasks.addEventListener("click", () => { 
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    if (!currentUser) return;
-
-    const todos = currentUser.todos;
-    const pending = todos.filter(todo => todo.status === "Pending")
-    console.log(pending);
-
-
-
-})
 
 
 
@@ -636,9 +909,10 @@ showPendingTasks.addEventListener("click", () => {
 // Preventing the user after refresh //
 // ********************* //// ********************* //
 checkAuthentication()
-renderTask();
 
 if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
     updateDashboard();
     updateAuthUI();
+    renderTask();
+    getWeather();
 }

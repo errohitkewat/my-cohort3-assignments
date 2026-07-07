@@ -1604,29 +1604,27 @@ body.dark .switch {
 ========================================== */
 
 .task-row.completed{
+    opacity: 0.7;
     background:rgba(91,95,239,.02);
 }
 
 .task-row.completed input[type="checkbox"]{
-
     background:var(--indigo);
-
     border-color:var(--indigo);
 }
 
+.task-row.completed .task-title{
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
 .task-row.completed input[type="checkbox"]::after{
-
     content:"✓";
-
     position:absolute;
-
     left:50%;
     top:50%;
-
     transform:translate(-50%,-56%);
-
     color:#fff;
-
     font-size:14px;
     font-weight:700;
 }
@@ -1810,98 +1808,79 @@ body.dark .switch {
 .planner-page{
     display:flex;
     flex-direction:column;
-    gap:28px;
+    gap: 15px;
     padding: 32px;
 }
 
 .planner-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
+  margin-top: -35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .planner-header h1{
-    font-size:42px;
+    font-size: 25px;
     font-weight:800;
     color:var(--text-primary);
-    margin-bottom:8px;
     letter-spacing:-1px;
 }
 
 .planner-header p{
     color:var(--text-secondary);
-    font-size:16px;
+    font-size: 14px;
+    margin-top: -15px;
 }
 
 .planner-actions{
     display:flex;
     align-items:center;
-    gap:16px;
+    gap: 16px;
 }
 
 .planner-btn{
-
-    height:52px;
-
-    padding:0 22px;
-
-    border-radius:16px;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    font-size:15px;
+    padding: 10px 22px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
     font-weight:600;
-
     transition:.25s;
 }
 
 .planner-btn i{
-    font-size:20px;
+    font-size: 17px;
 }
 
 .planner-btn-outline{
-
     border:1px solid var(--border);
-
     background:var(--bg-card);
-
     color:var(--text-primary);
 }
 
 .planner-btn-outline:hover{
-
     border-color:var(--indigo);
-
     background:var(--bg-hover);
 }
 
 .planner-btn-danger{
-
     background:#FFF4F4;
-
     color:#EF4444;
-
     border:1px solid #FFDADA;
 }
 
 .planner-btn-danger:hover{
-
     background:#FFECEC;
 }
 
 
 .planner{
-
+    height: 590px;
     background:var(--bg-card);
-
     border:1px solid var(--border);
-
-    border-radius:22px;
-
+    border-radius: 15px;
     overflow:hidden;
-
     box-shadow:var(--shadow-card);
 }
 
@@ -1911,35 +1890,23 @@ body.dark .switch {
 ========================================== */
 
 .planner-top{
-
     display:grid;
-
     grid-template-columns:170px 1fr;
-
     align-items:center;
-
-    padding:22px 32px;
-
+    padding: 20px 32px;
     border-bottom:1px solid var(--border);
-
     background:var(--bg-card);
 }
 
 .planner-time-title{
-
     font-size:15px;
-
     font-weight:700;
-
     color:var(--text-primary);
 }
 
 .planner-plan-title{
-
     font-size:15px;
-
     font-weight:700;
-
     color:var(--text-primary);
 }
 
@@ -1948,8 +1915,8 @@ body.dark .switch {
 ========================================== */
 
 .planner-body{
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -1958,19 +1925,12 @@ body.dark .switch {
 ========================================== */
 
 .planner-row{
-
-    display:grid;
-    grid-template-columns:170px 1fr;
-
-    align-items:center;
-
-    min-height:78px;
-
-    padding:0 32px;
-
-    border-bottom:1px solid var(--border-soft);
-
-    transition:.25s;
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    align-items: center;
+    padding: 7px 32px;
+    border-bottom: 1px solid var(--border-soft);
+    transition: 0.25s;
 }
 
 .planner-row:last-child{
@@ -1987,23 +1947,17 @@ body.dark .switch {
 ========================================== */
 
 .planner-time{
-
     display:flex;
     align-items:center;
     gap:12px;
-
     font-size:15px;
     font-weight:600;
-
     color:var(--text-primary);
-
     position:relative;
 }
 
 .planner-time i{
-
-    font-size:18px;
-
+    font-size: 18px;
     color:var(--text-secondary);
 }
 
@@ -2013,33 +1967,22 @@ body.dark .switch {
 ========================================== */
 
 .planner-input{
-
     display:flex;
     align-items:center;
-    gap:14px;
+    gap: 14px;
 }
 
 .planner-input input{
-
-    flex:1;
-
-    height:52px;
-
-    border:1px solid var(--border);
-
-    background:var(--bg-card);
-
-    border-radius:14px;
-
-    padding:0 18px;
-
+    flex: 1;
+    height: 40px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 14px;
+    padding: 0 18px;
     font-size:15px;
-
     color:var(--text-primary);
-
     outline:none;
-
-    transition:.25s;
+    transition: 0.25s;
 }
 
 .planner-input input::placeholder{
@@ -2047,9 +1990,7 @@ body.dark .switch {
 }
 
 .planner-input input:focus{
-
     border-color:var(--indigo);
-
     box-shadow:0 0 0 4px var(--indigo-soft);
 }
 
@@ -2059,34 +2000,25 @@ body.dark .switch {
 ========================================== */
 
 .planner-delete{
-
-    width:46px;
-    height:46px;
-
-    border-radius:14px;
-
-    border:1px solid var(--border);
-
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
     display:flex;
     justify-content:center;
     align-items:center;
-
     background:var(--bg-card);
 
-    transition:.25s;
+    transition:0.25s;
 }
 
 .planner-delete i{
-
-    font-size:20px;
-
+    font-size: 18px;
     color:#EF4444;
 }
 
 .planner-delete:hover{
-
     background:#FFF3F3;
-
     border-color:#FFD5D5;
 }
 
@@ -2402,83 +2334,6 @@ body.dark .planner-body::-webkit-scrollbar-thumb{
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width:1200px){
-
-    .planner-header{
-
-        flex-direction:column;
-        gap:20px;
-        align-items:flex-start;
-    }
-
-    .planner-actions{
-        flex-wrap:wrap;
-    }
-
-}
-
-@media (max-width:900px){
-
-    .planner-row{
-
-        grid-template-columns:1fr;
-
-        gap:16px;
-
-        padding:20px;
-    }
-
-    .planner-top{
-        display:none;
-    }
-
-    .planner-time{
-        margin-bottom:6px;
-    }
-
-}
-
-@media (max-width:700px){
-
-    .planner-header h1{
-        font-size:32px;
-    }
-
-    .planner-actions{
-
-        width:100%;
-
-        flex-direction:column;
-
-        align-items:stretch;
-    }
-
-    .planner-btn{
-        width:100%;
-        justify-content:center;
-    }
-
-    .planner-input{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .planner-delete{
-        width:100%;
-        height:48px;
-    }
-
-    .planner-tip{
-        flex-direction:column;
-        text-align:center;
-        align-items:center;
-    }
-
-}
 
 
 

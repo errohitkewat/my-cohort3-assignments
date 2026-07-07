@@ -134,14 +134,14 @@
       </div>
 
       <nav class="nav">
-        <button id="dashboard-btn" class="nav__item ">
+        <button id="dashboard-btn" class="nav__item " data-page="dashboard">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />
           </svg>
           <span>Dashboard</span>
         </button>
-        <button id="todo-btn" class="nav__item">
+        <button id="todo-btn" class="nav__item  todo-btns" data-page="todo">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -150,7 +150,7 @@
           </svg>
           <span>Todo List</span>
         </button>
-        <button class="nav__item">
+        <button class="nav__item" data-page="planner">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -158,7 +158,7 @@
           </svg>
           <span>Daily Planner</span>
         </button>
-        <button class="nav__item">
+        <button class="nav__item" data-page="goals">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="9" />
@@ -167,7 +167,7 @@
           </svg>
           <span>Daily Goals</span>
         </button>
-        <button class="nav__item">
+        <button class="nav__item" data-page="promodoro">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="13" r="8" />
@@ -175,7 +175,7 @@
           </svg>
           <span>Pomodoro Timer</span>
         </button>
-        <button class="nav__item">
+        <button class="nav__item" data-page="motivation">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M9.5 3a3.5 3.5 0 0 1 2.5 6 3.5 3.5 0 1 1-2.5-6Z" />
@@ -183,7 +183,7 @@
           </svg>
           <span>Motivation</span>
         </button>
-        <button class="nav__item">
+        <button class="nav__item" data-page="weather">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M17.5 19a4.5 4.5 0 0 0 0-9 6.5 6.5 0 0 0-12.6 2.1A4 4 0 0 0 6 20h11.5Z" />
@@ -322,8 +322,8 @@
             <section class="card tools">
               <h2 class="section-title">Productivity Tools</h2>
 
-              <div class="tools__grid">
-                <a href="#" class="tool">
+              <div class="tools__grid ">
+                <a href="#" class="tool  todo-btns" data-page="todo">
                   <div class="tool__icon tool__icon--indigo">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -333,7 +333,7 @@
                     </svg>
                   </div>
                   <div class="tool__text">
-                    <span class="tool__title">Todo List</span>
+                    <span class="tool__title ">Todo List</span>
                     <span class="tool__desc">Manage your tasks and get things done</span>
                   </div>
                   <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -342,7 +342,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool">
+                <a href="#" class="tool" data-page="planner">
                   <div class="tool__icon tool__icon--blue">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -360,7 +360,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool">
+                <a href="#" class="tool" data-page="goals">
                   <div class="tool__icon tool__icon--green">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -379,7 +379,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool">
+                <a href="#" class="tool" data-page="promodoro">
                   <div class="tool__icon tool__icon--orange">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -397,7 +397,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool">
+                <a href="#" class="tool" data-page="motivation">
                   <div class="tool__icon tool__icon--purple">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -415,7 +415,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool">
+                <a href="#" class="tool" data-page="weather">
                   <div class="tool__icon tool__icon--skyblue">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -466,22 +466,14 @@
                   </svg>
                   <span>Weather</span>
                 </div>
-                <span class="weather-card__place" id="cityName">Satna, IN</span>
+                <span class="weather-card__place" id="cityName">City, Country</span>
               </div>
 
               <div class="weather-card__main">
-                <!-- <svg id="weatherIcon" class="weather-card__icon" viewBox="0 0 64 64" fill="none">
-                  <circle cx="24" cy="24" r="13" fill="#FBBF24" />
-                  <g stroke="#FBBF24" stroke-width="3" stroke-linecap="round">
-                    <path
-                      d="M24 4v4M24 40v4M4 24h4M40 24h4M9.8 9.8l2.8 2.8M35.4 35.4l2.8 2.8M9.8 38.2l2.8-2.8M35.4 12.6l2.8-2.8" />
-                  </g>
-                  <path d="M20 44a10 10 0 0 1 19.2-4A8 8 0 0 1 38 56H20a8 8 0 0 1-2-15.7Z" fill="#CBD5E1" />
-                </svg> -->
                 <img id="weatherIcon" class="weather-card__icon" src="" alt="Weather Icon">
-                <div class="weather-card__temp" id="temperature">28°C</div>
+                <div class="weather-card__temp" id="temperature">0 c</div>
               </div>
-              <div class="weather-card__desc" id="weatherDescription">Partly Cloudy</div>
+              <div class="weather-card__desc" id="weatherDescription">Cloudy</div>
 
               <div class="weather-card__stats">
                 <div class="weather-stat">
@@ -491,7 +483,7 @@
                   </svg>
                   <div>
                     <span class="weather-stat__label" >Humidity</span>
-                    <span class="weather-stat__value" id="humidity">56%</span>
+                    <span class="weather-stat__value" id="humidity">0%</span>
                   </div>
                 </div>
                 <div class="weather-stat">
@@ -501,7 +493,7 @@
                   </svg>
                   <div>
                     <span class="weather-stat__label">Wind</span>
-                    <span class="weather-stat__value" id="windSpeed">12 km/h</span>
+                    <span class="weather-stat__value" id="windSpeed">0 km/h</span>
                   </div>
                 </div>
                 <div class="weather-stat">
@@ -520,21 +512,30 @@
 
             <!-- Daily Motivation -->
             <section class="card quote-card">
+            
               <div class="panel-header">
                 <span class="quote-card__mark">&ldquo;</span>
                 <span>Daily Motivation</span>
               </div>
-              <p class="quote-card__text">&ldquo;Success is the sum of small efforts, repeated day in and day
-                out.&rdquo;</p>
-              <span class="quote-card__author">&mdash; Robert Collier</span>
-              <button class="quote-card__btn" type="button">
+            
+              <p class="quote-card__text" id="quoteText">
+                Loading quote...
+              </p>
+            
+              <span class="quote-card__author" id="quoteAuthor"></span>
+            
+              <button class="quote-card__btn" id="newQuoteBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round">
+            
                   <path d="M21 12a9 9 0 1 1-3-6.7" />
                   <path d="M21 3v6h-6" />
+            
                 </svg>
+            
                 New Quote
               </button>
+            
             </section>
 
           </div>
@@ -1054,25 +1055,6 @@
               </div>
       
           </div>
-      
-      
-      
-          <!-- Footer Tip -->
-      
-          <div class="planner-tip card">
-      
-              <i class="ri-lightbulb-flash-line"></i>
-      
-              <div>
-      
-                  <h4>Tip: Your plans are saved automatically.</h4>
-      
-                  <p>All changes are stored in your browser using Local Storage.</p>
-      
-              </div>
-      
-          </div>
-      
       </section>
 
 
