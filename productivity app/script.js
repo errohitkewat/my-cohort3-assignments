@@ -272,7 +272,6 @@ document.querySelectorAll(".auth-form-close-btn").forEach(btn=>{
 // ************************** //
 // Greeting the user depending upon time 
 // ************************** //
-
 function getGreeting() {
     const hour = new Date().getHours();
 
@@ -531,16 +530,17 @@ const pages = {
     todo: document.querySelector(".todo-page"),
     planner: document.querySelector(".planner-page"),
     goals: document.querySelector(".goals-page"),
-    pomodoro: document.querySelector(".pomodoro-page"),
+    promodoro: document.querySelector(".promodoro-page"),
     weather: document.querySelector(".weather-page"),
     motivation: document.querySelector(".motivation-page")
 };
+
 const navButtons = {
     dashboard: document.querySelector("#dashboard-btn"),
     todo: document.querySelector("#todo-btn"),
     planner: document.querySelector("#planner-btn"),
     goals: document.querySelector("#goals-btn"),
-    pomodoro: document.querySelector("#pomodoro-btn"),
+    promodoro: document.querySelector("#promodoro-btn"),
     weather: document.querySelector("#weather-btn"),
     motivation: document.querySelector("#motivation-btn")
 };
@@ -916,3 +916,7 @@ if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
     renderTask();
     getWeather();
 }
+
+
+
+
