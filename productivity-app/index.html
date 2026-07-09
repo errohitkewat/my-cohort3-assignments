@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Overlay -->
+  <div class="auth-overlay" id="authOverlay">
+  
+      <!-- Login Form -->
+      <div class="auth-card hidden" id="loginForm-con">
+  
+          <button class="auth-form-close-btn">&times;</button>
+  
+          <h2>Welcome Back</h2>
+          <!-- <p>Sign in to continue to your dashboard.</p> -->
+  
+          <form id="login-form">
+  
+              <div class="input-group">
+                  <label>Email</label>
+                  <input id="login-email" type="email" placeholder="Enter your email">
+              </div>
+  
+              <div class="input-group">
+                  <label>Password</label>
+                  <input id="login-password" type="password" placeholder="Enter your password">
+              </div>
+  
+              <button id="login-btn" class="auth-btn">Login</button>
+  
+          </form>
+  
+          <span class="switch-text">
+              Don't have an account?
+              <a href="#" id="showRegister">Register</a>
+          </span>
+  
+      </div>
+  
+  
+  
+      <!-- Register Form -->
+      <div class="auth-card hidden" id="registerForm-con">
+  
+          <button class="auth-form-close-btn">&times;</button>
+  
+          <h2>Create Account</h2>
+          <!-- <p>Create your productivity account.</p> -->
+  
+          <form id="register-form">
+  
+              <div class="inputs-group">
+                <div class="input-group">
+                  <label>Full Name</label>
+                  <input id = "fullName" type="text" placeholder="Enter your name">
+                </div>
+              
+                <div class="input-group">
+                  <label>Email</label>
+                  <input id = "email" type="email" placeholder="Enter your email">
+                </div>
+              </div>
+  
+              <div class="inputs-group">
+                <div class="input-group">
+                  <label>Password</label>
+                  <input id = "password" type="password" placeholder="Create password">
+                </div>
+              
+                <div class="input-group">
+                  <label>Confirm Password</label>
+                  <input id="confirmPassword" type="password" placeholder="Confirm password">
+                </div>
+              </div>
+
+              <div class="inputs-group">
+                <div class="input-group">
+                  <label>City</label>
+                  <input id="city" type="text" placeholder="Your City">
+                </div>
+              
+                <div class="input-group">
+                  <label>Country</label>
+                  <input id="country" type="text" placeholder="Your Country">
+                </div>
+              </div>
+              
+  
+              <button id="register-btn" class="auth-btn">Create Account</button>
+  
+          </form>
+  
+          <span class="switch-text">
+              Already have an account?
+              <a href="#" id="showLogin">Login</a>
+          </span>
+  
+      </div>
+  
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand__logo">P</div>
+        <span class="brand__name">Pro Dashboard</span>
+      </div>
+
+      <nav class="nav">
+        <button id="dashboard-btn" class="nav__item " data-page="dashboard">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />
+          </svg>
+          <span>Dashboard</span>
+        </button>
+        <button id="todo-btn" class="nav__item  todo-btns" data-page="todo">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M3 10h18M8 2v4M16 2v4" />
+            <path d="m9 16 2 2 4-4" />
+          </svg>
+          <span>Todo List</span>
+        </button>
+        <button id="planner-btn" class="nav__item" data-page="planner">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M3 10h18M8 2v4M16 2v4M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+          </svg>
+          <span>Daily Planner</span>
+        </button>
+        <button id="goals-btn" class="nav__item" data-page="goals">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="12" cy="12" r="1" />
+          </svg>
+          <span>Daily Goals</span>
+        </button>
+        <button id="promodoro-btn" class="nav__item" data-page="promodoro">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8" />
+            <path d="M12 9v4l2.5 2.5M9 3h6M18.5 5.5 20 4" />
+          </svg>
+          <span>Pomodoro Timer</span>
+        </button>
+        <button id="motivation-btn" class="nav__item" data-page="motivation">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 3a3.5 3.5 0 0 1 2.5 6 3.5 3.5 0 1 1-2.5-6Z" />
+            <path d="M14.5 21a3.5 3.5 0 0 1-2.5-6 3.5 3.5 0 1 1 2.5 6Z" />
+          </svg>
+          <span>Motivation</span>
+        </button>
+        <button id="weather-btn" class="nav__item" data-page="weather">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19a4.5 4.5 0 0 0 0-9 6.5 6.5 0 0 0-12.6 2.1A4 4 0 0 0 6 20h11.5Z" />
+          </svg>
+          <span>Weather</span>
+        </button>
+      </nav>
+
+      
+      <div class="sidebar__bottom">
+
+        <div class="darkmode-toggle">
+          <div class="darkmode-toggle__label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+            </svg>
+            <span>Dark Mode</span>
+          </div>
+
+          <button class="switch" id="darkModeSwitch" type="button" aria-pressed="false">
+            <span class="switch__knob"></span>
+          </button>
+        </div>
+
+        <div class="profile-card">
+          <div class="user-chip__avatar">G</div>
+          <div class="profile-card__info">
+            <span class="profile-card__name">Guest</span>
+            <span class="profile-card__tag">Stay Productive!</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main">
+
+      <!-- Top bar -->
+      <header class="topbar">
+
+        <p>Everyone 🔊 => The Dashboard is designed using AI</p>
+
+        <div class="topbar__actions">
+          <button class="user-chip" type="button">
+            <span class="user-login-btn">Login <i class="ri-login-circle-line"></i></span>
+            <span class="user-logout-btn hidden">Logout <i class="ri-logout-circle-r-line"></i></span>
+            <span class="user-chip__avatar">G</span>
+          </button>
+        </div>
+      </header>
+
+      <div id="dashboard-page" class="content  ">
+
+        <!-- Content grid: left column + right column -->
+        <div class="grid">
+
+          <!-- LEFT COLUMN -->
+          <div class="col-left">
+
+            <!-- Greeting card -->
+            <section class="card greeting">
+              <div class="greeting__text">
+                <h1><span class="greet">Good Morning</span>, <span class="user-type">Guest</span>! <span class="wave">👋</span></h1>
+                <p>Focus on being productive today.</p>
+              </div>
+
+              <div class="greeting__progress">
+                <span class="greeting__progress-label">Today's Progress</span>
+                <span class="greeting__progress-value">73%</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:73%"></div>
+                </div>
+                <span class="greeting__progress-hint">Keep going! You're doing great.</span>
+              </div>
+            </section>
+
+            <!-- Stat cards -->
+            <section class="stats">
+              <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--indigo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="17" rx="2" />
+                    <path d="M9 2v4M15 2v4" />
+                    <path d="m8.5 13 2 2 5-5" />
+                  </svg>
+                </div>
+                <span class="stat-card__label">Today's Tasks</span>
+                <span class="stat-card__value">12</span>
+                <span class="stat-card__hint stat-card__hint--indigo">5 remaining</span>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--green">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="m8.5 12.5 2.3 2.3 4.7-5.1" />
+                  </svg>
+                </div>
+                <span class="stat-card__label">Completed</span>
+                <span class="stat-card__value">7</span>
+                <span class="stat-card__hint stat-card__hint--green">Tasks done</span>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--orange">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3.5 2" />
+                  </svg>
+                </div>
+                <span class="stat-card__label">Focus Time</span>
+                <span class="stat-card__value">2h 20m</span>
+                <span class="stat-card__hint stat-card__hint--orange">Today</span>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="8" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="12" cy="12" r="0.6" fill="currentColor" />
+                  </svg>
+                </div>
+                <span class="stat-card__label">Daily Goals</span>
+                <span class="stat-card__value">3 / 5</span>
+                <span class="stat-card__hint stat-card__hint--blue">In Progress</span>
+              </div>
+            </section>
+
+            <!-- Productivity Tools -->
+            <section class="card tools">
+              <h2 class="section-title">Productivity Tools</h2>
+
+              <div class="tools__grid ">
+                <a href="#" class="tool  todo-btns" data-page="todo">
+                  <div class="tool__icon tool__icon--indigo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <rect x="4" y="4" width="16" height="17" rx="2" />
+                      <path d="M9 2v4M15 2v4" />
+                      <path d="m8.5 13 2 2 5-5" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title ">Todo List</span>
+                    <span class="tool__desc">Manage your tasks and get things done</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+
+                <a href="#" class="tool" data-page="planner">
+                  <div class="tool__icon tool__icon--blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <path d="M3 10h18M8 2v4M16 2v4" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title">Daily Planner</span>
+                    <span class="tool__desc">Plan your day hour by hour</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+
+                <a href="#" class="tool" data-page="goals">
+                  <div class="tool__icon tool__icon--green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <circle cx="12" cy="12" r="5" />
+                      <circle cx="12" cy="12" r="1" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title">Daily Goals</span>
+                    <span class="tool__desc">Set goals and track progress</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+
+                <a href="#" class="tool" data-page="promodoro">
+                  <div class="tool__icon tool__icon--orange">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v5l3.5 2" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title">Pomodoro Timer</span>
+                    <span class="tool__desc">Stay focused with Pomodoro technique</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+
+                <a href="#" class="tool" data-page="motivation">
+                  <div class="tool__icon tool__icon--purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M9.5 3a3.5 3.5 0 0 1 2.5 6 3.5 3.5 0 1 1-2.5-6Z" />
+                      <path d="M14.5 21a3.5 3.5 0 0 1-2.5-6 3.5 3.5 0 1 1 2.5 6Z" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title">Motivation</span>
+                    <span class="tool__desc">Get inspired with daily quotes</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+
+                <a href="#" class="tool" data-page="weather">
+                  <div class="tool__icon tool__icon--skyblue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <circle cx="9" cy="9" r="3.2" />
+                      <path d="M14.5 18a3.8 3.8 0 0 0 0-7.6 5.2 5.2 0 0 0-10 1.7A3.2 3.2 0 0 0 5.5 18h9Z" />
+                    </svg>
+                  </div>
+                  <div class="tool__text">
+                    <span class="tool__title">Weather</span>
+                    <span class="tool__desc">Check current weather updates</span>
+                  </div>
+                  <svg class="tool__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+              </div>
+            </section>
+          </div>
+
+
+
+          <!-- RIGHT COLUMN -->
+          <div class="col-right">
+
+            <!-- Current time -->
+            <section class="card time-card">
+              <div class="panel-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3.5 2" />
+                </svg>
+                <span>Current Time</span>
+              </div>
+              <div class="time-card__clock">09:42:30</div>
+              <div class="time-card__date">Sunday, 5 July 2026</div>
+            </section>
+
+            <!-- Weather -->
+            <section class="card weather-card ">
+              <div class="panel-header panel-header--split">
+                <div class="panel-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="13" r="8" />
+                    <path d="M12 9v4l2.5 2.5M9 3h6M18.5 5.5 20 4" />
+                  </svg>
+                  <span>Weather</span>
+                </div>
+                <span class="weather-card__place" id="cityName">City, Country</span>
+              </div>
+
+              <div class="weather-card__main">
+                <img id="weatherIcon" class="weather-card__icon" src="" alt="Weather Icon">
+                <div class="weather-card__temp" id="temperature">0 c</div>
+              </div>
+              <div class="weather-card__desc" id="weatherDescription">Cloudy</div>
+
+              <div class="weather-card__stats">
+                <div class="weather-stat">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 2s7 7.5 7 12.5a7 7 0 1 1-14 0C5 9.5 12 2 12 2Z" />
+                  </svg>
+                  <div>
+                    <span class="weather-stat__label" >Humidity</span>
+                    <span class="weather-stat__value" id="humidity">0%</span>
+                  </div>
+                </div>
+                <div class="weather-stat">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M3 8h9a3 3 0 1 0-3-3M3 16h13a3 3 0 1 1-3 3M3 12h16a3 3 0 1 0-3-3" />
+                  </svg>
+                  <div>
+                    <span class="weather-stat__label">Wind</span>
+                    <span class="weather-stat__value" id="windSpeed">0 km/h</span>
+                  </div>
+                </div>
+                <div class="weather-stat">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M20 16.2A4.8 4.8 0 0 0 17.8 7a6 6 0 0 0-11.5 2A4.5 4.5 0 0 0 6.5 18H8" />
+                    <path d="M9 19v2M12 19v3M15 19v2" />
+                  </svg>
+                  <div>
+                    <span class="weather-stat__label">Rain</span>
+                    <span class="weather-stat__value" id="rain">0%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Daily Motivation -->
+            <section class="card quote-card">
+            
+              <div class="panel-header">
+                <span class="quote-card__mark">&ldquo;</span>
+                <span>Daily Motivation</span>
+              </div>
+            
+              <p class="quote-card__text" id="quoteText">
+                Loading quote...
+              </p>
+            
+              <span class="quote-card__author" id="quoteAuthor"></span>
+            
+              <button class="quote-card__btn" id="newQuoteBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+            
+                  <path d="M21 12a9 9 0 1 1-3-6.7" />
+                  <path d="M21 3v6h-6" />
+            
+                </svg>
+            
+                New Quote
+              </button>
+            
+            </section>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- =======================
+      TODO MODULE
+    ======================== -->
+    <section class="todo-page hidden">
+      
+        <!-- Header -->
+        <div class="todo-header">
+          <div>
+            <h1>To Do List</h1>
+            <p>Organize your tasks and get things done.</p>
+          </div>
+      
+          <div class="todo-actions">
+            <button class="btn task-btn-primary add-task-btn">
+              <i class="ri-add-line"></i>
+              Add Task
+            </button>
+          </div>
+        </div>
+      
+        <!-- Statistics -->
+        <div class="todo-stats">
+      
+          <div class="todo-stat-card">
+            <div class="stat-icon indigo">
+              <i class="ri-file-list-3-line"></i>
+            </div>
+      
+            <div>
+              <span>Total Tasks</span>
+              <h2 id="total-tasks">0</h2>
+            </div>
+          </div>
+      
+          <div class="todo-stat-card">
+            <div class="stat-icon green">
+              <i class="ri-checkbox-circle-line"></i>
+            </div>
+      
+            <div>
+              <span>Completed</span>
+              <h2 id="completed-tasks">0</h2>
+            </div>
+          </div>
+      
+          <div class="todo-stat-card">
+            <div class="stat-icon orange">
+              <i class="ri-loader-4-line"></i>
+            </div>
+      
+            <div>
+              <span>In Progress</span>
+              <h2 id="progress-tasks">0</h2>
+            </div>
+          </div>
+      
+          <div class="todo-stat-card">
+            <div class="stat-icon red">
+              <i class="ri-time-line"></i>
+            </div>
+      
+            <div>
+              <span>Pending</span>
+              <h2 id="pending-tasks">0</h2>
+            </div>
+          </div>
+      
+        </div>
+      
+        <!-- Main Grid -->
+        <div class="todo-wrapper">
+      
+
+          <!-- Tasks -->
+          <section class="todo-list card">
+      
+            <div class="todo-tabs">
+      
+              <button class="show-all-tasks-btn active ">All</button>
+              <button class="show-pending-tasks-btn">Pending</button>
+              <button class="show-inProgress-tasks-btn">In Progress</button>
+              <button class="show-completed-tasks-btn">Completed</button>
+      
+            </div>
+      
+            <div class="tasks-wrapper">
+              <div class="tasks tasks-container">
+      
+                <!-- <div class="task-row">
+      
+                <div class="task-left">
+      
+                  <input type="checkbox">
+      
+                  <span class="task-title">
+                    Complete JavaScript Project
+                  </span>
+      
+                  <span class="badge work">
+                    Work
+                  </span>
+      
+                </div>
+      
+                <div class="task-right">
+      
+                  <span>
+                    <i class="ri-calendar-line"></i>
+                    Today, 1:00 PM
+                  </span>
+      
+                  <button>
+                    <i class="ri-more-2-fill"></i>
+                  </button>
+      
+                </div>
+      
+              </div> -->
+      
+              </div>
+            </div>
+      
+          </section>
+      
+        </div>
+
+
+      <!-- ==========================
+        ADD TASK MODAL
+      ========================== -->
+        <div class="task-modal-overlay hidden" id="taskModal">
+        
+            <div class="task-modal">
+        
+                <div class="task-modal-header">
+                    <h2>Add New Task</h2>
+        
+                    <button class="task-form-close-btn " id="closeTaskModal">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+        
+                <form id="addTaskForm">
+        
+                    <div class="task-form-group">
+                        <label>Task Title</label>
+                        <input
+                            type="text"
+                            id="taskTitle"
+                            placeholder="Enter task title"
+                            required
+                        >
+                    </div>
+        
+                    <div class="task-form-row">
+        
+                        <div class="task-form-group">
+                            <label>Category</label>
+        
+                            <select id="taskCategory">
+        
+                                <option value="work">Work</option>
+                                <option value="study">Study</option>
+                                <option value="personal">Personal</option>
+                                <option value="health">Health</option>
+        
+                            </select>
+                        </div>
+        
+                        <div class="task-form-group">
+                            <label>Status</label>
+        
+                            <select id="taskStatus">
+        
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+        
+                            </select>
+        
+                        </div>
+        
+                    </div>
+        
+                    <div class="task-form-row">
+        
+                        <div class="task-form-group">
+                            <label>Date</label>
+                            <input type="date" id="taskDate">
+                        </div>
+        
+                        <div class="task-form-group">
+                            <label>Time</label>
+                            <input type="time" id="taskTime">
+                        </div>
+        
+                    </div>
+      
+        
+                    <div class="task-modal-footer">
+        
+                        <button
+                            type="button"
+                            class="task-btn-outline"
+                            id="cancelTask"
+                        >
+                            Cancel
+                        </button>
+        
+                        <button
+                            type="submit"
+                            class="task-btn-primary"
+                        >
+                            <i class="ri-add-line"></i>
+                            Add Task
+                        </button>
+        
+                    </div>
+        
+                </form>
+        
+            </div>
+        
+        </div>
+      
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- ==========================================================
+                  WEATHER PAGE
+    =========================================================== -->
+    <section class="weather-page hidden">
+
+    <!-- Search Card -->
+    <section class="weather-search card">
+
+        <form id="weatherSearchForm" class="weather-search-form">
+
+            <input
+                type="text"
+                id="weatherCity"
+                placeholder="City">
+
+            <input
+                type="text"
+                id="weatherCountry"
+                placeholder="Country">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Hero Card -->
+
+    <section class="weather-hero card">
+
+    <div class="weather-left">
+
+        <span class="weather-badge">
+            Live Weather
+        </span>
+
+        <h1 id="weatherHeroTemp">28°C</h1>
+
+        <h2 id="weatherHeroCondition">Cloudy</h2>
+
+        <p id="weatherHeroLocation">
+            📍 Bhopal, India
+        </p>
+
+        <div class="weather-info">
+
+            <div class="info-card">
+                <span>Feels Like</span>
+                <strong id="feelsLike">30°C</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Humidity</span>
+                <strong id="weatherHumidity">60%</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Wind</span>
+                <strong id="weatherWind">8 km/h</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Pressure</span>
+                <strong id="weatherPressure">1012 hPa</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</section>
+
+</section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+          <!-- ==========================================
+            DAILY PLANNER
+          ========================================== -->
+          
+          <section class="planner-page hidden">
+      
+          <!-- Header -->
+      
+          <div class="planner-header">
+      
+              <div>
+                  <h1>Daily Planner</h1>
+                  <p>Plan your day, stay productive and focused.</p>
+              </div>
+      
+              <div class="planner-actions">
+      
+                  <button class="planner-btn planner-btn-outline">
+                      <i class="ri-calendar-line"></i>
+                      <span id="plannerDate">May 25, 2025</span>
+                      <i class="ri-arrow-down-s-line"></i>
+                  </button>
+      
+                  <button class="planner-btn planner-btn-danger">
+                      <i class="ri-delete-bin-line"></i>
+                      Clear All
+                  </button>
+      
+              </div>
+      
+          </div>
+      
+      
+      
+          <!-- Planner Card -->
+      
+          <div class="planner card">
+      
+              <!-- Table Header -->
+      
+              <div class="planner-top">
+      
+                  <div class="planner-time-title">
+                      Time
+                  </div>
+      
+                  <div class="planner-plan-title">
+                      Plan / Note
+                  </div>
+      
+              </div>
+      
+      
+      
+              <!-- Planner Body -->
+      
+              <div class="planner-body" id="plannerBody">
+      
+                  <!-- 6 AM -->
+      
+                  <div class="planner-row">
+      
+                      <div class="planner-time">
+                          <i class="ri-time-line"></i>
+                          06:00 AM
+                      </div>
+      
+                      <div class="planner-input">
+      
+                          <input
+                              type="text"
+                              placeholder="Add your plan for this time..."
+                              data-time="06:00 AM"
+                          >
+      
+                          <button class="planner-delete">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+      
+                      </div>
+      
+                  </div>
+      
+      
+                  <!-- 7 AM -->
+      
+                  <div class="planner-row">
+      
+                      <div class="planner-time">
+                          <i class="ri-time-line"></i>
+                          07:00 AM
+                      </div>
+      
+                      <div class="planner-input">
+      
+                          <input
+                              type="text"
+                              placeholder="Add your plan for this time..."
+                              data-time="07:00 AM"
+                          >
+      
+                          <button class="planner-delete">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+      
+                      </div>
+      
+                  </div>
+      
+      
+                  <!-- 8 AM -->
+      
+                  <div class="planner-row current-hour">
+      
+                      <div class="planner-time">
+      
+                          <span class="planner-indicator"></span>
+      
+                          <i class="ri-time-line"></i>
+      
+                          08:00 AM
+      
+                      </div>
+      
+                      <div class="planner-input">
+      
+                          <input
+                              type="text"
+                              value="Work on Project"
+                              data-time="08:00 AM"
+                          >
+      
+                          <span class="planner-now">
+                              Now
+                          </span>
+      
+                      </div>
+      
+                  </div>
+      
+      
+                  <!-- Remaining rows -->
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>09:00 AM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="09:00 AM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>10:00 AM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="10:00 AM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>11:00 AM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="11:00 AM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>12:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="12:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>01:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="01:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>02:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="02:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>03:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="03:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>04:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="04:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>05:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="05:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>06:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="06:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>07:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="07:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+      
+                  <div class="planner-row">
+                      <div class="planner-time"><i class="ri-time-line"></i>08:00 PM</div>
+      
+                      <div class="planner-input">
+                          <input type="text" placeholder="Add your plan..." data-time="08:00 PM">
+                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
+                      </div>
+                  </div>
+      
+              </div>
+      
+          </div>
+      </section>
+
+
+
+
+
+
+
+
+
+    </main>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
