@@ -336,28 +336,198 @@ const API_KEY = "5753ec8d34e2ef7e6319af2cd5855e05";
 
 async function getWeather() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
     if (!currentUser) return;
+
     const city = currentUser.location.city;
+    const country = currentUser.location.country;
+
     try {
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-        );
+        const response = await fetch( `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`);
         const data = await response.json();
-        updateWeatherCard(data);
-    } catch (error) {
+
+        if (data.cod == 200) {
+            updateWeatherCard(data);
+        }
+    }
+    catch (error) {
         console.log(error);
     }
 }
 
-function updateWeatherCard(data){
-    document.getElementById("cityName").textContent = `${data.name}, ${data.sys.country}`;
-    document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
-    document.getElementById("weatherDescription").textContent = data.weather[0].description;
-    document.getElementById("humidity").textContent =`${data.main.humidity}%`;
-    document.getElementById("windSpeed").textContent = `${data.wind.speed} km/h`;
-    document.getElementById("rain").textContent = data.rain ? `${data.rain["1h"] || 0} mm` : "0 mm";
-    document.getElementById("weatherIcon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+// ********************* //
+// Weather Page Code // 
+// ********************* //
+const weatherForm = document.getElementById("weatherSearchForm");
+
+const weatherBackgrounds = {
+    Clear: "https://images.unsplash.com/photo-1501973801540-537f08ccae7b?w=1600",
+    Clouds: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1600",
+    Rain: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1600",
+    Drizzle: "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=1600",
+    Thunderstorm: "https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1600",
+    Snow: "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=1600",
+    Mist: "https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1600",
+    Fog: "https://images.unsplash.com/photo-1487621167305-5d248087c724?w=1600",
+    Haze: "https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1600",
+    Smoke: "https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1600",
+    Default: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1600"
+};
+
+weatherForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const city = document.getElementById("weatherCity").value.trim();
+    const country = document.getElementById("weatherCountry").value.trim();
+
+    if (city === "") {
+        alert("Please enter city");
+        return;
+    }
+    getWeatherBySearch(city, country);
+});
+
+async function getWeatherBySearch(city, country) {
+
+    try {
+
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`
+        );
+
+        const data = await response.json();
+
+        if (data.cod != 200) {
+
+            alert("City not found");
+
+            return;
+
+        }
+
+        updateWeatherCard(data);
+
+        updateUserLocation(
+            data.name,
+            data.sys.country
+        );
+
+        document.getElementById("weatherCity").value = "";
+        document.getElementById("weatherCountry").value = "";
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
 }
+
+function updateUserLocation(city, country) {
+
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    currentUser.location = {
+        city: city,
+        country: country
+    };
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(currentUser)
+    );
+
+    users = users.map(user => {
+
+        if (user.email === currentUser.email) {
+
+            user.location = {
+                city: city,
+                country: country
+            };
+
+        }
+
+        return user;
+
+    });
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+}
+
+function updateWeatherCard(data) {
+    const heroCard = document.querySelector(".weather-hero");
+    const weather = data.weather[0].main;
+    
+    heroCard.style.backgroundImage = `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url(${weatherBackgrounds[weather] || weatherBackgrounds.Default})`;
+    
+    heroCard.style.backgroundSize = "cover";
+    heroCard.style.backgroundPosition = "center";
+    heroCard.style.backgroundRepeat = "no-repeat";
+
+    /* Dashboard Card */
+
+    document.getElementById("cityName").textContent =
+        `${data.name}, ${data.sys.country}`;
+
+    document.getElementById("temperature").textContent =
+        `${Math.round(data.main.temp)}°C`;
+
+    document.getElementById("weatherDescription").textContent =
+        data.weather[0].description;
+
+    document.getElementById("humidity").textContent =
+        `${data.main.humidity}%`;
+
+    document.getElementById("windSpeed").textContent =
+        `${data.wind.speed} km/h`;
+
+    document.getElementById("rain").textContent =
+        data.rain ? `${data.rain["1h"] || 0} mm` : "0 mm";
+
+    document.getElementById("weatherIcon").src =
+        `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+
+
+    /* Weather Page */
+
+    document.getElementById("weatherHeroTemp").textContent =
+        `${Math.round(data.main.temp)}°C`;
+
+    document.getElementById("weatherHeroCondition").textContent =
+        data.weather[0].description;
+
+    document.getElementById("weatherHeroLocation").textContent =
+        `📍 ${data.name}, ${data.sys.country}`;
+
+    document.getElementById("feelsLike").textContent =
+        `${Math.round(data.main.feels_like)}°C`;
+
+    document.getElementById("weatherHumidity").textContent =
+        `${data.main.humidity}%`;
+
+    document.getElementById("weatherWind").textContent =
+        `${data.wind.speed} km/h`;
+
+    document.getElementById("weatherPressure").textContent =
+        `${data.main.pressure} hPa`;
+
+    document.getElementById("weatherHeroImage").src =
+        `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+
+}
+
+
 
 
 
@@ -632,8 +802,8 @@ function updateTaskStats(){
     if (!currentUser) return;
     
     totalTasks.textContent = currentUser.todos.length;
-    completedTasks.textContent = currentUser.todos.filter(todo=>todo.status==="Completed").length;
-    pendingTasks.textContent = currentUser.todos.filter(todo=>todo.status==="Pending").length;
+    completedTasks.textContent = currentUser.todos.filter(todo=>todo.status==="completed").length;
+    pendingTasks.textContent = currentUser.todos.filter(todo=>todo.status==="pending").length;
     inProgressTasks.textContent = currentUser.todos.filter(todo=>todo.status==="in-progress").length;
 }
 
@@ -687,13 +857,13 @@ function renderTask(tasks = null) {
         const todoDate = formatTaskDate(todo.date);
 
         tasksContainer.innerHTML += `
-        <div class="task-row ${todo.status === "Completed" ? "completed" : ""}">
+        <div class="task-row ${todo.status === "completed" ? "completed" : ""}">
 
             <div class="task-left">
 
                 <input
                     type="checkbox"
-                    ${todo.status === "Completed" ? "checked" : ""}
+                    ${todo.status === "completed" ? "checked" : ""}
                     onchange="toggleTaskStatus(${todo.id})">
 
                 <span class="task-title">${todo.title}</span>
@@ -737,9 +907,9 @@ function toggleTaskStatus(id){
     if(!todo) return;
 
     todo.status =
-        todo.status === "Completed"
-        ? "Pending"
-        : "Completed";
+        todo.status === "completed"
+        ? "pending"
+        : "completed";
 
     saveUser(currentUser);
 
@@ -920,3 +1090,9 @@ if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
 
 
 
+
+
+
+window.addEventListener("DOMContentLoaded", function () {
+    getWeather();
+});

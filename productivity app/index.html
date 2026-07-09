@@ -11,10 +11,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
-<!--
-  Toggle dark mode by adding the "dark" class to <body> (e.g. document.body.classList.toggle('dark')).
-  All colors are theme-aware via CSS custom properties in style.css.
--->
 
 <body>
 
@@ -552,10 +548,10 @@
 
 
 
-      <!-- =======================
-        TODO MODULE
-      ======================== -->
-      <section class="todo-page hidden">
+    <!-- =======================
+      TODO MODULE
+    ======================== -->
+    <section class="todo-page hidden">
       
         <!-- Header -->
         <div class="todo-header">
@@ -777,7 +773,7 @@
         
         </div>
       
-      </section>
+    </section>
 
 
 
@@ -787,14 +783,99 @@
 
 
 
+    <!-- ==========================================================
+                  WEATHER PAGE
+    =========================================================== -->
+    <section class="weather-page hidden">
+
+    <!-- Search Card -->
+    <section class="weather-search card">
+
+        <form id="weatherSearchForm" class="weather-search-form">
+
+            <input
+                type="text"
+                id="weatherCity"
+                placeholder="City">
+
+            <input
+                type="text"
+                id="weatherCountry"
+                placeholder="Country">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Hero Card -->
+
+    <section class="weather-hero card">
+
+    <div class="weather-left">
+
+        <span class="weather-badge">
+            Live Weather
+        </span>
+
+        <h1 id="weatherHeroTemp">28°C</h1>
+
+        <h2 id="weatherHeroCondition">Cloudy</h2>
+
+        <p id="weatherHeroLocation">
+            📍 Bhopal, India
+        </p>
+
+        <div class="weather-info">
+
+            <div class="info-card">
+                <span>Feels Like</span>
+                <strong id="feelsLike">30°C</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Humidity</span>
+                <strong id="weatherHumidity">60%</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Wind</span>
+                <strong id="weatherWind">8 km/h</strong>
+            </div>
+
+            <div class="info-card">
+                <span>Pressure</span>
+                <strong id="weatherPressure">1012 hPa</strong>
+            </div>
+
+        </div>
+
+    </div>
 
 
 
-      <!-- ==========================================
-        DAILY PLANNER
-      ========================================== -->
-      
-      <section class="planner-page hidden">
+</section>
+
+</section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+          <!-- ==========================================
+            DAILY PLANNER
+          ========================================== -->
+          
+          <section class="planner-page hidden">
       
           <!-- Header -->
       

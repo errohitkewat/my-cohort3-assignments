@@ -2339,6 +2339,195 @@ body.dark .planner-body::-webkit-scrollbar-thumb{
 
 
 
+/*==================================================
+                WEATHER PAGE
+==================================================*/
+.weather-page{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    padding: 0 26px;
+    overflow:hidden;
+}
+
+/*==================================================
+                SEARCH CARD
+==================================================*/
+.weather-search{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow:var(--shadow-card);
+    flex-shrink: 0;
+}
+
+.weather-search-form{
+    display:grid;
+    grid-template-columns:1fr 1fr 170px;
+    gap:18px;
+}
+
+.weather-search input{
+    width:100%;
+    height: 40px;
+    border-radius: 10px;
+    border:1px solid var(--border);
+    outline:none;
+    padding:0 18px;
+    font-size: 14px;
+    background:var(--bg-main);
+    color:var(--text-primary);
+    transition: 0.3s;
+}
+
+.weather-search input:focus{
+    border-color:var(--indigo);
+    box-shadow:
+    0 0 0 4px rgba(91,95,239,.12);
+}
+
+.weather-search button{
+    border:none;
+    height: 40px;
+    border-radius: 10px;
+    background:linear-gradient(135deg,#5B5FEF,#7283FF);
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    font-size:15px;
+    transition:.35s;
+}
+
+
+/*==================================================
+                HERO
+==================================================*/
+
+.weather-hero{
+    flex:1;
+    position:relative;
+    overflow:hidden;
+    border-radius: 20px;
+    display:grid;
+    grid-template-columns:1fr 520px;
+    align-items:center;
+    padding: 30px;
+    color:#fff;
+    height: 60vh;
+}
+
+
+/*==================================================
+            LEFT SIDE
+==================================================*/
+.weather-left{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+}
+
+.weather-badge{
+    width:max-content;
+    padding:9px 18px;
+    border-radius:999px;
+    background:rgba(255,255,255,.14);
+    backdrop-filter:blur(15px);
+    margin-bottom: 25px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.weather-left h1{
+    font-size: 72px;
+    line-height:1;
+    margin:0;
+    font-weight:800;
+}
+
+.weather-left h2{
+    margin-top:12px;
+    font-size:25px;
+    font-weight:700;
+    text-transform:capitalize;
+}
+
+.weather-left p{
+    margin-top:18px;
+    font-size:18px;
+    opacity:.9;
+}
+
+/*==================================================
+        WEATHER INFO GRID
+==================================================*/
+
+.weather-info{
+    display: flex;
+    gap:18px;
+}
+
+.info-card{
+    padding: 18px 20px;
+    border-radius: 18px;
+}
+
+
+.info-card span{
+    display:block;
+    font-size:14px;
+    opacity:.8;
+}
+
+.info-card strong{
+    display:block;
+    margin-top:8px;
+    font-size:28px;
+    font-weight:700;
+}
+
+
+
+/*==================================================
+            SEARCH INPUT
+==================================================*/
+.weather-search input::placeholder{
+    color:#9CA3AF;
+}
+
+.weather-search button:active{
+    transform: scale(.98);
+}
+
+
+/*==================================================
+            WEATHER BACKGROUNDS
+==================================================*/
+.weather-hero.sunny{
+  background: linear-gradient(135deg, #FDBB2D, #FF9800 );
+}
+
+.weather-hero.cloudy {
+  background: linear-gradient(135deg, #6B73FF, #8EA8FF);
+}
+
+.weather-hero.rain{
+  background:linear-gradient( 135deg, #2C5364, #4CA1AF);
+}
+
+.weather-hero.storm{
+  background: linear-gradient( 135deg, #373B44, #4286f4);
+}
+
+.weather-hero.snow{
+  background: linear-gradient(135deg,#D7E1EC,#F4F7FB);
+  color:#222;
+}
+
+.weather-hero.mist{
+  background: linear-gradient( 135deg, #8796A5, #BFC9D4 );
+}
 
 
 
