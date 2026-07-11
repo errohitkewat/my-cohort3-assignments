@@ -90,6 +90,7 @@ registerForm.addEventListener("submit", (e) => {
 
         todos: [],
         planner: [],
+        dailyGoals: [],
         pomodoro:{
             mode:"focus",
             timeLeft:1500,
