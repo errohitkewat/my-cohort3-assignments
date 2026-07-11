@@ -1492,54 +1492,36 @@ let timerInterval = null;
 
 
 function initializePomodoro(){
-
-    const currentUser =
-        JSON.parse(localStorage.getItem("currentUser"));
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if(!currentUser) return;
 
     if(!currentUser.pomodoro){
-
         currentUser.pomodoro = {
-
             mode:"focus",
-
             timeLeft:timerModes.focus,
-
             totalTime:timerModes.focus,
-
             sessionCount:0,
-
             isRunning:false
-
         };
 
         saveUser(currentUser);
-
     }
-
 }
 
 function getPomodoro(){
-
-    const currentUser =
-        JSON.parse(localStorage.getItem("currentUser"));
-
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     return currentUser.pomodoro;
-
 }
 
 function timerFinished() {
     const pomodoro = getPomodoro();
-
     pomodoro.isRunning = false;
 
-    // Count only completed focus sessions
     if (pomodoro.mode === "focus") {
         pomodoro.sessionCount++;
     }
 
-    // Auto switch mode
     if (pomodoro.mode === "focus") {
         if (pomodoro.sessionCount % 4 === 0) {
             pomodoro.mode = "long";
@@ -1559,19 +1541,13 @@ function timerFinished() {
     updateDashboardStats();
 
     startBtn.disabled = false;
-    startBtn.innerHTML = `
-        <i class="ri-play-fill"></i>
-        Start
-    `;
+    startBtn.innerHTML = `<i class="ri-play-fill"></i>Start`;
 
     // Browser notification
     if ("Notification" in window) {
         if (Notification.permission === "granted") {
             new Notification("Pomodoro Timer", {
-                body:
-                    pomodoro.mode === "focus"
-                        ? "Break time! ☕"
-                        : "Focus time! 💪"
+                body: pomodoro.mode === "focus" ? "Break time! " : "Focus time! "
             });
         } else if (Notification.permission !== "denied") {
             Notification.requestPermission();
@@ -1579,164 +1555,86 @@ function timerFinished() {
     }
 
     // Simple sound
-    const audio = new Audio(
-        "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
-    );
-    audio.play().catch(() => {});
+    const audio = new Audio("https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg");
+
+    audio.play().catch(() => { });
 
     alert(
-        pomodoro.mode === "focus"
-            ? "Break Time!"
-            : "Focus Time!"
+        pomodoro.mode === "focus" ? "Break Time!" : "Focus Time!"
     );
 }
 
 function savePomodoro(data){
-
-    const currentUser =
-        JSON.parse(localStorage.getItem("currentUser"));
-
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     currentUser.pomodoro = data;
-
     saveUser(currentUser);
-
 }
 
 
 function updateModeButtons(mode){
-
     modeButtons.forEach(btn=>{
-
-        btn.classList.toggle(
-            "active",
-            btn.dataset.mode===mode
-        );
-
+        btn.classList.toggle( "active", btn.dataset.mode === mode);
     });
-
 }
 
 
 function updatePomodoroUI(){
-
     const pomodoro = getPomodoro();
-
-    const minutes =
-        String(Math.floor(pomodoro.timeLeft/60)).padStart(2,"0");
-
-    const seconds =
-        String(pomodoro.timeLeft%60).padStart(2,"0");
-
-    timerElement.textContent =
-        `${minutes}:${seconds}`;
-
-    sessionCount.textContent =
-        pomodoro.sessionCount;
-
-    modeName.textContent =
-        pomodoro.mode==="focus"
-        ? "Focus Time"
-        : pomodoro.mode==="short"
-        ? "Short Break"
-        : "Long Break";
-
+    const minutes = String(Math.floor(pomodoro.timeLeft/60)).padStart(2,"0");
+    const seconds = String(pomodoro.timeLeft%60).padStart(2,"0");
+    timerElement.textContent =`${minutes}:${seconds}`;
+    sessionCount.textContent = pomodoro.sessionCount;
+    modeName.textContent = pomodoro.mode === "focus" ? "Focus Time" : pomodoro.mode==="short" ? "Short Break" : "Long Break";
     updateModeButtons(pomodoro.mode);
-
-    const progress =
-        pomodoro.timeLeft/pomodoro.totalTime;
-
-    progressCircle.style.strokeDashoffset =
-        CIRCUMFERENCE-(progress*CIRCUMFERENCE);
-
+    const progress = pomodoro.timeLeft/pomodoro.totalTime;
+    progressCircle.style.strokeDashoffset = CIRCUMFERENCE - (progress*CIRCUMFERENCE);
 }
 
 
 
 function startPomodoro(){
-
     const pomodoro = getPomodoro();
-
-    if(pomodoro.isRunning) return;
-
+    if (pomodoro.isRunning) return;
+    
     pomodoro.isRunning = true;
-
     savePomodoro(pomodoro);
-
-    startBtn.innerHTML = `
-        <i class="ri-loader-4-line"></i>
-        Running
-    `;
-
+    startBtn.innerHTML = `<i class="ri-loader-4-line"></i>Running`;
     startBtn.disabled = true;
 
     timerInterval = setInterval(() => {
-
         const data = getPomodoro();
 
         if(data.timeLeft > 0){
-
             data.timeLeft--;
-
             savePomodoro(data);
-
             updatePomodoroUI();
-
         }else{
-
             clearInterval(timerInterval);
-
             timerFinished();
-
         }
-
     },1000);
-
 }
 
 function pausePomodoro(){
-
     clearInterval(timerInterval);
-
     const pomodoro = getPomodoro();
-
     pomodoro.isRunning = false;
-
     savePomodoro(pomodoro);
-
     startBtn.disabled = false;
-
-    startBtn.innerHTML = `
-        <i class="ri-play-fill"></i>
-        Resume
-    `;
-
+    startBtn.innerHTML = `<i class="ri-play-fill"></i>Resume`;
 }
 
 function resetPomodoro(){
-
     clearInterval(timerInterval);
-
     const pomodoro = getPomodoro();
-
     pomodoro.isRunning = false;
-
-    pomodoro.timeLeft =
-        timerModes[pomodoro.mode];
-
-    pomodoro.totalTime =
-        timerModes[pomodoro.mode];
-
+    pomodoro.timeLeft = timerModes[pomodoro.mode];
+    pomodoro.totalTime = timerModes[pomodoro.mode];
     savePomodoro(pomodoro);
-
     startBtn.disabled = false;
-
-    startBtn.innerHTML = `
-        <i class="ri-play-fill"></i>
-        Start
-    `;
+    startBtn.innerHTML = `<i class="ri-play-fill"></i>Start`;
 
     updatePomodoroUI();
-
 }
 
 startBtn.addEventListener("click", startPomodoro);
@@ -1745,32 +1643,20 @@ resetBtn.addEventListener("click", resetPomodoro);
 
 
 function changeMode(mode){
-
     clearInterval(timerInterval);
 
     const pomodoro = getPomodoro();
-
     pomodoro.mode = mode;
-
-    pomodoro.timeLeft =
-        timerModes[mode];
-
-    pomodoro.totalTime =
-        timerModes[mode];
-
+    pomodoro.timeLeft = timerModes[mode];
+    pomodoro.totalTime = timerModes[mode];
     pomodoro.isRunning = false;
 
     savePomodoro(pomodoro);
 
     startBtn.disabled = false;
-
-    startBtn.innerHTML = `
-        <i class="ri-play-fill"></i>
-        Start
-    `;
+    startBtn.innerHTML = `<i class="ri-play-fill"></i>Start`;
 
     updatePomodoroUI();
-
 }
 
 
@@ -1788,31 +1674,18 @@ function changeMode(mode){
         DAILY GOALS
 ========================================== */
 const goalsContainer = document.getElementById("goalsContainer");
-
 const goalForm = document.getElementById("goalForm");
-
 const goalModal = document.getElementById("goalModal");
-
 const openGoalModal = document.getElementById("openGoalModal");
-
 const closeGoalModal = document.getElementById("closeGoalModal");
-
 const cancelGoal = document.getElementById("cancelGoal");
-
 const goalProgressFill = document.getElementById("goalProgressFill");
-
 const goalProgressText = document.getElementById("goalProgressText");
-
 const goalPercent = document.getElementById("goalPercent");
-
 const resetGoalsBtn = document.getElementById("resetGoalsBtn");
-
 const dashboardDailyGoals = document.getElementById("dashboard-daily-goals");
-
 const dashboardDailyGoalsHint = document.querySelector("#dashboard-daily-goals").parentElement.querySelector(".stat-card__hint");
-
 const today = new Date().toDateString();
-
 const savedDate = localStorage.getItem("goalDate");
 
 if(savedDate !== today){
@@ -1836,16 +1709,10 @@ function renderGoals(){
 
     if(goals.length === 0){
         goalsContainer.innerHTML = ` <div class="empty-goals">
-
                 <i class="ri-checkbox-circle-line"></i>
-
                 <h3>No Daily Goals</h3>
-
                 <p>Click "Add Goal" to create your first goal.</p>
-
-            </div>
-
-        `;
+            </div>`;
 
         updateProgress();
         return;
@@ -1853,7 +1720,6 @@ function renderGoals(){
 
     goals.forEach((goal,index) => {
         const goalCard = document.createElement("div");
-
         goalCard.className = `goal-row ${goal.completed ? "completed" : ""}`;
 
         goalCard.innerHTML = ` <div class="goal-left">
@@ -1863,37 +1729,24 @@ function renderGoals(){
                     ${goal.completed ? "checked" : ""}
                     data-index="${index}"
                 >
-
                 <div>
-
                     <h4>${goal.title}</h4>
-
                     <small>
-
                         ${goal.category}
                         •
                         ${goal.priority}
                         ${goal.time ? "• " + goal.time : ""}
-
                     </small>
-
                 </div>
-
             </div>
 
             <div class="goal-actions">
-
                 <button
                     class="delete-goal"
                     data-index="${index}">
-
                     <i class="ri-delete-bin-line"></i>
-
                 </button>
-
-            </div>
-
-        `;
+            </div>`;
         goalsContainer.appendChild(goalCard);
     });
     updateProgress();
@@ -2005,11 +1858,9 @@ window.addEventListener("DOMContentLoaded", () => {
     checkAuthentication();
 
     startBtn.addEventListener("click", () => {
-    
         if ("Notification" in window && Notification.permission === "default") {
             Notification.requestPermission();
         }
-    
         startPomodoro();
     });
 
@@ -2027,14 +1878,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     const pomodoro = getPomodoro();
+
     if(pomodoro.isRunning){
         pomodoro.isRunning = false;
         savePomodoro(pomodoro);
         startBtn.disabled = false;
-        startBtn.innerHTML = `
-            <i class="ri-play-fill"></i>
-            Resume
-        `;
+        startBtn.innerHTML = `<i class="ri-play-fill"></i>Resume`;
     }
 });
 

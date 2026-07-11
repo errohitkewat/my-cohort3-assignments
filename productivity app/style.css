@@ -2576,6 +2576,19 @@ body.dark .bg-circle{
     gap:12px;
 }
 
+.daily-header-actions .btn{
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--indigo);
+    color: var(--indigo);
+    font-weight: 600;
+}
+
+.daily-header-actions #resetGoalsBtn{
+    color: var(--red);
+    border: 1px solid var(--red);
+}
+
 /* ==========================================================
                     PROGRESS CARD
 ========================================================== */
