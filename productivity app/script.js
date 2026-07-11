@@ -89,6 +89,7 @@ registerForm.addEventListener("submit", (e) => {
         },
 
         todos: [],
+        planner: [],
     }
 
     users.push(newUser);
@@ -162,6 +163,7 @@ loginBtn.addEventListener("click", (e) => {
         checkAuthentication();
         updateAuthUI();
         renderTask()
+        renderPlanner();
         getWeather()
 
         updateDashboard();
@@ -328,37 +330,243 @@ setInterval(updateClock, 1000); // setInterval Update the time every second
 
 
 
+
+
+
+
+
+
+
+
+
+
 // ************************** //// ************************** //
 // Functionality to show the live weather information in dashboard
 // ************************** //// ************************** //
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const API_KEY = "5753ec8d34e2ef7e6319af2cd5855e05";
 
-async function getWeather() {
+function getWeather() {
+
+    if (loadCachedWeather()) return;
+
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) return;
 
-    const city = currentUser.location.city;
-    const country = currentUser.location.country;
+    if (
 
-    try {
-        const response = await fetch( `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`);
-        const data = await response.json();
+        currentUser.location?.lat &&
+        currentUser.location?.lon
 
-        if (data.cod == 200) {
-            updateWeatherCard(data);
-        }
+    ) {
+
+        getWeatherByCoords(
+
+            currentUser.location.lat,
+
+            currentUser.location.lon
+
+        );
+
     }
-    catch (error) {
-        console.log(error);
+
+    else {
+
+        requestUserLocation();
+
     }
+
 }
 
+
+async function requestUserLocation() {
+
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            const { latitude, longitude } = position.coords;
+
+            const data = await getWeatherByCoords(latitude, longitude);
+
+            if (!data) return;
+
+            let currentUser =
+                JSON.parse(localStorage.getItem("currentUser"));
+
+            currentUser.location = {
+                city: data.name,
+                country: data.sys.country,
+                lat: latitude,
+                lon: longitude
+            };
+
+            saveUser(currentUser);
+
+        },
+
+        (error) => {
+        
+            console.log(error);
+        
+            switch (error.code) {
+        
+                case error.PERMISSION_DENIED:
+                    alert("Location permission denied.");
+                    break;
+        
+                case error.POSITION_UNAVAILABLE:
+                    alert("Unable to detect your current location.");
+                    break;
+        
+                case error.TIMEOUT:
+                    alert("Location request timed out.");
+                    break;
+        
+                default:
+                    alert("Unknown location error.");
+            }
+        
+        },
+
+        {
+            enableHighAccuracy: true
+        }
+
+    );
+
+}
 
 // ********************* //
 // Weather Page Code // 
 // ********************* //
+async function getWeatherByCoords(lat, lon) {
+
+    try {
+
+        const response = await fetch(
+
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+
+        );
+
+        const data = await response.json();
+
+        if (data.cod != 200) {
+
+            return null;
+
+        }
+
+        updateWeatherCard(data);
+
+        saveWeatherCache(data);
+
+        return data;
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        return null;
+
+    }
+
+}
+
+async function getWeatherBySearch(city, country) {
+
+    try {
+
+        const response = await fetch(
+
+            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`
+
+        );
+
+        const data = await response.json();
+
+        if (data.cod != 200) {
+
+            alert("City not found");
+
+            return;
+
+        }
+
+        updateWeatherCard(data);
+
+        saveWeatherCache(data);
+
+        updateUserLocation(
+
+            data.name,
+
+            data.sys.country,
+
+            data.coord.lat,
+
+            data.coord.lon
+
+        );
+
+        document.getElementById("weatherCity").value = "";
+
+        document.getElementById("weatherCountry").value = "";
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
+
+function saveWeatherCache(data){
+
+    localStorage.setItem(
+        "weatherCache",
+        JSON.stringify({
+            data,
+            time: Date.now()
+        })
+    );
+
+}
+
+function loadCachedWeather(){
+
+    const cache =
+        JSON.parse(localStorage.getItem("weatherCache"));
+
+    if(!cache) return false;
+
+    const thirtyMinutes =
+        30 * 60 * 1000;
+
+    if(Date.now() - cache.time < thirtyMinutes){
+
+        updateWeatherCard(cache.data);
+
+        return true;
+
+    }
+
+    return false;
+
+}
+
+
+
 const weatherForm = document.getElementById("weatherSearchForm");
 
 const weatherBackgrounds = {
@@ -388,79 +596,23 @@ weatherForm.addEventListener("submit", function (e) {
     getWeatherBySearch(city, country);
 });
 
-async function getWeatherBySearch(city, country) {
 
-    try {
 
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${API_KEY}`
-        );
+function updateUserLocation(city,country,lat,lon){
 
-        const data = await response.json();
-
-        if (data.cod != 200) {
-
-            alert("City not found");
-
-            return;
-
-        }
-
-        updateWeatherCard(data);
-
-        updateUserLocation(
-            data.name,
-            data.sys.country
-        );
-
-        document.getElementById("weatherCity").value = "";
-        document.getElementById("weatherCountry").value = "";
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
-
-function updateUserLocation(city, country) {
-
-    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
 
     currentUser.location = {
-        city: city,
-        country: country
+
+        city,
+        country,
+        lat,
+        lon
+
     };
 
-    localStorage.setItem(
-        "currentUser",
-        JSON.stringify(currentUser)
-    );
-
-    users = users.map(user => {
-
-        if (user.email === currentUser.email) {
-
-            user.location = {
-                city: city,
-                country: country
-            };
-
-        }
-
-        return user;
-
-    });
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
+    saveUser(currentUser);
 
 }
 
@@ -968,14 +1120,23 @@ function filterTasks(status) {
 
 // This function is saving the users // 
 function saveUser(currentUser){
-    localStorage.setItem( "currentUser", JSON.stringify(currentUser));
 
-    const users = JSON.parse(localStorage.getItem("users"));
-    const index = users.findIndex( user => user.email === currentUser.email );
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-    users[index] = currentUser;
-    localStorage.setItem("users", JSON.stringify(users));
-    renderTask();
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const index = users.findIndex(
+        user => user.email === currentUser.email
+    );
+
+    if(index !== -1){
+
+        users[index] = currentUser;
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+    }
+
 }
 
 
@@ -1075,24 +1236,154 @@ addTaskForm.addEventListener("submit", function(e){
 
 
 
-// ********************* //// ********************* //
-// Preventing the user after refresh //
-// ********************* //// ********************* //
-checkAuthentication()
 
-if (JSON.parse(localStorage.getItem("isLoggedIn"))) {
-    updateDashboard();
-    updateAuthUI();
-    renderTask();
-    getWeather();
+
+
+
+
+
+// ******************** //
+// Daily Planer Code // 
+// ******************** //
+const plannerList = document.getElementById("plannerList");
+const plannerTime = document.getElementById("plannerTime");
+const plannerText = document.getElementById("plannerText");
+const addPlannerBtn = document.getElementById("addPlannerBtn");
+const clearPlanner = document.getElementById("clearPlanner");
+const plannerDate = document.getElementById("plannerDate");
+
+plannerDate.textContent = new Date().toLocaleDateString("en-IN",{
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+});
+
+
+function renderPlanner() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  plannerList.innerHTML = "";
+
+  currentUser.planner.forEach((plan) => {
+    plannerList.innerHTML += `<div class="planner-item ${plan.completed ? "completed" : ""}">
+            <div class="planner-left">
+                <input
+                    type="checkbox"
+                    ${plan.completed ? "checked" : ""}
+                    onchange="togglePlan(${plan.id})"
+                >
+                <div class="plan-time">
+                    ${plan.time}
+                </div>
+                <div class="plan-text">
+                    ${plan.text}
+                </div>
+            </div>
+        
+            <div class="planner-right">
+                <button onclick="deletePlan(${plan.id})" class="delete-plan">
+                    <i class="ri-delete-bin-line"></i>
+                </button>
+            </div>
+        </div>`;
+  });
 }
 
 
+addPlannerBtn.addEventListener("click", () => {
+  if (plannerTime.value === "" || plannerText.value.trim() === "") {
+    return alert("Fill all fields");
+  }
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+  currentUser.planner.push({
+    id: Date.now(),
 
+    time: plannerTime.value,
 
+    text: plannerText.value,
 
-window.addEventListener("DOMContentLoaded", function () {
-    getWeather();
+    completed: false,
+  });
+
+  saveUser(currentUser);
+
+  plannerTime.value = "";
+  plannerText.value = "";
+
+  renderPlanner();
 });
+
+function togglePlan(id) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const plan = currentUser.planner.find((p) => p.id === id);
+
+  if (!plan) return;
+
+  plan.completed = !plan.completed;
+
+  saveUser(currentUser);
+
+  renderPlanner();
+}
+
+function deletePlan(id) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  currentUser.planner = currentUser.planner.filter((p) => p.id !== id);
+
+  saveUser(currentUser);
+
+  renderPlanner();
+}
+
+
+clearPlanner.addEventListener("click", () => {
+  if (!confirm("Clear all plans?")) return;
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  currentUser.planner = [];
+
+  saveUser(currentUser);
+
+  renderPlanner();
+});
+
+
+
+
+
+
+
+
+
+
+
+// ********************* //// ********************* //
+// Preventing the user after refresh //
+// ********************* //// ********************* //
+window.addEventListener("DOMContentLoaded", () => {
+
+    checkAuthentication();
+
+    if (!JSON.parse(localStorage.getItem("isLoggedIn"))) return;
+
+    updateDashboard();
+
+    updateAuthUI();
+
+    renderTask();
+
+    renderPlanner();
+
+    getWeather();
+
+});
+
+
+
+

@@ -1802,536 +1802,266 @@ body.dark .switch {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================
-   DAILY PLANNER
+            PLANNER PAGE
 ========================================== */
+
 .planner-page{
-    display:flex;
-    flex-direction:column;
-    gap: 15px;
     padding: 32px;
+    padding-top: 0;
 }
+
+/* ==========================================
+            HEADER
+========================================== */
 
 .planner-header{
-  margin-top: -35px;
-    display: flex;
-    justify-content: space-between;
+    display:flex;
+    justify-content:space-between;
     align-items: center;
+    margin-bottom:24px;
 }
 
-.planner-header h1{
-    font-size: 25px;
-    font-weight:800;
+.planner-header h2{
+    font-size:2rem;
+    font-weight:700;
     color:var(--text-primary);
-    letter-spacing:-1px;
 }
 
 .planner-header p{
+  margin-top: -20px;
+    font-size:15px;
     color:var(--text-secondary);
-    font-size: 14px;
-    margin-top: -15px;
-}
-
-.planner-actions{
-    display:flex;
-    align-items:center;
-    gap: 16px;
-}
-
-.planner-btn{
-    padding: 10px 22px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    font-weight:600;
-    transition:.25s;
-}
-
-.planner-btn i{
-    font-size: 17px;
-}
-
-.planner-btn-outline{
-    border:1px solid var(--border);
-    background:var(--bg-card);
-    color:var(--text-primary);
-}
-
-.planner-btn-outline:hover{
-    border-color:var(--indigo);
-    background:var(--bg-hover);
 }
 
 .planner-btn-danger{
-    background:#FFF4F4;
-    color:#EF4444;
-    border:1px solid #FFDADA;
+    height: 35px;
+    padding: 0 22px;
+    border-radius:8px;
+    border:  1px solid var(--red);
+    color: var(--red);
+    font-size:15px;
+    font-weight: 900;
 }
 
-.planner-btn-danger:hover{
-    background:#FFECEC;
-}
+/* ==========================================
+            ADD PLAN CARD
+========================================== */
 
-
-.planner{
-    height: 590px;
+.planner-add{
+    display:grid;
+    grid-template-columns:170px 1fr 110px;
+    gap:16px;
+    padding:18px;
     background:var(--bg-card);
     border:1px solid var(--border);
-    border-radius: 15px;
-    overflow:hidden;
+    border-radius:15px;
+    box-shadow:var(--shadow-card);
+    margin-bottom:22px;
+}
+
+.planner-add input{
+    height:40px;
+    padding:0 16px;
+    border:1px solid var(--border);
+    background:var(--bg-input);
+    border-radius:12px;
+    color:var(--text-primary);
+    font-size:15px;
+    outline:none;
+}
+
+.planner-add input::placeholder{
+    color:var(--text-muted);
+}
+
+.planner-add input:focus{
+    border-color:var(--indigo);
+    box-shadow:0 0 0 4px var(--indigo-soft);
+}
+
+#addPlannerBtn{
+    border:none;
+    height: 35px;
+    border-radius: 8px;
+    /* background:var(--indigo);
+     */
+    border: 1px solid var(--indigo);
+    color: var(--indigo);
+    font-weight: 900;
+    font-size:15px;
+}
+
+/* ==========================================
+            PLANNER LIST
+========================================== */
+
+#plannerList{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* ==========================================
+            PLAN ROW
+========================================== */
+
+.planner-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 12px 22px;
+    background:var(--bg-card);
+    border:1px solid var(--border-soft);
+    border-radius: 10px;
     box-shadow:var(--shadow-card);
 }
 
-
 /* ==========================================
-   TABLE HEADER
+            LEFT
 ========================================== */
 
-.planner-top{
-    display:grid;
-    grid-template-columns:170px 1fr;
+.planner-left{
+    display:flex;
     align-items:center;
-    padding: 20px 32px;
-    border-bottom:1px solid var(--border);
-    background:var(--bg-card);
+    gap:18px;
+    flex:1;
 }
 
-.planner-time-title{
-    font-size:15px;
+.planner-left input[type="checkbox"]{
+    appearance:none;
+    width:22px;
+    height:22px;
+    border:2px solid #CDD3DF;
+    border-radius:7px;
+    position:relative;
+    cursor:pointer;
+}
+
+.planner-left input[type="checkbox"]:checked{
+    background:var(--indigo);
+    border-color:var(--indigo);
+}
+
+.planner-left input[type="checkbox"]:checked::after{
+    content:"✓";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-55%);
+    color:#fff;
+    font-size:14px;
     font-weight:700;
-    color:var(--text-primary);
 }
 
-.planner-plan-title{
+.plan-time{
+    padding:6px 12px;
+    background:var(--indigo-soft);
+    color:var(--indigo);
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    min-width:90px;
+    text-align:center;
+}
+
+.plan-text{
     font-size:15px;
-    font-weight:700;
+    font-weight:500;
     color:var(--text-primary);
+    word-break:break-word;
+}
+
+.planner-item.completed .plan-text{
+    text-decoration:line-through;
+    color:var(--text-muted);
 }
 
 /* ==========================================
-   PLANNER BODY
+            RIGHT
 ========================================== */
 
-.planner-body{
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* ==========================================
-   ROW
-========================================== */
-
-.planner-row{
-    display: grid;
-    grid-template-columns: 170px 1fr;
-    align-items: center;
-    padding: 7px 32px;
-    border-bottom: 1px solid var(--border-soft);
-    transition: 0.25s;
-}
-
-.planner-row:last-child{
-    border-bottom:none;
-}
-
-.planner-row:hover{
-    background:var(--bg-hover);
-}
-
-
-/* ==========================================
-   TIME COLUMN
-========================================== */
-
-.planner-time{
+.planner-right{
     display:flex;
     align-items:center;
     gap:12px;
-    font-size:15px;
-    font-weight:600;
-    color:var(--text-primary);
-    position:relative;
 }
 
-.planner-time i{
-    font-size: 18px;
-    color:var(--text-secondary);
-}
-
-
-/* ==========================================
-   INPUT AREA
-========================================== */
-
-.planner-input{
-    display:flex;
-    align-items:center;
-    gap: 14px;
-}
-
-.planner-input input{
-    flex: 1;
-    height: 40px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: 14px;
-    padding: 0 18px;
-    font-size:15px;
-    color:var(--text-primary);
-    outline:none;
-    transition: 0.25s;
-}
-
-.planner-input input::placeholder{
-    color:var(--text-muted);
-}
-
-.planner-input input:focus{
-    border-color:var(--indigo);
-    box-shadow:0 0 0 4px var(--indigo-soft);
-}
-
-
-/* ==========================================
-   DELETE BUTTON
-========================================== */
-
-.planner-delete{
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
+.planner-right button{
+    width: 35px;
+    height: 35px;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:var(--bg-card);
-
-    transition:0.25s;
-}
-
-.planner-delete i{
-    font-size: 18px;
-    color:#EF4444;
-}
-
-.planner-delete:hover{
-    background:#FFF3F3;
-    border-color:#FFD5D5;
-}
-
-
-/* ==========================================
-   EMPTY INPUT STYLE
-========================================== */
-
-.planner-input input:placeholder-shown{
-
-    font-style:italic;
-}
-
-/*=========================================
-  TIME SLOT LIST
-=========================================*/
-
-.planner-timeline{
-    display:flex;
-    flex-direction:column;
-}
-
-.time-slot{
-    display:grid;
-    grid-template-columns:110px 1fr auto;
-    align-items:center;
-    gap:22px;
-
-    padding:18px 24px;
-
-    border-bottom:1px solid var(--border-soft);
-
-    transition:.25s;
-}
-
-.time-slot:last-child{
-    border-bottom:none;
-}
-
-.time-slot:hover{
+    border-radius: 8px;
     background:var(--bg-hover);
+    color:var(--red);
 }
 
-.time-slot.active{
-    background:var(--indigo-softer);
-    border-left:4px solid var(--indigo);
-    padding-left:20px;
-}
-
-/*=========================================
-  TIME
-=========================================*/
-
-.slot-time{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-}
-
-.slot-hour{
-    font-size:15px;
-    font-weight:700;
-    color:var(--text-primary);
-}
-
-.slot-period{
-    font-size:12px;
-    color:var(--text-muted);
-}
-
-/*=========================================
-  INPUT AREA
-=========================================*/
-
-.slot-input{
-    width:100%;
-    min-height:55px;
-
-    border:1px solid var(--border);
-    border-radius:var(--radius-md);
-
-    background:var(--bg-input);
-
-    padding:15px 18px;
-
-    font-size:14px;
-    color:var(--text-primary);
-
-    resize:none;
-    outline:none;
-
-    transition:.25s;
-}
-
-.slot-input::placeholder{
-    color:var(--text-muted);
-}
-
-.slot-input:focus{
-    border-color:var(--indigo);
-    box-shadow:0 0 0 4px var(--indigo-soft);
-    background:var(--bg-card);
-}
-
-/*=========================================
-  RIGHT ACTIONS
-=========================================*/
-
-.slot-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.slot-btn{
-    width:38px;
-    height:38px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid var(--border);
-    border-radius:10px;
-
-    background:var(--bg-card);
-    color:var(--text-secondary);
-
-    transition:.25s;
-}
-
-.slot-btn:hover{
-    background:var(--indigo-soft);
-    color:var(--indigo);
-    border-color:var(--indigo-soft);
-}
-
-.slot-btn i{
+.planner-right button i{
     font-size:18px;
 }
 
-/*=========================================
-  STATUS DOT
-=========================================*/
+.delete-plan{
 
-.slot-status{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:var(--green);
-    margin-right:8px;
+    color:var(--red);
 }
-
-.slot-status.pending{
-    background:var(--orange);
-}
-
-.slot-status.empty{
-    background:var(--border);
-}
-
-/*=========================================
-  COMPLETED SLOT
-=========================================*/
-
-.time-slot.completed .slot-input{
-    background:var(--green-soft);
-    border-color:transparent;
-    color:var(--green);
-    font-weight:500;
-}
-
-.time-slot.completed .slot-hour{
-    color:var(--green);
-}
-
 
 /* ==========================================
-   CURRENT HOUR
+            EMPTY
 ========================================== */
 
-.current-hour{
-    background:var(--indigo-softer);
-    position:relative;
-}
+.empty-planner{
 
-.current-hour::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:4px;
-    height:100%;
-    background:var(--indigo);
-}
+    padding:70px 20px;
 
-.planner-indicator{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:var(--indigo);
-    box-shadow:0 0 0 6px rgba(91,95,239,.15);
-}
-
-.planner-now{
-
-    margin-left:16px;
-
-    padding:6px 12px;
-
-    border-radius:999px;
-
-    background:var(--indigo-soft);
-
-    color:var(--indigo);
-
-    font-size:12px;
-    font-weight:700;
-
-    white-space:nowrap;
-}
-
-
-/* ==========================================
-   TIP CARD
-========================================== */
-
-.planner-tip{
-
-    display:flex;
-    align-items:flex-start;
-    gap:18px;
-
-    padding:22px 24px;
+    text-align:center;
 
     background:var(--bg-card);
 
     border:1px solid var(--border);
 
-    border-radius:20px;
+    border-radius:15px;
 
     box-shadow:var(--shadow-card);
 }
 
-.planner-tip i{
-
-    width:50px;
-    height:50px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:14px;
-
-    background:var(--orange-soft);
-
-    color:var(--orange);
-
-    font-size:24px;
-
-    flex-shrink:0;
-}
-
-.planner-tip h4{
-
-    margin:0 0 8px;
-
-    font-size:17px;
-    font-weight:700;
+.empty-planner h3{
 
     color:var(--text-primary);
+
+    margin-bottom:10px;
 }
 
-.planner-tip p{
-
-    margin:0;
+.empty-planner p{
 
     color:var(--text-secondary);
-
-    line-height:1.6;
-
-    font-size:14px;
 }
 
 
-/* ==========================================
-   SCROLLBAR
-========================================== */
 
-.planner-body{
 
-    max-height:720px;
 
-    overflow-y:auto;
-}
 
-.planner-body::-webkit-scrollbar{
-    width:8px;
-}
 
-.planner-body::-webkit-scrollbar-track{
-    background:transparent;
-}
 
-.planner-body::-webkit-scrollbar-thumb{
-    background:#D6D9E0;
-    border-radius:50px;
-}
 
-body.dark .planner-body::-webkit-scrollbar-thumb{
-    background:#393C45;
-}
+
+
+
+
 
 
 

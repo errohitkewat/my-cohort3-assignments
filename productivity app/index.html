@@ -171,14 +171,14 @@
           </svg>
           <span>Pomodoro Timer</span>
         </button>
-        <button id="motivation-btn" class="nav__item" data-page="motivation">
+        <!-- <button id="motivation-btn" class="nav__item" data-page="motivation">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M9.5 3a3.5 3.5 0 0 1 2.5 6 3.5 3.5 0 1 1-2.5-6Z" />
             <path d="M14.5 21a3.5 3.5 0 0 1-2.5-6 3.5 3.5 0 1 1 2.5 6Z" />
           </svg>
           <span>Motivation</span>
-        </button>
+        </button> -->
         <button id="weather-btn" class="nav__item" data-page="weather">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -245,15 +245,6 @@
               <div class="greeting__text">
                 <h1><span class="greet">Good Morning</span>, <span class="user-type">Guest</span>! <span class="wave">👋</span></h1>
                 <p>Focus on being productive today.</p>
-              </div>
-
-              <div class="greeting__progress">
-                <span class="greeting__progress-label">Today's Progress</span>
-                <span class="greeting__progress-value">73%</span>
-                <div class="progress-track">
-                  <div class="progress-fill" style="width:73%"></div>
-                </div>
-                <span class="greeting__progress-hint">Keep going! You're doing great.</span>
               </div>
             </section>
 
@@ -393,7 +384,7 @@
                   </svg>
                 </a>
 
-                <a href="#" class="tool" data-page="motivation">
+                <!-- <a href="#" class="tool" data-page="motivation">
                   <div class="tool__icon tool__icon--purple">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -409,7 +400,7 @@
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
-                </a>
+                </a> -->
 
                 <a href="#" class="tool" data-page="weather">
                   <div class="tool__icon tool__icon--skyblue">
@@ -783,84 +774,65 @@
 
 
 
-    <!-- ==========================================================
-                  WEATHER PAGE
-    =========================================================== -->
-    <section class="weather-page hidden">
+  <!-- ==========================================================
+  WEATHER PAGE
+  =========================================================== -->
+  <section class="weather-page hidden">
+    <h1>Get Weather Of Your City</h1>
 
     <!-- Search Card -->
     <section class="weather-search card">
-
         <form id="weatherSearchForm" class="weather-search-form">
-
             <input
                 type="text"
                 id="weatherCity"
-                placeholder="City">
+                placeholder="City"
+            >
 
             <input
                 type="text"
                 id="weatherCountry"
-                placeholder="Country">
+                placeholder="Country"
+            >
 
-            <button type="submit">
-                Search
-            </button>
-
+            <button type="submit"> Search</button>
         </form>
-
     </section>
 
 
     <!-- Hero Card -->
-
     <section class="weather-hero card">
-
-    <div class="weather-left">
-
-        <span class="weather-badge">
-            Live Weather
-        </span>
-
+    
+      <div class="weather-left">
+        <span class="weather-badge">Live Weather</span>
         <h1 id="weatherHeroTemp">28°C</h1>
-
         <h2 id="weatherHeroCondition">Cloudy</h2>
-
-        <p id="weatherHeroLocation">
-            📍 Bhopal, India
-        </p>
-
+        <p id="weatherHeroLocation">Bhopal, India</p>
+    
         <div class="weather-info">
-
-            <div class="info-card">
-                <span>Feels Like</span>
-                <strong id="feelsLike">30°C</strong>
-            </div>
-
-            <div class="info-card">
-                <span>Humidity</span>
-                <strong id="weatherHumidity">60%</strong>
-            </div>
-
-            <div class="info-card">
-                <span>Wind</span>
-                <strong id="weatherWind">8 km/h</strong>
-            </div>
-
-            <div class="info-card">
-                <span>Pressure</span>
-                <strong id="weatherPressure">1012 hPa</strong>
-            </div>
-
+          <div class="info-card">
+            <span>Feels Like</span>
+            <strong id="feelsLike">30°C</strong>
+          </div>
+    
+          <div class="info-card">
+            <span>Humidity</span>
+            <strong id="weatherHumidity">60%</strong>
+          </div>
+    
+          <div class="info-card">
+            <span>Wind</span>
+            <strong id="weatherWind">8 km/h</strong>
+          </div>
+    
+          <div class="info-card">
+            <span>Pressure</span>
+            <strong id="weatherPressure">1012 hPa</strong>
+          </div>
         </div>
-
-    </div>
-
-
-
-</section>
-
-</section>
+      </div>
+    </section>
+  </section>
     
     
     
@@ -871,273 +843,38 @@
     
     
     
-          <!-- ==========================================
-            DAILY PLANNER
-          ========================================== -->
-          
-          <section class="planner-page hidden">
-      
-          <!-- Header -->
-      
-          <div class="planner-header">
-      
-              <div>
-                  <h1>Daily Planner</h1>
-                  <p>Plan your day, stay productive and focused.</p>
-              </div>
-      
-              <div class="planner-actions">
-      
-                  <button class="planner-btn planner-btn-outline">
-                      <i class="ri-calendar-line"></i>
-                      <span id="plannerDate">May 25, 2025</span>
-                      <i class="ri-arrow-down-s-line"></i>
-                  </button>
-      
-                  <button class="planner-btn planner-btn-danger">
-                      <i class="ri-delete-bin-line"></i>
-                      Clear All
-                  </button>
-      
-              </div>
-      
+    <!-- ==========================================
+      DAILY PLANNER
+    ========================================== -->
+    
+    <section class="planner-page hidden">
+      <div class="planner-header">
+          <div>
+              <h2>Daily Planner</h2>
+              <p id="plannerDate"></p>
           </div>
-      
-      
-      
-          <!-- Planner Card -->
-      
-          <div class="planner card">
-      
-              <!-- Table Header -->
-      
-              <div class="planner-top">
-      
-                  <div class="planner-time-title">
-                      Time
-                  </div>
-      
-                  <div class="planner-plan-title">
-                      Plan / Note
-                  </div>
-      
-              </div>
-      
-      
-      
-              <!-- Planner Body -->
-      
-              <div class="planner-body" id="plannerBody">
-      
-                  <!-- 6 AM -->
-      
-                  <div class="planner-row">
-      
-                      <div class="planner-time">
-                          <i class="ri-time-line"></i>
-                          06:00 AM
-                      </div>
-      
-                      <div class="planner-input">
-      
-                          <input
-                              type="text"
-                              placeholder="Add your plan for this time..."
-                              data-time="06:00 AM"
-                          >
-      
-                          <button class="planner-delete">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-      
-                      </div>
-      
-                  </div>
-      
-      
-                  <!-- 7 AM -->
-      
-                  <div class="planner-row">
-      
-                      <div class="planner-time">
-                          <i class="ri-time-line"></i>
-                          07:00 AM
-                      </div>
-      
-                      <div class="planner-input">
-      
-                          <input
-                              type="text"
-                              placeholder="Add your plan for this time..."
-                              data-time="07:00 AM"
-                          >
-      
-                          <button class="planner-delete">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-      
-                      </div>
-      
-                  </div>
-      
-      
-                  <!-- 8 AM -->
-      
-                  <div class="planner-row current-hour">
-      
-                      <div class="planner-time">
-      
-                          <span class="planner-indicator"></span>
-      
-                          <i class="ri-time-line"></i>
-      
-                          08:00 AM
-      
-                      </div>
-      
-                      <div class="planner-input">
-      
-                          <input
-                              type="text"
-                              value="Work on Project"
-                              data-time="08:00 AM"
-                          >
-      
-                          <span class="planner-now">
-                              Now
-                          </span>
-      
-                      </div>
-      
-                  </div>
-      
-      
-                  <!-- Remaining rows -->
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>09:00 AM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="09:00 AM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>10:00 AM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="10:00 AM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>11:00 AM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="11:00 AM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>12:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="12:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>01:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="01:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>02:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="02:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>03:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="03:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>04:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="04:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>05:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="05:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>06:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="06:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>07:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="07:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-      
-                  <div class="planner-row">
-                      <div class="planner-time"><i class="ri-time-line"></i>08:00 PM</div>
-      
-                      <div class="planner-input">
-                          <input type="text" placeholder="Add your plan..." data-time="08:00 PM">
-                          <button class="planner-delete"><i class="ri-delete-bin-line"></i></button>
-                      </div>
-                  </div>
-      
-              </div>
-      
-          </div>
-      </section>
-
+  
+          <button id="clearPlanner" class="planner-btn planner-btn-danger">
+              Clear All
+          </button>
+      </div>
+  
+      <div class="planner-add">
+          <input
+              type="time"
+              id="plannerTime"
+          >
+          <input
+              type="text"
+              id="plannerText"
+              placeholder="Enter your plan..."
+          >
+          <button id="addPlannerBtn">
+              Add
+          </button>
+        </div>
+      <div id="plannerList"></div>
+    </section>
 
 
 
