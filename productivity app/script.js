@@ -90,6 +90,12 @@ registerForm.addEventListener("submit", (e) => {
 
         todos: [],
         planner: [],
+        pomodoro:{
+            mode:"focus",
+            timeLeft:1500,
+            sessionCount:0,
+            isRunning:false
+        }
     }
 
     users.push(newUser);
@@ -243,8 +249,6 @@ userLoginBtn.addEventListener("click", () => {
     loginEmailInput.value = "";
     loginPasswordInput.value = "";
 })
-
-
 
 document.getElementById("showRegister").onclick = (e)=>{
     e.preventDefault();
@@ -1385,25 +1389,304 @@ clearPlanner.addEventListener("click", () => {
 
 
 
+
+
+/* =====================================
+        POMODORO TIMER
+===================================== */
+
+const timerElement = document.getElementById("timer");
+const modeName = document.getElementById("modeName");
+const sessionCount = document.getElementById("sessionCount");
+
+const progressCircle = document.getElementById("progressCircle");
+
+const startBtn = document.getElementById("startTimer");
+const pauseBtn = document.getElementById("pauseTimer");
+const resetBtn = document.getElementById("resetTimer");
+
+const modeButtons = document.querySelectorAll(".mode-btn");
+
+const RADIUS = 135;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+progressCircle.style.strokeDasharray = CIRCUMFERENCE;
+progressCircle.style.strokeDashoffset = 0;
+
+const timerModes = {
+    focus: 25 * 60,
+    short: 5 * 60,
+    long: 15 * 60
+};
+
+let timerInterval = null;
+
+
+
+function initializePomodoro(){
+
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
+
+    if(!currentUser) return;
+
+    if(!currentUser.pomodoro){
+
+        currentUser.pomodoro = {
+
+            mode:"focus",
+
+            timeLeft:timerModes.focus,
+
+            totalTime:timerModes.focus,
+
+            sessionCount:0,
+
+            isRunning:false
+
+        };
+
+        saveUser(currentUser);
+
+    }
+
+}
+
+function getPomodoro(){
+
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
+
+    return currentUser.pomodoro;
+
+}
+
+function savePomodoro(data){
+
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
+
+    currentUser.pomodoro = data;
+
+    saveUser(currentUser);
+
+}
+
+
+function updateModeButtons(mode){
+
+    modeButtons.forEach(btn=>{
+
+        btn.classList.toggle(
+            "active",
+            btn.dataset.mode===mode
+        );
+
+    });
+
+}
+
+
+function updatePomodoroUI(){
+
+    const pomodoro = getPomodoro();
+
+    const minutes =
+        String(Math.floor(pomodoro.timeLeft/60)).padStart(2,"0");
+
+    const seconds =
+        String(pomodoro.timeLeft%60).padStart(2,"0");
+
+    timerElement.textContent =
+        `${minutes}:${seconds}`;
+
+    sessionCount.textContent =
+        pomodoro.sessionCount;
+
+    modeName.textContent =
+        pomodoro.mode==="focus"
+        ? "Focus Time"
+        : pomodoro.mode==="short"
+        ? "Short Break"
+        : "Long Break";
+
+    updateModeButtons(pomodoro.mode);
+
+    const progress =
+        pomodoro.timeLeft/pomodoro.totalTime;
+
+    progressCircle.style.strokeDashoffset =
+        CIRCUMFERENCE-(progress*CIRCUMFERENCE);
+
+}
+
+
+
+function startPomodoro(){
+
+    const pomodoro = getPomodoro();
+
+    if(pomodoro.isRunning) return;
+
+    pomodoro.isRunning = true;
+
+    savePomodoro(pomodoro);
+
+    startBtn.innerHTML = `
+        <i class="ri-loader-4-line"></i>
+        Running
+    `;
+
+    startBtn.disabled = true;
+
+    timerInterval = setInterval(() => {
+
+        const data = getPomodoro();
+
+        if(data.timeLeft > 0){
+
+            data.timeLeft--;
+
+            savePomodoro(data);
+
+            updatePomodoroUI();
+
+        }else{
+
+            clearInterval(timerInterval);
+
+            timerFinished();
+
+        }
+
+    },1000);
+
+}
+
+function pausePomodoro(){
+
+    clearInterval(timerInterval);
+
+    const pomodoro = getPomodoro();
+
+    pomodoro.isRunning = false;
+
+    savePomodoro(pomodoro);
+
+    startBtn.disabled = false;
+
+    startBtn.innerHTML = `
+        <i class="ri-play-fill"></i>
+        Resume
+    `;
+
+}
+
+function resetPomodoro(){
+
+    clearInterval(timerInterval);
+
+    const pomodoro = getPomodoro();
+
+    pomodoro.isRunning = false;
+
+    pomodoro.timeLeft =
+        timerModes[pomodoro.mode];
+
+    pomodoro.totalTime =
+        timerModes[pomodoro.mode];
+
+    savePomodoro(pomodoro);
+
+    startBtn.disabled = false;
+
+    startBtn.innerHTML = `
+        <i class="ri-play-fill"></i>
+        Start
+    `;
+
+    updatePomodoroUI();
+
+}
+
+startBtn.addEventListener("click",startPomodoro);
+
+pauseBtn.addEventListener("click",pausePomodoro);
+
+resetBtn.addEventListener("click", resetPomodoro);
+
+
+function changeMode(mode){
+
+    clearInterval(timerInterval);
+
+    const pomodoro = getPomodoro();
+
+    pomodoro.mode = mode;
+
+    pomodoro.timeLeft =
+        timerModes[mode];
+
+    pomodoro.totalTime =
+        timerModes[mode];
+
+    pomodoro.isRunning = false;
+
+    savePomodoro(pomodoro);
+
+    startBtn.disabled = false;
+
+    startBtn.innerHTML = `
+        <i class="ri-play-fill"></i>
+        Start
+    `;
+
+    updatePomodoroUI();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ********************* //// ********************* //
 // Preventing the user after refresh //
 // ********************* //// ********************* //
 window.addEventListener("DOMContentLoaded", () => {
-
     checkAuthentication();
 
     if (!JSON.parse(localStorage.getItem("isLoggedIn"))) return;
 
     updateDashboard();
-
     updateAuthUI();
-
     renderTask();
-
     renderPlanner();
-
     getWeather();
+    initializePomodoro();
+    updatePomodoroUI();
 
+
+    
+    const pomodoro = getPomodoro();
+    if(pomodoro.isRunning){
+        pomodoro.isRunning = false;
+        savePomodoro(pomodoro);
+        startBtn.disabled = false;
+        startBtn.innerHTML = `
+            <i class="ri-play-fill"></i>
+            Resume
+        `;
+    }
 });
 
 

@@ -126,7 +126,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand__logo">P</div>
-        <span class="brand__name">Pro Dashboard</span>
+        <span class="brand__name">Planora</span>
       </div>
 
       <nav class="nav">
@@ -765,6 +765,125 @@
         </div>
       
     </section>
+
+
+
+
+
+
+
+
+
+
+<!-- ========================= -->
+  <!-- Promodoro Timer Page  -->
+<!-- ========================= -->
+   <!-- ==========================================
+POMODORO PAGE
+========================================== -->
+<section class="promodoro-page hidden">
+
+    <div class="pomodoro-container">
+
+        <div class="pomodoro-header">
+            <div>
+                <h1>Pomodoro Timer</h1>
+                <p>Stay focused and boost your productivity.</p>
+            </div>
+
+            <div class="session-card">
+                <span>Completed Sessions</span>
+                <h2 id="sessionCount">0</h2>
+            </div>
+        </div>
+
+        <div class="pomodoro-card">
+
+            <div class="mode-switch">
+
+            <button class="mode-btn active"
+                    data-mode="focus"
+                    onclick="changeMode('focus')">
+                Focus
+            </button>
+            
+            <button class="mode-btn"
+                    data-mode="short"
+                    onclick="changeMode('short')">
+                Short Break
+            </button>
+            
+            <button class="mode-btn"
+                    data-mode="long"
+                    onclick="changeMode('long')">
+                Long Break
+            </button>
+
+            </div>
+
+            <h2 id="modeName">
+                Focus Time
+            </h2>
+
+            <div class="timer-wrapper">
+
+                <svg class="progress-ring" width="320" height="320">
+
+                    <circle
+                        class="bg-circle"
+                        cx="160"
+                        cy="160"
+                        r="135">
+                    </circle>
+
+                    <circle
+                        id="progressCircle"
+                        class="progress-circle"
+                        cx="160"
+                        cy="160"
+                        r="135">
+                    </circle>
+
+                </svg>
+
+                <div class="timer-center">
+
+                    <div id="timer">
+                        25:00
+                    </div>
+
+                    <span>Stay Focused</span>
+
+                </div>
+
+            </div>
+
+            <div class="timer-controls">
+
+                <button id="startTimer" class="primary-btn">
+                    <i class="ri-play-fill"></i>
+                    Start
+                </button>
+
+                <button id="pauseTimer" class="secondary-btn">
+                    <i class="ri-pause-fill"></i>
+                    Pause
+                </button>
+
+                <button id="resetTimer" class="secondary-btn">
+                    <i class="ri-restart-line"></i>
+                    Reset
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 
 
