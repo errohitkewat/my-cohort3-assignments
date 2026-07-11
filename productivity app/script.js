@@ -343,38 +343,34 @@ setInterval(updateClock, 1000); // setInterval Update the time every second
 // ************************** //// ************************** //
 // Functionality to show the live weather information in dashboard
 // ************************** //// ************************** //
+const weatherForm = document.getElementById("weatherSearchForm");
 const API_KEY = "5753ec8d34e2ef7e6319af2cd5855e05";
 
 function getWeather() {
 
     if (loadCachedWeather()) return;
 
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) return;
 
+    // User already selected a city before
     if (
-
         currentUser.location?.lat &&
         currentUser.location?.lon
-
     ) {
 
         getWeatherByCoords(
-
             currentUser.location.lat,
-
             currentUser.location.lon
-
         );
 
+        return;
     }
 
-    else {
-
-        requestUserLocation();
-
-    }
+    // Try GPS
+    requestUserLocation();
 
 }
 
@@ -382,69 +378,98 @@ function getWeather() {
 async function requestUserLocation() {
 
     if (!navigator.geolocation) {
-        alert("Geolocation is not supported.");
+
+        fallbackToSavedCity();
+
         return;
+
     }
 
     navigator.geolocation.getCurrentPosition(
 
         async (position) => {
 
-            const { latitude, longitude } = position.coords;
+            const { latitude, longitude } =
+                position.coords;
 
-            const data = await getWeatherByCoords(latitude, longitude);
+            const data =
+                await getWeatherByCoords(latitude, longitude);
 
-            if (!data) return;
+            if (!data) {
+
+                fallbackToSavedCity();
+
+                return;
+
+            }
 
             let currentUser =
                 JSON.parse(localStorage.getItem("currentUser"));
 
             currentUser.location = {
+
                 city: data.name,
+
                 country: data.sys.country,
+
                 lat: latitude,
+
                 lon: longitude
+
             };
 
             saveUser(currentUser);
 
         },
 
-        (error) => {
-        
-            console.log(error);
-        
-            switch (error.code) {
-        
-                case error.PERMISSION_DENIED:
-                    alert("Location permission denied.");
-                    break;
-        
-                case error.POSITION_UNAVAILABLE:
-                    alert("Unable to detect your current location.");
-                    break;
-        
-                case error.TIMEOUT:
-                    alert("Location request timed out.");
-                    break;
-        
-                default:
-                    alert("Unknown location error.");
-            }
-        
+        () => {
+
+            // GPS failed
+            fallbackToSavedCity();
+
         },
 
         {
-            enableHighAccuracy: true
+
+            enableHighAccuracy: true,
+
+            timeout: 10000,
+
+            maximumAge: 0
+
         }
 
     );
 
 }
 
+async function fallbackToSavedCity() {
+
+    const currentUser =
+        JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) return;
+
+    const city = currentUser.location?.city;
+
+    const country = currentUser.location?.country;
+
+    if (city) {
+
+        getWeatherBySearch(city, country);
+
+        return;
+
+    }
+
+    alert("Search a city to view weather.");
+
+}
+
 // ********************* //
 // Weather Page Code // 
 // ********************* //
+
 async function getWeatherByCoords(lat, lon) {
 
     try {
@@ -481,7 +506,7 @@ async function getWeatherByCoords(lat, lon) {
 
 }
 
-async function getWeatherBySearch(city, country) {
+async function getWeatherBySearch(city, country = "") {
 
     try {
 
@@ -495,7 +520,7 @@ async function getWeatherBySearch(city, country) {
 
         if (data.cod != 200) {
 
-            alert("City not found");
+            alert("City not found.");
 
             return;
 
@@ -565,10 +590,6 @@ function loadCachedWeather(){
 
 }
 
-
-
-const weatherForm = document.getElementById("weatherSearchForm");
-
 const weatherBackgrounds = {
     Clear: "https://images.unsplash.com/photo-1501973801540-537f08ccae7b?w=1600",
     Clouds: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1600",
@@ -596,9 +617,7 @@ weatherForm.addEventListener("submit", function (e) {
     getWeatherBySearch(city, country);
 });
 
-
-
-function updateUserLocation(city,country,lat,lon){
+function updateUserLocation(city, country, lat, lon) {
 
     let currentUser =
         JSON.parse(localStorage.getItem("currentUser"));
@@ -606,8 +625,11 @@ function updateUserLocation(city,country,lat,lon){
     currentUser.location = {
 
         city,
+
         country,
+
         lat,
+
         lon
 
     };
