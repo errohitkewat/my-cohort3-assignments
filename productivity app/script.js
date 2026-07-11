@@ -96,7 +96,7 @@ registerForm.addEventListener("submit", (e) => {
             timeLeft:1500,
             sessionCount:0,
             isRunning:false
-        }
+        },
     }
 
     users.push(newUser);
@@ -172,6 +172,7 @@ loginBtn.addEventListener("click", (e) => {
         renderTask()
         renderPlanner();
         getWeather()
+        renderGoals();
 
         updateDashboard();
         updateDashboardStats();
@@ -426,6 +427,7 @@ async function requestUserLocation() {
             };
 
             saveUser(currentUser);
+            updateProgress();
 
         },
 
@@ -1685,18 +1687,31 @@ const goalPercent = document.getElementById("goalPercent");
 const resetGoalsBtn = document.getElementById("resetGoalsBtn");
 const dashboardDailyGoals = document.getElementById("dashboard-daily-goals");
 const dashboardDailyGoalsHint = document.querySelector("#dashboard-daily-goals").parentElement.querySelector(".stat-card__hint");
-const today = new Date().toDateString();
-const savedDate = localStorage.getItem("goalDate");
-
-if(savedDate !== today){
-    localStorage.removeItem("dailyGoals");
-    localStorage.setItem("goalDate",today);
-}
-
-let goals = JSON.parse(localStorage.getItem("dailyGoals")) || [];
 
 
 
+
+goalForm.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    currentUser.dailyGoals.push({
+        id: Date.now(),
+        title: document.getElementById("goalTitle").value,
+        category: document.getElementById("goalCategory").value,
+        priority: document.getElementById("goalPriority").value,
+        time: document.getElementById("goalTime").value,
+        completed: false
+    });
+
+    saveUser(currentUser);
+
+    goalForm.reset();
+    goalModal.classList.add("hidden");
+
+    renderGoals();
+});
 
 
 
@@ -1705,6 +1720,12 @@ let goals = JSON.parse(localStorage.getItem("dailyGoals")) || [];
 Render Goals
 ========================================== */
 function renderGoals(){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if(!currentUser) return;
+
+    const goals = currentUser.dailyGoals;
+
     goalsContainer.innerHTML = "";
 
     if(goals.length === 0){
@@ -1717,6 +1738,7 @@ function renderGoals(){
         updateProgress();
         return;
     }
+
 
     goals.forEach((goal,index) => {
         const goalCard = document.createElement("div");
@@ -1773,19 +1795,22 @@ goalModal.addEventListener("click",(e)=>{
 
 
 goalsContainer.addEventListener("click",(e)=>{
-    if(e.target.closest(".delete-goal")){
+    if (e.target.closest(".delete-goal")) {
         const index = e.target.closest(".delete-goal").dataset.index;
-        goals.splice(index,1);
-
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUser.dailyGoals.splice(index,1);
+        saveUser(currentUser);
         renderGoals();
     }
 });
 
 goalsContainer.addEventListener("change",(e)=>{
-    if(e.target.classList.contains("goal-checkbox")){
+    if (e.target.classList.contains("goal-checkbox")) {
         const index = e.target.dataset.index;
-        goals[index].completed =
-        e.target.checked;
+
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUser.dailyGoals[index].completed = e.target.checked;
+        saveUser(currentUser);
         renderGoals();
     }
 });
@@ -1793,9 +1818,14 @@ goalsContainer.addEventListener("change",(e)=>{
 
 //  Reset
 resetGoalsBtn.addEventListener("click",()=>{
-    goals.forEach(goal=>{
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    
+    currentUser.dailyGoals.forEach(goal=>{
         goal.completed=false;
     });
+    
+    saveUser(currentUser);
+    
     renderGoals();
 });
 
@@ -1803,7 +1833,10 @@ renderGoals();
 
 
 
-function updateProgress(){
+function updateProgress() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const goals = currentUser.dailyGoals;
+
     const total = goals.length;
     const completed = goals.filter(goal => goal.completed).length;
     const pending = total - completed;
@@ -1872,6 +1905,7 @@ window.addEventListener("DOMContentLoaded", () => {
     renderTask();
     renderPlanner();
     getWeather();
+    renderGoals();
     initializePomodoro();
     updatePomodoroUI();
 
