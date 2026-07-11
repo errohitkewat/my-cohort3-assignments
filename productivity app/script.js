@@ -173,6 +173,7 @@ loginBtn.addEventListener("click", (e) => {
         getWeather()
 
         updateDashboard();
+        updateDashboardStats();
 
         userLoginBtn.classList.add("hidden")
         userLogoutBtn.classList.remove("hidden")
@@ -200,6 +201,7 @@ userLogoutBtn.addEventListener("click", () => {
     checkAuthentication();
     updateAuthUI();
     updateDashboard();
+    updateDashboardStats();
 })
 
 
@@ -1025,6 +1027,7 @@ function renderTask(tasks = null) {
     const todos = currentUser.todos;
 
     updateTaskStats();
+    updateDashboardStats();
 
     if (!tasks) tasks = todos;
 
@@ -1164,6 +1167,56 @@ function saveUser(currentUser){
     }
 
 }
+
+
+
+
+// Function to update dashboard status //
+function updateDashboardStats() {
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+
+        document.getElementById("dashboard-total-tasks").textContent = 0;
+        document.getElementById("dashboard-completed-tasks").textContent = 0;
+        document.getElementById("dashboard-focus-time").textContent = "0 min";
+
+        return;
+    }
+
+    // Total Tasks
+    const total = currentUser.todos.length;
+
+    // Completed Tasks
+    const completed = currentUser.todos.filter(
+        task => task.status === "completed"
+    ).length;
+
+    // Focus Time
+    let focusMinutes = 0;
+
+    if (currentUser.pomodoro) {
+
+        const sessions = currentUser.pomodoro.sessionCount || 0;
+
+        focusMinutes = sessions * 25;
+    }
+
+    document.getElementById("dashboard-total-tasks").textContent = total;
+
+    document.getElementById("dashboard-completed-tasks").textContent = completed;
+
+    document.getElementById("dashboard-focus-time").textContent =
+        `${focusMinutes} min`;
+}
+
+
+
+
+
+
+
 
 
 // Functionality to apply active class and showing the tasks according to status 
@@ -1461,6 +1514,68 @@ function getPomodoro(){
 
 }
 
+function timerFinished() {
+    const pomodoro = getPomodoro();
+
+    pomodoro.isRunning = false;
+
+    // Count only completed focus sessions
+    if (pomodoro.mode === "focus") {
+        pomodoro.sessionCount++;
+    }
+
+    // Auto switch mode
+    if (pomodoro.mode === "focus") {
+        if (pomodoro.sessionCount % 4 === 0) {
+            pomodoro.mode = "long";
+        } else {
+            pomodoro.mode = "short";
+        }
+    } else {
+        pomodoro.mode = "focus";
+    }
+
+    pomodoro.timeLeft = timerModes[pomodoro.mode];
+    pomodoro.totalTime = timerModes[pomodoro.mode];
+
+    savePomodoro(pomodoro);
+
+    updatePomodoroUI();
+    updateDashboardStats();
+
+    startBtn.disabled = false;
+    startBtn.innerHTML = `
+        <i class="ri-play-fill"></i>
+        Start
+    `;
+
+    // Browser notification
+    if ("Notification" in window) {
+        if (Notification.permission === "granted") {
+            new Notification("Pomodoro Timer", {
+                body:
+                    pomodoro.mode === "focus"
+                        ? "Break time! ☕"
+                        : "Focus time! 💪"
+            });
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission();
+        }
+    }
+
+    // Simple sound
+    const audio = new Audio(
+        "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+    );
+    audio.play().catch(() => {});
+
+    alert(
+        pomodoro.mode === "focus"
+            ? "Break Time!"
+            : "Focus Time!"
+    );
+}
+
 function savePomodoro(data){
 
     const currentUser =
@@ -1609,10 +1724,8 @@ function resetPomodoro(){
 
 }
 
-startBtn.addEventListener("click",startPomodoro);
-
-pauseBtn.addEventListener("click",pausePomodoro);
-
+startBtn.addEventListener("click", startPomodoro);
+pauseBtn.addEventListener("click", pausePomodoro);
 resetBtn.addEventListener("click", resetPomodoro);
 
 
@@ -1665,9 +1778,19 @@ function changeMode(mode){
 window.addEventListener("DOMContentLoaded", () => {
     checkAuthentication();
 
+    startBtn.addEventListener("click", () => {
+    
+        if ("Notification" in window && Notification.permission === "default") {
+            Notification.requestPermission();
+        }
+    
+        startPomodoro();
+    });
+
     if (!JSON.parse(localStorage.getItem("isLoggedIn"))) return;
 
     updateDashboard();
+    updateDashboardStats();
     updateAuthUI();
     renderTask();
     renderPlanner();
@@ -1676,7 +1799,7 @@ window.addEventListener("DOMContentLoaded", () => {
     updatePomodoroUI();
 
 
-    
+
     const pomodoro = getPomodoro();
     if(pomodoro.isRunning){
         pomodoro.isRunning = false;

@@ -260,7 +260,7 @@
                   </svg>
                 </div>
                 <span class="stat-card__label">Today's Tasks</span>
-                <span class="stat-card__value">12</span>
+                <span class="stat-card__value" id="dashboard-total-tasks">0</span>
                 <span class="stat-card__hint stat-card__hint--indigo">5 remaining</span>
               </div>
 
@@ -273,7 +273,7 @@
                   </svg>
                 </div>
                 <span class="stat-card__label">Completed</span>
-                <span class="stat-card__value">7</span>
+                <span id="dashboard-completed-tasks" class="stat-card__value">0</span>
                 <span class="stat-card__hint stat-card__hint--green">Tasks done</span>
               </div>
 
@@ -286,7 +286,7 @@
                   </svg>
                 </div>
                 <span class="stat-card__label">Focus Time</span>
-                <span class="stat-card__value">2h 20m</span>
+                <span id="dashboard-focus-time" class="stat-card__value">0 min</span>
                 <span class="stat-card__hint stat-card__hint--orange">Today</span>
               </div>
 
@@ -954,6 +954,11 @@ POMODORO PAGE
   </section>
     
     
+
+
+
+
+
     
     
     
@@ -1002,10 +1007,22 @@ POMODORO PAGE
 
 
 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
     </main>
   </div>
-
-
 
   <script src="script.js"></script>
 </body>
