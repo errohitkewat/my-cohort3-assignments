@@ -472,6 +472,20 @@ async function fallbackToSavedCity() {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ********************* //
 // Weather Page Code // 
 // ********************* //
@@ -1761,6 +1775,217 @@ function changeMode(mode){
 
 
 
+
+
+
+
+
+
+
+
+/* ==========================================
+        DAILY GOALS
+========================================== */
+const goalsContainer = document.getElementById("goalsContainer");
+
+const goalForm = document.getElementById("goalForm");
+
+const goalModal = document.getElementById("goalModal");
+
+const openGoalModal = document.getElementById("openGoalModal");
+
+const closeGoalModal = document.getElementById("closeGoalModal");
+
+const cancelGoal = document.getElementById("cancelGoal");
+
+const goalProgressFill = document.getElementById("goalProgressFill");
+
+const goalProgressText = document.getElementById("goalProgressText");
+
+const goalPercent = document.getElementById("goalPercent");
+
+const resetGoalsBtn = document.getElementById("resetGoalsBtn");
+
+const dashboardDailyGoals = document.getElementById("dashboard-daily-goals");
+
+const dashboardDailyGoalsHint = document.querySelector("#dashboard-daily-goals").parentElement.querySelector(".stat-card__hint");
+
+const today = new Date().toDateString();
+
+const savedDate = localStorage.getItem("goalDate");
+
+if(savedDate !== today){
+    localStorage.removeItem("dailyGoals");
+    localStorage.setItem("goalDate",today);
+}
+
+let goals = JSON.parse(localStorage.getItem("dailyGoals")) || [];
+
+
+
+
+
+
+
+/* ==========================================
+Render Goals
+========================================== */
+function renderGoals(){
+    goalsContainer.innerHTML = "";
+
+    if(goals.length === 0){
+        goalsContainer.innerHTML = ` <div class="empty-goals">
+
+                <i class="ri-checkbox-circle-line"></i>
+
+                <h3>No Daily Goals</h3>
+
+                <p>Click "Add Goal" to create your first goal.</p>
+
+            </div>
+
+        `;
+
+        updateProgress();
+        return;
+    }
+
+    goals.forEach((goal,index) => {
+        const goalCard = document.createElement("div");
+
+        goalCard.className = `goal-row ${goal.completed ? "completed" : ""}`;
+
+        goalCard.innerHTML = ` <div class="goal-left">
+                <input
+                    type="checkbox"
+                    class="goal-checkbox"
+                    ${goal.completed ? "checked" : ""}
+                    data-index="${index}"
+                >
+
+                <div>
+
+                    <h4>${goal.title}</h4>
+
+                    <small>
+
+                        ${goal.category}
+                        •
+                        ${goal.priority}
+                        ${goal.time ? "• " + goal.time : ""}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="goal-actions">
+
+                <button
+                    class="delete-goal"
+                    data-index="${index}">
+
+                    <i class="ri-delete-bin-line"></i>
+
+                </button>
+
+            </div>
+
+        `;
+        goalsContainer.appendChild(goalCard);
+    });
+    updateProgress();
+}
+
+
+openGoalModal.addEventListener("click",()=>{
+    goalModal.classList.remove("hidden");
+});
+
+closeGoalModal.addEventListener("click",()=>{
+    goalModal.classList.add("hidden");
+});
+
+cancelGoal.addEventListener("click",()=>{
+    goalModal.classList.add("hidden");
+});
+
+goalModal.addEventListener("click",(e)=>{
+    if(e.target===goalModal){
+        goalModal.classList.add("hidden");
+    }
+});
+
+
+goalsContainer.addEventListener("click",(e)=>{
+    if(e.target.closest(".delete-goal")){
+        const index = e.target.closest(".delete-goal").dataset.index;
+        goals.splice(index,1);
+
+        renderGoals();
+    }
+});
+
+goalsContainer.addEventListener("change",(e)=>{
+    if(e.target.classList.contains("goal-checkbox")){
+        const index = e.target.dataset.index;
+        goals[index].completed =
+        e.target.checked;
+        renderGoals();
+    }
+});
+
+
+//  Reset
+resetGoalsBtn.addEventListener("click",()=>{
+    goals.forEach(goal=>{
+        goal.completed=false;
+    });
+    renderGoals();
+});
+
+renderGoals();
+
+
+
+function updateProgress(){
+    const total = goals.length;
+    const completed = goals.filter(goal => goal.completed).length;
+    const pending = total - completed;
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    /* Daily Goals Page */
+    goalProgressFill.style.width = percent + "%";
+
+    goalProgressText.textContent = `${completed} / ${total} Goals Completed`;
+
+    goalPercent.textContent = percent + "%";
+
+    /* Dashboard Card */
+
+    if(dashboardDailyGoals){
+        dashboardDailyGoals.textContent = `${completed}/${total}`;
+    }
+
+    if(dashboardDailyGoalsHint){
+        if(total===0){
+            dashboardDailyGoalsHint.textContent = "No Goals";
+        }
+
+        else if(completed===0){
+            dashboardDailyGoalsHint.textContent = "Not Started";
+        }
+
+        else if(completed===total){
+            dashboardDailyGoalsHint.textContent = "Completed ";
+        }
+
+        else{
+            dashboardDailyGoalsHint.textContent = `${pending} Remaining`;
+        }
+    }
+}
 
 
 

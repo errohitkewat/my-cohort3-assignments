@@ -2537,9 +2537,470 @@ body.dark .bg-circle{
 
 
 
+/* ==========================================================
+                    DAILY GOALS PAGE
+========================================================== */
 
+.daily-goals-page{
+    padding:0 32px 32px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
 
+/* ==========================================================
+                        HEADER
+========================================================== */
 
+.daily-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.daily-header h1{
+    margin:0;
+    font-size:2rem;
+    color:var(--text-primary);
+    font-weight:700;
+}
+
+.daily-header p{
+    margin-top:6px;
+    color:var(--text-secondary);
+}
+
+.daily-header-actions{
+    display:flex;
+    gap:12px;
+}
+
+/* ==========================================================
+                    PROGRESS CARD
+========================================================== */
+
+.daily-progress{
+    padding:24px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.progress-top h3{
+    margin:0;
+    font-size:20px;
+}
+
+.progress-top span{
+    display:block;
+    margin-top:6px;
+    color:var(--text-secondary);
+}
+
+.progress-top strong{
+    font-size:30px;
+    color:var(--indigo);
+}
+
+.daily-progress-bar{
+    width:100%;
+    height:14px;
+    background:var(--border);
+    border-radius:999px;
+    overflow:hidden;
+}
+
+#goalProgressFill{
+    width:0%;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--indigo),#7d82ff);
+    transition:.35s ease;
+}
+
+/* ==========================================================
+                    GOALS LIST
+========================================================== */
+
+.daily-goals-list{
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* ==========================================================
+                    GOAL CARD
+========================================================== */
+
+.goal-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 24px;
+    border-bottom:1px solid var(--border-soft);
+    transition:.3s;
+}
+
+.goal-row:last-child{
+    border-bottom:none;
+}
+
+.goal-row:hover{
+    background:var(--bg-hover);
+}
+
+/* ==========================================================
+                    LEFT
+========================================================== */
+
+.goal-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.goal-left h4{
+    margin:0;
+    font-size:17px;
+    color:var(--text-primary);
+}
+
+.goal-left small{
+    display:block;
+    margin-top:6px;
+    color:var(--text-secondary);
+}
+
+/* ==========================================================
+                    CHECKBOX
+========================================================== */
+
+.goal-checkbox{
+
+    appearance:none;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:8px;
+
+    border:2px solid #cfd4df;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.3s;
+
+    flex-shrink:0;
+
+}
+
+.goal-checkbox:hover{
+
+    border-color:var(--indigo);
+
+}
+
+.goal-checkbox:checked{
+
+    background:var(--indigo);
+
+    border-color:var(--indigo);
+
+}
+
+.goal-checkbox:checked::after{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-55%);
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================================
+                COMPLETED
+========================================================== */
+
+.goal-row.completed{
+
+    background:rgba(91,95,239,.05);
+
+}
+
+.goal-row.completed h4{
+
+    text-decoration:line-through;
+
+    color:var(--text-muted);
+
+}
+
+.goal-row.completed small{
+
+    color:var(--text-muted);
+
+}
+
+/* ==========================================================
+                    DELETE BUTTON
+========================================================== */
+
+.delete-goal{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:transparent;
+
+    color:var(--text-secondary);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:18px;
+
+}
+
+.delete-goal:hover{
+
+    background:#ef4444;
+
+    color:#fff;
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================================
+                    EMPTY STATE
+========================================================== */
+
+.empty-goals{
+
+    padding:60px 20px;
+
+    text-align:center;
+
+}
+
+.empty-goals i{
+
+    font-size:70px;
+
+    color:var(--text-muted);
+
+}
+
+.empty-goals h3{
+
+    margin-top:20px;
+
+    color:var(--text-primary);
+
+}
+
+.empty-goals p{
+
+    color:var(--text-secondary);
+
+    margin-top:10px;
+
+}
+
+/* ==========================================================
+                    MODAL
+========================================================== */
+
+.goal-modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.goal-modal{
+
+    width:480px;
+
+    background:var(--bg-card);
+
+    border-radius:18px;
+
+    padding:24px;
+
+}
+
+.goal-modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+}
+
+.goal-modal-header button{
+
+    background:none;
+
+    border:none;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+.goal-form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:18px;
+
+}
+
+.goal-form-group label{
+
+    margin-bottom:8px;
+
+    color:var(--text-secondary);
+
+}
+
+.goal-form-group input,
+
+.goal-form-group select{
+
+    height:46px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--bg-input);
+
+    padding:0 14px;
+
+    color:var(--text-primary);
+
+}
+
+.goal-form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+}
+
+.goal-modal-footer{
+
+    margin-top:24px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+}
+
+/* ==========================================================
+                    RESPONSIVE
+========================================================== */
+
+@media(max-width:900px){
+
+.daily-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.daily-header-actions{
+
+    width:100%;
+
+}
+
+.daily-header-actions button{
+
+    flex:1;
+
+}
+
+.progress-top{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.goal-row{
+
+    padding:18px;
+
+}
+
+.goal-modal{
+
+    width:95%;
+
+}
+
+.goal-form-row{
+
+    grid-template-columns:1fr;
+
+}
+
+}
 
 
 
